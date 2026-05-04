@@ -1,0 +1,17 @@
+---
+import { Button } from '@/components/ui/button';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Página no encontrada" description="Esta página no existe.">
+  <main class="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+    <h1 class="text-8xl font-bold text-gray-200 dark:text-gray-800">404</h1>
+    <h2 class="mt-4 text-2xl font-semibold text-gray-900 dark:text-white">Página no encontrada</h2>
+    <p class="mt-2 text-gray-600 dark:text-gray-400">
+      La página que buscas no existe o fue movida.
+    </p>
+    <a href="/">
+      <Button> Volver al inicio </Button>
+    </a>
+  </main>
+</Layout>
