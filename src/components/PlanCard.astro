@@ -1,0 +1,57 @@
+---
+import { Button } from "@/components/ui/button";
+import pkg from "lucide-react";
+const { Wifi, WavesHorizontal: Jacuzzi, Coffee, Flame } = pkg;
+
+interface Props {
+  image: string;
+  title: string;
+  price: string;
+  description: string;
+  features: string[];
+}
+
+const { image, title, price, description, features } = Astro.props;
+
+const iconMap: Record<string, any> = {
+  wifi: Wifi,
+  jacuzzi: Jacuzzi,
+  desayuno: Coffee,
+  fogata: Flame,
+};
+---
+
+<div class="group bg-card border border-white/5 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-2">
+  <div class="relative h-64 overflow-hidden">
+    <img
+      src={image}
+      alt={title}
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+    />
+    <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+      {price} / noche
+    </div>
+  </div>
+  
+  <div class="p-6">
+    <h3 class="text-white font-serif text-2xl font-bold mb-2">{title}</h3>
+    <p class="text-white/60 text-sm mb-6 leading-relaxed">
+      {description}
+    </p>
+    
+    <div class="flex gap-4 mb-8">
+      {features.map((feature) => {
+        const Icon = iconMap[feature];
+        return (
+          <div class="text-primary/80" title={feature}>
+            {Icon && <Icon size={20} />}
+          </div>
+        );
+      })}
+    </div>
+    
+    <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg h-12 font-bold uppercase tracking-wider transition-all active:scale-95">
+      Ver Detalles
+    </Button>
+  </div>
+</div>

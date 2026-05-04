@@ -1,66 +1,18 @@
 ---
-import { Button } from '@/components/ui/button';
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { ArrowRightIcon, ExternalLinkIcon } from 'lucide-react';
-
-const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedPlans from '../components/FeaturedPlans.astro';
+import CabinGallery from '../components/CabinGallery.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="GENERIC_PROJECT_NAME" description="GENERIC_DESCRIPTION">
-  <main class="mx-auto max-w-4xl px-4 py-16">
-    <!-- Hero -->
-    <section class="mb-16 text-center">
-      <h1 class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-        GENERIC_PROJECT_NAME
-      </h1>
-      <p class="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-400">
-        GENERIC_DESCRIPTION
-      </p>
-      <div class="mt-8 flex justify-center gap-4">
-        <a href="/blog">
-          <Button>Ver blog</Button>
-        </a>
-        <a
-          href="https://github.com/GENERIC_USERNAME/GENERIC_REPO_NAME"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button variant="secondary">
-            Github
-            <ExternalLinkIcon />
-          </Button>
-        </a>
-      </div>
-    </section>
-
-    <!-- Posts recientes -->
-    {
-      recentPosts.length > 0 && (
-        <section>
-          <h2 class="mb-6 text-2xl font-bold">Posts Recientes</h2>
-          <ul class="space-y-6">
-            {recentPosts.map((post) => (
-              <li class="border-b border-gray-200 pb-6 dark:border-gray-800">
-                <a href={`/blog/${post.id}/`} class="group block">
-                  <h3 class="text-xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                    {post.data.title}
-                  </h3>
-                  <p class="mt-1 text-gray-600 dark:text-gray-400">{post.data.description}</p>
-                </a>
-              </li>
-            ))}
-          </ul>
-          <a href="/blog/">
-            <Button variant="ghost">
-              Ver todos los posts
-              <ArrowRightIcon />
-            </Button>
-          </a>
-        </section>
-      )
-    }
+<Layout title="Inicio | Escapa a la Naturaleza">
+  <Navbar />
+  <main>
+    <Hero />
+    <FeaturedPlans />
+    <CabinGallery />
   </main>
+  <Footer />
 </Layout>

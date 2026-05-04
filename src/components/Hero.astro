@@ -1,0 +1,51 @@
+---
+---
+
+<section class="relative h-screen flex flex-col justify-center overflow-hidden">
+  <!-- Hero Background -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/hero.png"
+      alt="Terra Luna Glamping Night"
+      class="w-full h-full object-cover scale-105 animate-slow-zoom"
+    />
+    <div class="absolute inset-0 bg-black/45"></div>
+  </div>
+
+  <div class="container mx-auto px-4 md:px-6 relative z-10 pt-20">
+    <div class="max-w-4xl animate-fade-in-up text-center mx-auto">
+      <h1 class="text-white font-dunkerque text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-[0.1em] mb-8 uppercase">
+        ESCÁPATE A LA <br />
+        <span class="text-white">NATURALEZA</span> <br />
+        <span class="text-primary italic">CON LUJO Y ESTILO</span>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes slow-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
+  .animate-slow-zoom {
+    animation: slow-zoom 20s ease-in-out infinite alternate;
+  }
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+  .animate-fade-in-up-delayed {
+    opacity: 0;
+    animation: fade-in-up 1s ease-out 0.5s forwards;
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+import PlanCard from "./PlanCard.astro";
+
+const plans = [
+  {
+    title: "Escapada Romántica",
+    price: "$450.000",
+    image: "/images/plan-romantic.png",
+    description: "Una experiencia inolvidable bajo las estrellas con jacuzzi privado y cena romántica a la luz de las velas.",
+    features: ["wifi", "jacuzzi", "desayuno", "fogata"],
+  },
+  {
+    title: "Aventura Extrema",
+    price: "$380.000",
+    image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1000",
+    description: "Para los amantes de la naturaleza. Trekking guiado por el bosque nuboso y fogata nocturna en la cima.",
+    features: ["wifi", "desayuno", "fogata"],
+  },
+  {
+    title: "Plan Familiar",
+    price: "$550.000",
+    image: "/images/plan-family.png",
+    description: "Diversión para todos. Malvaviscos en la fogata, senderismo suave y espacios amplios para conectar en familia.",
+    features: ["wifi", "desayuno", "fogata"],
+  },
+];
+---
+
+<section id="planes" class="py-24 bg-[#071412] relative overflow-hidden">
+  <!-- Subtle patterns -->
+  <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+  </div>
+
+  <div class="container mx-auto px-4 md:px-6 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-white font-serif text-4xl md:text-5xl font-bold uppercase tracking-[0.2em] mb-4">
+        Nuestros Planes Destacados
+      </h2>
+      <div class="w-24 h-1 bg-primary mx-auto"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {plans.map((plan) => (
+        <PlanCard {...plan} />
+      ))}
+    </div>
+  </div>
+</section>
