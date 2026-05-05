@@ -15,7 +15,7 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
-    author: z.string().default('GENERIC_AUTHOR'),
+    author: z.string().default('Isabella Arbelaez'),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),

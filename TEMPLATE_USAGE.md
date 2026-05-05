@@ -17,31 +17,20 @@ Un punto de partida profesional para proyectos Astro con:
 - ✅ Commits con Conventional Commits (Husky + commitlint)
 - ✅ Script de renombrado para proyectos nuevos
 
----
+---git initit
+cd TU_REPO
 
-## 🚀 Cómo usar el template para un nuevo proyecto
-
-### Paso 1 — Clonar o usar como template en GitHub
-
-**Opción A — Desde GitHub (recomendado):**
-
-1. Ve al repositorio en GitHub
-2. Haz clic en **"Use this template"** → **"Create a new repository"**
-3. Clona tu nuevo repositorio:
-   ```bash
-   git clone https://github.com/TU_USUARIO/TU_REPO.git
-   cd TU_REPO
-   ```
+````
 
 **Opción B — Clonar directamente:**
 
 ```bash
-git clone https://github.com/GENERIC_USERNAME/GENERIC_REPO_NAME.git mi-nuevo-proyecto
+git clone https://github.com/isarbelaez/glampinsanturban.git mi-nuevo-proyecto
 cd mi-nuevo-proyecto
 # Opcional: desconectar del origen del template
 git remote remove origin
 git remote add origin https://github.com/TU_USUARIO/TU_NUEVO_REPO.git
-```
+````
 
 ### Paso 2 — Instalar dependencias
 
@@ -67,14 +56,14 @@ El script te pedirá:
 
 > **Placeholders que se reemplazan:**
 >
-> | Placeholder            | Descripción                    |
-> | ---------------------- | ------------------------------ |
-> | `GENERIC_PROJECT_NAME` | Nombre del proyecto            |
-> | `GENERIC_USERNAME`     | Usuario de GitHub              |
-> | `GENERIC_REPO_NAME`    | Nombre del repositorio         |
-> | `GENERIC_DESCRIPTION`  | Descripción del proyecto       |
-> | `GENERIC_AUTHOR`       | Nombre del autor               |
-> | `GENERIC_URL`          | URL construida automáticamente |
+> | Placeholder                                     | Descripción                    |
+> | ----------------------------------------------- | ------------------------------ |
+> | `glampinglean`                                  | Nombre del proyecto            |
+> | `isarbelaez`                                    | Usuario de GitHub              |
+> | `glampinsanturban`                              | Nombre del repositorio         |
+> | `Glamping`                                      | Descripción del proyecto       |
+> | `Isabella Arbelaez`                             | Nombre del autor               |
+> | `https://isarbelaez.github.io/glampinsanturban` | URL construida automáticamente |
 
 ### Paso 4 — Configurar astro.config.mjs
 

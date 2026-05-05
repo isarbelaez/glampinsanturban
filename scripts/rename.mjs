@@ -19,11 +19,11 @@ import { createInterface } from 'readline';
 // ─── Configuración ──────────────────────────────────────────────────────────
 
 const PLACEHOLDERS = {
-  GENERIC_PROJECT_NAME: '',
-  GENERIC_USERNAME: '',
-  GENERIC_REPO_NAME: '',
-  GENERIC_DESCRIPTION: '',
-  GENERIC_AUTHOR: '',
+  GENERIC_PROJECT_NAME: 'glampinglean',
+  GENERIC_USERNAME: 'isarbelaez',
+  GENERIC_REPO_NAME: 'glampinsanturban',
+  GENERIC_DESCRIPTION: 'Glamping',
+  GENERIC_AUTHOR: 'Isabella Arbelaez',
   GENERIC_URL: '',
 };
 

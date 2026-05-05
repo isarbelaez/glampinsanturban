@@ -1,9 +1,9 @@
 {
-  "name": "GENERIC_PROJECT_NAME",
+  "name": "glampinglean",
   "type": "module",
   "version": "0.1.0",
-  "description": "GENERIC_DESCRIPTION",
-  "author": "GENERIC_AUTHOR",
+  "description": "Glamping",
+  "author": "Isabella Arbelaez",
   "license": "MIT",
   "engines": {
     "node": ">=22.12.0",

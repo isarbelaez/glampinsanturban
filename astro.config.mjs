@@ -15,11 +15,11 @@ import sitemap from '@astrojs/sitemap';
 // NO uses adaptadores SSR (node, cloudflare, vercel, etc.) con GitHub Pages.
 
 export default defineConfig({
-  // 🔧 Cambiar a la URL real del sitio: https://GENERIC_USERNAME.github.io/GENERIC_REPO_NAME
-  site: 'https://GENERIC_USERNAME.github.io',
+  // 🔧 Cambiar a la URL real del sitio: https://isarbelaez.github.io/glampinsanturban
+  site: 'https://isarbelaez.github.io',
 
   // 🔧 Cambiar al nombre real del repositorio (dejar vacío si es username.github.io)
-  // base: '/GENERIC_REPO_NAME',
+  // base: '/glampinsanturban',
 
   // Output estático (requerido para GitHub Pages)
   output: 'static',
