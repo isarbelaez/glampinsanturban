@@ -19,7 +19,7 @@ export default defineConfig({
   site: 'https://isarbelaez.github.io',
 
   // 🔧 Cambiar al nombre real del repositorio (dejar vacío si es username.github.io)
-  // base: '/glampinsanturban',
+  base: '/glampinsanturban',
 
   // Output estático (requerido para GitHub Pages)
   output: 'static',
