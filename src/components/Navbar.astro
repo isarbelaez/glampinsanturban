@@ -44,15 +44,50 @@ const navLinks = [
           <span class="hidden sm:inline">Reservar ahora</span>
         </a>
         <!-- Mobile Menu Toggle -->
-        <button class="p-2 text-white lg:hidden">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
+        <button id="mobile-menu-toggle" class="group p-2 text-white lg:hidden">
+          <div class="relative flex h-5 w-6 flex-col justify-between">
+            <span
+              class="h-0.5 w-full origin-left bg-current transition-all duration-300 group-[.is-active]:translate-x-1 group-[.is-active]:rotate-45"
+            ></span>
+            <span
+              class="h-0.5 w-full bg-current transition-all duration-300 group-[.is-active]:opacity-0"
+            ></span>
+            <span
+              class="h-0.5 w-full origin-left bg-current transition-all duration-300 group-[.is-active]:translate-x-1 group-[.is-active]:-rotate-45"
+            ></span>
+          </div>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="bg-background/95 fixed inset-0 z-40 translate-x-full backdrop-blur-2xl transition-transform duration-500 ease-in-out lg:hidden"
+  >
+    <div class="flex h-full flex-col px-8 pt-32">
+      <nav class="flex flex-col gap-6">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="mobile-nav-link hover:text-primary font-serif text-2xl font-bold tracking-widest text-white uppercase transition-colors"
+            >
+              {link.name}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="mt-auto pb-12">
+        <a
+          href="#reservar"
+          class="mobile-nav-link bg-primary flex w-full items-center justify-center gap-3 rounded-full py-4 text-sm font-bold tracking-widest text-white uppercase"
+        >
+          <Calendar size={18} />
+          <span>Reservar ahora</span>
+        </a>
       </div>
     </div>
   </div>
@@ -60,6 +95,11 @@ const navLinks = [
 
 <script>
   const header = document.getElementById('main-header');
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const links = document.querySelectorAll('.mobile-nav-link');
+
+  // Sticky Header
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       header?.classList.add('bg-background/90', 'backdrop-blur-xl', 'h-20', 'shadow-2xl');
@@ -68,5 +108,21 @@ const navLinks = [
       header?.classList.remove('bg-background/90', 'backdrop-blur-xl', 'h-20', 'shadow-2xl');
       header?.classList.add('h-24');
     }
+  });
+
+  // Toggle Menu
+  toggle?.addEventListener('click', () => {
+    const isActive = toggle.classList.toggle('is-active');
+    menu?.classList.toggle('translate-x-full', !isActive);
+    document.body.style.overflow = isActive ? 'hidden' : '';
+  });
+
+  // Close menu on link click
+  links.forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.classList.remove('is-active');
+      menu?.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+    });
   });
 </script>

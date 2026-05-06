@@ -208,11 +208,13 @@ const originalCount = originalPlans.length;
       const scrollPercentage = (normalizedScroll / setWidth) * 100;
       progress.style.width = `${scrollPercentage}%`;
 
-      // Seamless Jump Logic
-      if (scrollPos < setWidth * 0.5) {
-        carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
-      } else if (scrollPos > setWidth * 2) {
-        carousel.scrollTo({ left: scrollPos - setWidth, behavior: 'instant' });
+      // Seamless Jump Logic - Only jump if not dragging to avoid glitches
+      if (!isDown) {
+        if (scrollPos < setWidth * 0.5) {
+          carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
+        } else if (scrollPos > setWidth * 2.2) {
+          carousel.scrollTo({ left: scrollPos - setWidth, behavior: 'instant' });
+        }
       }
     });
 
@@ -243,8 +245,18 @@ const originalCount = originalPlans.length;
     });
 
     window.addEventListener('mouseup', () => {
+      if (!isDown) return;
       isDown = false;
       carousel.classList.remove('dragging');
+
+      // Perform infinite jump after release if needed
+      const scrollPos = carousel.scrollLeft;
+      if (scrollPos < setWidth * 0.5) {
+        carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
+      } else if (scrollPos > setWidth * 2.2) {
+        carousel.scrollTo({ left: scrollPos - setWidth, behavior: 'instant' });
+      }
+
       setTimeout(startAuto, 2000);
     });
 
