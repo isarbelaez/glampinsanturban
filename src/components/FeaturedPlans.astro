@@ -3,46 +3,40 @@ import PlanCard from './PlanCard.astro';
 
 const originalPlans = [
   {
-    title: 'Escapada Romántica',
-    price: '$450.000',
-    image:
-      'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1000',
-    description:
-      'Una experiencia inolvidable bajo las estrellas con jacuzzi privado y cena romántica.',
-    features: ['wifi', 'jacuzzi', 'desayuno', 'fogata'],
+    title: 'Santurban',
+    price: '$290.000',
+    image: '/public/images/cabaña.jpeg',
+    description: 'Una experiencia inolvidable, cabaña con calefaccion y desayuno Incluido.',
+    features: ['wifi', 'jacuzzi', 'desayuno'],
   },
   {
-    title: 'Aventura Extrema',
-    price: '$380.000',
-    image:
-      'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1000',
+    title: 'Plan Romantico',
+    price: '$390.000',
+    image: '/public/images/exterior.jpeg',
     description:
-      'Para los amantes de la naturaleza. Trekking guiado por el bosque nuboso y fogata nocturna.',
+      'Disfruta de una agradable decoracion, desatuno, almuerzo y fogata con chocolate y masmelos.',
+    features: ['wifi', 'desayuno', 'fogata', 'almuerzo', 'decoracion'],
+  },
+  {
+    title: 'Plan Laguna Encantada',
+    price: '$560.000',
+    image: '/public/images/paisaje.jpeg',
+    description: 'Una experincia frente a la laguna con una vista hermosa.',
+    features: ['wifi', 'Laguna', 'desayuno'],
+  },
+  {
+    title: 'Plan Paramos',
+    price: '$230.000',
+    image: '/public/images/cama.jpeg',
+    description: 'Disfruta un dia de descanso en nuestra cabaña con una vista hermosa.',
     features: ['wifi', 'desayuno', 'fogata'],
   },
   {
-    title: 'Relax Total',
-    price: '$420.000',
-    image:
-      'https://images.unsplash.com/photo-1544161515-4ae6b91829d2?auto=format&fit=crop&q=80&w=1000',
-    description: 'Masajes bajo los árboles, yoga al amanecer y spa privado en tu cabaña.',
-    features: ['wifi', 'spa', 'desayuno'],
-  },
-  {
-    title: 'Plan Familiar',
-    price: '$550.000',
-    image:
-      'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1000',
-    description: 'Diversión para todos. Malvaviscos en la fogata y espacios amplios para conectar.',
-    features: ['wifi', 'desayuno', 'fogata'],
-  },
-  {
-    title: 'Cena Estelar',
-    price: '$320.000',
-    image:
-      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1000',
-    description: 'Una velada gastronómica de autor servida en la privacidad de tu terraza.',
-    features: ['wifi', 'desayuno', 'chef'],
+    title: 'Plan Noche de Pareja',
+    price: '$490.000',
+    image: '/public/images/espejo.jpeg',
+    description: 'Disfruta una velada romantica con la persona que amas',
+    features: ['wifi', 'desayuno', 'vino', 'Fogata', 'Almuerzo'],
   },
 ];
 
@@ -73,9 +67,44 @@ const plans = [...originalPlans, ...originalPlans, ...originalPlans];
 
     <!-- Carousel Container -->
     <div class="group relative">
+      <!-- Navigation Buttons -->
+      <button
+        id="prev-plan"
+        class="hover:bg-primary hover:border-primary absolute top-1/2 -left-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all active:scale-90 md:-left-8"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg
+        >
+      </button>
+
+      <button
+        id="next-plan"
+        class="hover:bg-primary hover:border-primary absolute top-1/2 -right-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all active:scale-90 md:-right-8"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg
+        >
+      </button>
+
       <div
         id="plans-carousel"
-        class="scrollbar-hide flex cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto pb-12 select-none active:cursor-grabbing"
+        class="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto pb-12 select-none"
       >
         {
           plans.map((plan, index) => (
@@ -122,11 +151,6 @@ const plans = [...originalPlans, ...originalPlans, ...originalPlans];
 
   #plans-carousel {
     scroll-behavior: smooth;
-  }
-
-  #plans-carousel.dragging {
-    scroll-behavior: auto;
-    scroll-snap-type: none;
   }
 </style>
 
@@ -180,34 +204,21 @@ const plans = [...originalPlans, ...originalPlans, ...originalPlans];
       }
     });
 
-    // Drag to scroll functionality
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    // Navigation Buttons logic
+    const prevBtn = document.getElementById('prev-plan');
+    const nextBtn = document.getElementById('next-plan');
 
-    carousel.addEventListener('mousedown', (e) => {
-      isDown = true;
-      carousel.classList.add('dragging');
-      startX = e.pageX - carousel.offsetLeft;
-      scrollLeft = carousel.scrollLeft;
+    const getScrollStep = () => {
+      const firstItem = items[0];
+      return firstItem.clientWidth + 24; // width + gap
+    };
+
+    prevBtn?.addEventListener('click', () => {
+      carousel.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
     });
 
-    carousel.addEventListener('mouseleave', () => {
-      isDown = false;
-      carousel.classList.remove('dragging');
-    });
-
-    carousel.addEventListener('mouseup', () => {
-      isDown = false;
-      carousel.classList.remove('dragging');
-    });
-
-    carousel.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - carousel.offsetLeft;
-      const walk = (x - startX) * 2; // Scroll speed
-      carousel.scrollLeft = scrollLeft - walk;
+    nextBtn?.addEventListener('click', () => {
+      carousel.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
     });
 
     // Handle window resize
