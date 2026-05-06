@@ -1,6 +1,9 @@
 ---
 import pkg from 'lucide-react';
+import { asset } from '../utils/assets';
 const { MapPin, Leaf, Home, Lock, Play, ArrowRight } = pkg;
+
+const heroImage = asset('/images/principal.jpeg');
 
 const benefits = [
   { icon: MapPin, text: 'Ubicación privilegiada' },
@@ -16,7 +19,7 @@ const benefits = [
   <!-- Hero Background -->
   <div class="absolute inset-0 z-0">
     <img
-      src="/public/images/principal.jpeg"
+      src={heroImage}
       alt="Glamping Santurban Luxury Experience"
       class="animate-slow-zoom h-full w-full scale-105 object-cover opacity-60"
     />

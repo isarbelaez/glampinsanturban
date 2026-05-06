@@ -1,47 +1,47 @@
 ---
 import PlanCard from './PlanCard.astro';
+import { asset } from '../utils/assets';
 
 const originalPlans = [
   {
     title: 'Santurban',
     price: '$290.000',
-    image: '/public/images/cabaña.jpeg',
-    description: 'Una experiencia inolvidable, cabaña con calefaccion y desayuno Incluido.',
+    image: asset('/images/cabaña.jpeg'),
+    description: 'Una experiencia inolvidable, cabaña con calefacción y desayuno incluido.',
     features: ['wifi', 'jacuzzi', 'desayuno'],
   },
   {
-    title: 'Plan Romantico',
+    title: 'Plan Romántico',
     price: '$390.000',
-    image: '/public/images/exterior.jpeg',
-    description:
-      'Disfruta de una agradable decoracion, desatuno, almuerzo y fogata con chocolate y masmelos.',
-    features: ['wifi', 'desayuno', 'fogata', 'almuerzo', 'decoracion'],
+    image: asset('/images/exterior.jpeg'),
+    description: 'Disfruta de una agradable decoración, desayuno, almuerzo y fogata con chocolate.',
+    features: ['wifi', 'desayuno', 'fogata', 'almuerzo', 'decoración'],
   },
   {
     title: 'Plan Laguna Encantada',
     price: '$560.000',
-    image: '/public/images/paisaje.jpeg',
-    description: 'Una experincia frente a la laguna con una vista hermosa.',
+    image: asset('/images/paisaje.jpeg'),
+    description: 'Una experiencia frente a la laguna con una vista hermosa.',
     features: ['wifi', 'Laguna', 'desayuno'],
   },
   {
-    title: 'Plan Paramos',
+    title: 'Plan Páramos',
     price: '$230.000',
-    image: '/public/images/cama.jpeg',
-    description: 'Disfruta un dia de descanso en nuestra cabaña con una vista hermosa.',
+    image: asset('/images/cama.jpeg'),
+    description: 'Disfruta un día de descanso en nuestra cabaña con una vista hermosa.',
     features: ['wifi', 'desayuno', 'fogata'],
   },
   {
     title: 'Plan Noche de Pareja',
     price: '$490.000',
-    image: '/public/images/espejo.jpeg',
-    description: 'Disfruta una velada romantica con la persona que amas',
+    image: asset('/images/espejo.jpeg'),
+    description: 'Disfruta una velada romántica con la persona que amas.',
     features: ['wifi', 'desayuno', 'vino', 'Fogata', 'Almuerzo'],
   },
 ];
 
-// Triple the plans for infinite effect
-const plans = [...originalPlans, ...originalPlans, ...originalPlans];
+// Double the plans for infinite effect (Set 1 + Set 2)
+const plans = [...originalPlans, ...originalPlans];
 ---
 
 <section id="planes" class="relative overflow-hidden bg-[#071412] py-24">
@@ -70,7 +70,8 @@ const plans = [...originalPlans, ...originalPlans, ...originalPlans];
       <!-- Navigation Buttons -->
       <button
         id="prev-plan"
-        class="hover:bg-primary hover:border-primary absolute top-1/2 -left-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all active:scale-90 md:-left-8"
+        class="hover:bg-primary hover:border-primary absolute top-[40%] -left-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all active:scale-90 md:-left-8"
+        aria-label="Anterior"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +88,8 @@ const plans = [...originalPlans, ...originalPlans, ...originalPlans];
 
       <button
         id="next-plan"
-        class="hover:bg-primary hover:border-primary absolute top-1/2 -right-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all active:scale-90 md:-right-8"
+        class="hover:bg-primary hover:border-primary absolute top-[40%] -right-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all active:scale-90 md:-right-8"
+        aria-label="Siguiente"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -104,11 +106,11 @@ const plans = [...originalPlans, ...originalPlans, ...originalPlans];
 
       <div
         id="plans-carousel"
-        class="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto pb-12 select-none"
+        class="scrollbar-hide flex cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto pb-12 select-none active:cursor-grabbing"
       >
         {
           plans.map((plan, index) => (
-            <div class="plan-item pointer-events-none min-w-[85vw] snap-center md:min-w-[400px]">
+            <div class="plan-item pointer-events-none min-w-[85vw] snap-center md:min-w-[420px]">
               <div class="pointer-events-auto">
                 <PlanCard {...plan} />
               </div>
@@ -151,18 +153,23 @@ const plans = [...originalPlans, ...originalPlans, ...originalPlans];
 
   #plans-carousel {
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #plans-carousel.dragging {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 </style>
 
 <script>
   const carousel = document.getElementById('plans-carousel');
   const progress = document.getElementById('carousel-progress');
-  const originalCount = 5; // Should match originalPlans.length
+  const originalCount = 5;
 
   if (carousel && progress) {
     const items = carousel.querySelectorAll('.plan-item');
 
-    // Function to calculate dimensions
     const getDimensions = () => {
       const firstItem = items[0];
       const secondItem = items[1];
@@ -170,60 +177,95 @@ const plans = [...originalPlans, ...originalPlans, ...originalPlans];
       const gap = secondItem
         ? secondItem.offsetLeft - (firstItem.offsetLeft + firstItem.clientWidth)
         : 24;
-      return { itemWidth, gap, totalSetWidth: (itemWidth + gap) * originalCount };
+      return { itemWidth, gap, setWidth: (itemWidth + gap) * originalCount };
     };
 
-    let { totalSetWidth } = getDimensions();
+    let { setWidth } = getDimensions();
 
-    // Initial position: start of the middle set
-    const initCarousel = () => {
-      carousel.scrollLeft = totalSetWidth;
+    // Infinite Loop Setup
+    const checkInfinite = () => {
+      if (carousel.scrollLeft <= 0) {
+        carousel.scrollTo({ left: setWidth, behavior: 'instant' });
+      } else if (carousel.scrollLeft >= setWidth * 2 - carousel.clientWidth) {
+        carousel.scrollTo({
+          left: setWidth - (carousel.scrollWidth - carousel.scrollLeft),
+          behavior: 'instant',
+        });
+      }
     };
 
-    // Initialize after a small delay to ensure rendering
-    setTimeout(initCarousel, 100);
+    // Initial position
+    carousel.scrollLeft = setWidth;
 
-    // Scroll progress handler & Infinite logic
     carousel.addEventListener('scroll', () => {
+      // Progress Bar
       const scrollPos = carousel.scrollLeft;
-
-      // Update progress bar based on the middle set
-      const normalizedScroll = scrollPos % totalSetWidth;
-      const scrollPercentage = (normalizedScroll / totalSetWidth) * 100;
+      const normalizedScroll = scrollPos % setWidth;
+      const scrollPercentage = (normalizedScroll / setWidth) * 100;
       progress.style.width = `${scrollPercentage}%`;
 
-      // Infinite loop logic
-      if (scrollPos < totalSetWidth * 0.5) {
-        carousel.scrollBehavior = 'auto';
-        carousel.scrollLeft = scrollPos + totalSetWidth;
-        carousel.scrollBehavior = 'smooth';
-      } else if (scrollPos > totalSetWidth * 2) {
-        carousel.scrollBehavior = 'auto';
-        carousel.scrollLeft = scrollPos - totalSetWidth;
-        carousel.scrollBehavior = 'smooth';
+      // Seamless jump
+      if (scrollPos <= 2) {
+        carousel.scrollTo({ left: setWidth, behavior: 'instant' });
+      } else if (scrollPos >= carousel.scrollWidth - carousel.clientWidth - 2) {
+        carousel.scrollTo({ left: setWidth - carousel.clientWidth, behavior: 'instant' });
       }
     });
 
-    // Navigation Buttons logic
-    const prevBtn = document.getElementById('prev-plan');
-    const nextBtn = document.getElementById('next-plan');
-
-    const getScrollStep = () => {
-      const firstItem = items[0];
-      return firstItem.clientWidth + 24; // width + gap
+    // Auto-scroll (Very slow)
+    let autoScrollInterval;
+    const startAutoScroll = () => {
+      autoScrollInterval = setInterval(() => {
+        if (!carousel.classList.contains('dragging')) {
+          carousel.scrollLeft += 1;
+        }
+      }, 30);
     };
 
-    prevBtn?.addEventListener('click', () => {
-      carousel.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+    startAutoScroll();
+
+    // Drag to scroll
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      clearInterval(autoScrollInterval);
+      carousel.classList.add('dragging');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
     });
 
-    nextBtn?.addEventListener('click', () => {
-      carousel.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+    window.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+      startAutoScroll();
     });
 
-    // Handle window resize
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Buttons
+    document.getElementById('prev-plan')?.addEventListener('click', () => {
+      clearInterval(autoScrollInterval);
+      carousel.scrollBy({ left: -(items[0].clientWidth + 24), behavior: 'smooth' });
+      setTimeout(startAutoScroll, 5000);
+    });
+
+    document.getElementById('next-plan')?.addEventListener('click', () => {
+      clearInterval(autoScrollInterval);
+      carousel.scrollBy({ left: items[0].clientWidth + 24, behavior: 'smooth' });
+      setTimeout(startAutoScroll, 5000);
+    });
+
     window.addEventListener('resize', () => {
-      ({ totalSetWidth } = getDimensions());
+      ({ setWidth } = getDimensions());
     });
   }
 </script>
