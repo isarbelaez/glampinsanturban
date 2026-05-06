@@ -1,0 +1,41 @@
+---
+import pkg from 'lucide-react';
+const { Star, Utensils, Wifi, Coffee, Music, Zap } = pkg;
+
+const services = [
+  { icon: Utensils, title: 'Gastronomía', desc: 'Platos locales preparados por chefs expertos.' },
+  { icon: Wifi, title: 'Conectividad', desc: 'Wi-Fi de alta velocidad en todas nuestras cabañas.' },
+  { icon: Coffee, title: 'Desayuno', desc: 'Desayuno artesanal servido en tu terraza.' },
+  { icon: Music, title: 'Fogatas', desc: 'Noches mágicas con música y malvaviscos.' },
+  { icon: Zap, title: 'Spa', desc: 'Tratamientos relajantes en medio del bosque.' },
+];
+---
+
+<section id="servicios" class="border-t border-white/5 bg-[#050f0e] py-24">
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="mb-16 text-center">
+      <p class="text-primary mb-4 text-[10px] font-bold tracking-[0.4em] uppercase">
+        Lo que ofrecemos
+      </p>
+      <h2 class="font-serif text-3xl font-bold tracking-[0.15em] text-white uppercase md:text-5xl">
+        Nuestros Servicios
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+      {
+        services.map((service) => (
+          <div class="group flex flex-col items-center text-center">
+            <div class="group-hover:bg-primary group-hover:border-primary mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition-all duration-500 group-hover:scale-110">
+              <service.icon size={28} strokeWidth={1.5} />
+            </div>
+            <h3 class="mb-2 text-sm font-bold tracking-widest text-white uppercase">
+              {service.title}
+            </h3>
+            <p class="text-xs leading-relaxed text-white/40">{service.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

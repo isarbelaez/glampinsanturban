@@ -1,50 +1,218 @@
 ---
-import PlanCard from "./PlanCard.astro";
+import PlanCard from './PlanCard.astro';
 
-const plans = [
+const originalPlans = [
   {
-    title: "Escapada Romántica",
-    price: "$450.000",
-    image: "/images/plan-romantic.png",
-    description: "Una experiencia inolvidable bajo las estrellas con jacuzzi privado y cena romántica a la luz de las velas.",
-    features: ["wifi", "jacuzzi", "desayuno", "fogata"],
+    title: 'Escapada Romántica',
+    price: '$450.000',
+    image:
+      'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1000',
+    description:
+      'Una experiencia inolvidable bajo las estrellas con jacuzzi privado y cena romántica.',
+    features: ['wifi', 'jacuzzi', 'desayuno', 'fogata'],
   },
   {
-    title: "Aventura Extrema",
-    price: "$380.000",
-    image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1000",
-    description: "Para los amantes de la naturaleza. Trekking guiado por el bosque nuboso y fogata nocturna en la cima.",
-    features: ["wifi", "desayuno", "fogata"],
+    title: 'Aventura Extrema',
+    price: '$380.000',
+    image:
+      'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1000',
+    description:
+      'Para los amantes de la naturaleza. Trekking guiado por el bosque nuboso y fogata nocturna.',
+    features: ['wifi', 'desayuno', 'fogata'],
   },
   {
-    title: "Plan Familiar",
-    price: "$550.000",
-    image: "/images/plan-family.png",
-    description: "Diversión para todos. Malvaviscos en la fogata, senderismo suave y espacios amplios para conectar en familia.",
-    features: ["wifi", "desayuno", "fogata"],
+    title: 'Relax Total',
+    price: '$420.000',
+    image:
+      'https://images.unsplash.com/photo-1544161515-4ae6b91829d2?auto=format&fit=crop&q=80&w=1000',
+    description: 'Masajes bajo los árboles, yoga al amanecer y spa privado en tu cabaña.',
+    features: ['wifi', 'spa', 'desayuno'],
+  },
+  {
+    title: 'Plan Familiar',
+    price: '$550.000',
+    image:
+      'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1000',
+    description: 'Diversión para todos. Malvaviscos en la fogata y espacios amplios para conectar.',
+    features: ['wifi', 'desayuno', 'fogata'],
+  },
+  {
+    title: 'Cena Estelar',
+    price: '$320.000',
+    image:
+      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1000',
+    description: 'Una velada gastronómica de autor servida en la privacidad de tu terraza.',
+    features: ['wifi', 'desayuno', 'chef'],
   },
 ];
+
+// Triple the plans for infinite effect
+const plans = [...originalPlans, ...originalPlans, ...originalPlans];
 ---
 
-<section id="planes" class="py-24 bg-[#071412] relative overflow-hidden">
+<section id="planes" class="relative overflow-hidden bg-[#071412] py-24">
   <!-- Subtle patterns -->
-  <div class="absolute inset-0 opacity-5 pointer-events-none">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
-    <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+  <div class="pointer-events-none absolute inset-0 opacity-5">
+    <div class="bg-primary absolute top-0 right-0 h-96 w-96 rounded-full blur-[120px]"></div>
+    <div class="bg-primary absolute bottom-0 left-0 h-96 w-96 rounded-full blur-[120px]"></div>
   </div>
 
-  <div class="container mx-auto px-4 md:px-6 relative z-10">
-    <div class="text-center mb-16">
-      <h2 class="text-white font-serif text-4xl md:text-5xl font-bold uppercase tracking-[0.2em] mb-4">
-        Nuestros Planes Destacados
-      </h2>
-      <div class="w-24 h-1 bg-primary mx-auto"></div>
+  <div class="relative z-10 container mx-auto px-4 md:px-6">
+    <div class="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div class="text-left">
+        <p class="text-primary mb-3 text-[10px] font-bold tracking-[0.4em] uppercase md:text-xs">
+          ¿Qué experiencia te gustaría vivir?
+        </p>
+        <h2
+          class="font-serif text-3xl font-bold tracking-[0.15em] text-white uppercase md:text-4xl"
+        >
+          Nuestros Planes
+        </h2>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {plans.map((plan) => (
-        <PlanCard {...plan} />
-      ))}
+    <!-- Carousel Container -->
+    <div class="group relative">
+      <div
+        id="plans-carousel"
+        class="scrollbar-hide flex cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto pb-12 select-none active:cursor-grabbing"
+      >
+        {
+          plans.map((plan, index) => (
+            <div class="plan-item pointer-events-none min-w-[85vw] snap-center md:min-w-[400px]">
+              <div class="pointer-events-auto">
+                <PlanCard {...plan} />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Scroll Progress Bar -->
+      <div class="mt-4 h-0.5 w-full overflow-hidden rounded-full bg-white/10">
+        <div id="carousel-progress" class="bg-primary h-full w-0 transition-all duration-300"></div>
+      </div>
+    </div>
+
+    <!-- Menu Button -->
+    <div class="mt-20 flex justify-center">
+      <a
+        href="#menu"
+        class="group hover:border-primary/50 relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/20 bg-transparent px-10 py-4 font-bold transition-all"
+      >
+        <span
+          class="bg-primary absolute inset-0 h-full w-0 transition-all duration-300 ease-out group-hover:w-full"
+        ></span>
+        <span class="relative text-xs tracking-widest text-white uppercase group-hover:text-white"
+          >Mirar nuestro menú</span
+        >
+      </a>
     </div>
   </div>
 </section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #plans-carousel {
+    scroll-behavior: smooth;
+  }
+
+  #plans-carousel.dragging {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+</style>
+
+<script>
+  const carousel = document.getElementById('plans-carousel');
+  const progress = document.getElementById('carousel-progress');
+  const originalCount = 5; // Should match originalPlans.length
+
+  if (carousel && progress) {
+    const items = carousel.querySelectorAll('.plan-item');
+
+    // Function to calculate dimensions
+    const getDimensions = () => {
+      const firstItem = items[0];
+      const secondItem = items[1];
+      const itemWidth = firstItem.clientWidth;
+      const gap = secondItem
+        ? secondItem.offsetLeft - (firstItem.offsetLeft + firstItem.clientWidth)
+        : 24;
+      return { itemWidth, gap, totalSetWidth: (itemWidth + gap) * originalCount };
+    };
+
+    let { totalSetWidth } = getDimensions();
+
+    // Initial position: start of the middle set
+    const initCarousel = () => {
+      carousel.scrollLeft = totalSetWidth;
+    };
+
+    // Initialize after a small delay to ensure rendering
+    setTimeout(initCarousel, 100);
+
+    // Scroll progress handler & Infinite logic
+    carousel.addEventListener('scroll', () => {
+      const scrollPos = carousel.scrollLeft;
+
+      // Update progress bar based on the middle set
+      const normalizedScroll = scrollPos % totalSetWidth;
+      const scrollPercentage = (normalizedScroll / totalSetWidth) * 100;
+      progress.style.width = `${scrollPercentage}%`;
+
+      // Infinite loop logic
+      if (scrollPos < totalSetWidth * 0.5) {
+        carousel.scrollBehavior = 'auto';
+        carousel.scrollLeft = scrollPos + totalSetWidth;
+        carousel.scrollBehavior = 'smooth';
+      } else if (scrollPos > totalSetWidth * 2) {
+        carousel.scrollBehavior = 'auto';
+        carousel.scrollLeft = scrollPos - totalSetWidth;
+        carousel.scrollBehavior = 'smooth';
+      }
+    });
+
+    // Drag to scroll functionality
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.classList.add('dragging');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    });
+
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      ({ totalSetWidth } = getDimensions());
+    });
+  }
+</script>

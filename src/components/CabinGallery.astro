@@ -1,101 +1,117 @@
 ---
-import CabinCard from "./CabinCard.astro";
+import CabinCard from './CabinCard.astro';
 
 const categories = [
-  { name: "Luna Dome", active: true },
-  { name: "Valle Cabin", active: false },
-  { name: "Bosque Pod", active: false },
-  { name: "Eco Pods", active: false },
-  { name: "Tienda Safari", active: false },
+  { name: 'Luna Dome', active: true },
+  { name: 'Valle Cabin', active: false },
+  { name: 'Bosque Pod', active: false },
+  { name: 'Eco Pods', active: false },
+  { name: 'Tienda Safari', active: false },
 ];
 
 const cabins = [
   {
-    name: "Luna Dome Premium",
-    price: "$450.000",
-    image: "https://images.unsplash.com/photo-1587061949733-762439dec7c3?auto=format&fit=crop&q=80&w=1000",
-    capacity: "2 Personas",
-    beds: "1 King Size",
-    size: "45 m²",
+    name: 'Luna Dome Premium',
+    price: '$450.000',
+    image:
+      'https://images.unsplash.com/photo-1587061949733-762439dec7c3?auto=format&fit=crop&q=80&w=1000',
+    capacity: '2 Personas',
+    beds: '1 King Size',
+    size: '45 m²',
   },
   {
-    name: "Valle Cabin Deluxe",
-    price: "$420.000",
-    image: "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&q=80&w=1000",
-    capacity: "4 Personas",
-    beds: "2 Queen Size",
-    size: "65 m²",
+    name: 'Valle Cabin Deluxe',
+    price: '$420.000',
+    image:
+      'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&q=80&w=1000',
+    capacity: '4 Personas',
+    beds: '2 Queen Size',
+    size: '65 m²',
   },
   {
-    name: "Bosque Pod Eco",
-    price: "$350.000",
-    image: "https://images.unsplash.com/photo-1449156001533-cb39c8504959?auto=format&fit=crop&q=80&w=1000",
-    capacity: "2 Personas",
-    beds: "1 Queen Size",
-    size: "30 m²",
+    name: 'Bosque Pod Eco',
+    price: '$350.000',
+    image:
+      'https://images.unsplash.com/photo-1449156001533-cb39c8504959?auto=format&fit=crop&q=80&w=1000',
+    capacity: '2 Personas',
+    beds: '1 Queen Size',
+    size: '30 m²',
   },
 ];
 ---
 
-<section id="cabanas" class="py-24 bg-background relative overflow-hidden">
+<section id="cabanas" class="bg-background relative overflow-hidden py-24">
   <!-- Blurred Background Image -->
   <div class="absolute inset-0 z-0">
-    <img 
-      src="https://images.unsplash.com/photo-1470252649358-96949c75677f?auto=format&fit=crop&q=40&w=1000" 
-      class="w-full h-full object-cover blur-2xl opacity-20 scale-110"
+    <img
+      src="/public/images/principal.jpeg"
+      class="h-full w-full scale-110 object-cover opacity-20 blur-2xl"
       alt=""
     />
     <div class="absolute inset-0 bg-[#0B1D1A]/80"></div>
   </div>
 
   <!-- Organic leaf decorations (SVG) -->
-  <div class="absolute top-0 right-0 w-64 h-64 text-primary/10 -rotate-12 translate-x-1/4 -translate-y-1/4 pointer-events-none">
+  <div
+    class="text-primary/10 pointer-events-none absolute top-0 right-0 h-64 w-64 translate-x-1/4 -translate-y-1/4 -rotate-12"
+  >
     <svg viewBox="0 0 200 200" fill="currentColor">
-      <path d="M100 0C100 0 70 50 70 100C70 150 100 200 100 200C100 200 130 150 130 100C130 50 100 0 100 0Z" />
+      <path
+        d="M100 0C100 0 70 50 70 100C70 150 100 200 100 200C100 200 130 150 130 100C130 50 100 0 100 0Z"
+      ></path>
     </svg>
   </div>
-  <div class="absolute bottom-0 left-0 w-80 h-80 text-primary/10 rotate-45 -translate-x-1/4 translate-y-1/4 pointer-events-none">
+  <div
+    class="text-primary/10 pointer-events-none absolute bottom-0 left-0 h-80 w-80 -translate-x-1/4 translate-y-1/4 rotate-45"
+  >
     <svg viewBox="0 0 200 200" fill="currentColor">
-      <path d="M100 0C100 0 70 50 70 100C70 150 100 200 100 200C100 200 130 150 130 100C130 50 100 0 100 0Z" />
+      <path
+        d="M100 0C100 0 70 50 70 100C70 150 100 200 100 200C100 200 130 150 130 100C130 50 100 0 100 0Z"
+      ></path>
     </svg>
   </div>
 
-  <div class="container mx-auto px-4 md:px-6 relative z-10">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+  <div class="relative z-10 container mx-auto px-4 md:px-6">
+    <div class="mb-16 flex flex-col items-end justify-between gap-8 md:flex-row">
       <div class="max-w-2xl">
-        <h2 class="text-white font-serif text-4xl md:text-5xl font-bold uppercase tracking-tight mb-6 leading-tight">
+        <h2
+          class="mb-6 font-serif text-4xl leading-tight font-bold tracking-tight text-white uppercase md:text-5xl"
+        >
           Explora Nuestras <br />
           <span class="text-primary italic">Cabañas de Ensueño</span>
         </h2>
-        
+
         <!-- Filters -->
         <div class="flex flex-wrap gap-3">
-          {categories.map((cat) => (
-            <button
-              class:list={[
-                "px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all border",
-                cat.active 
-                  ? "bg-primary border-primary text-white" 
-                  : "bg-white/5 border-white/10 text-white/60 hover:border-white/30 hover:text-white"
-              ]}
-            >
-              {cat.name}
-            </button>
-          ))}
+          {
+            categories.map((cat) => (
+              <button
+                class:list={[
+                  'rounded-full border px-6 py-2 text-xs font-bold tracking-widest uppercase transition-all',
+                  cat.active
+                    ? 'bg-primary border-primary text-white'
+                    : 'border-white/10 bg-white/5 text-white/60 hover:border-white/30 hover:text-white',
+                ]}
+              >
+                {cat.name}
+              </button>
+            ))
+          }
         </div>
       </div>
-      
+
       <div class="hidden md:block">
-        <a href="#galeria" class="text-primary font-bold text-sm uppercase tracking-widest border-b border-primary/30 pb-1 hover:border-primary transition-all">
+        <a
+          href="#galeria"
+          class="text-primary border-primary/30 hover:border-primary border-b pb-1 text-sm font-bold tracking-widest uppercase transition-all"
+        >
           Ver todas las opciones
         </a>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {cabins.map((cabin) => (
-        <CabinCard {...cabin} />
-      ))}
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {cabins.map((cabin) => <CabinCard {...cabin} />)}
     </div>
   </div>
 </section>

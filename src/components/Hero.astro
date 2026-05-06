@@ -1,35 +1,108 @@
 ---
+import pkg from 'lucide-react';
+const { MapPin, Leaf, Home, Lock, Play, ArrowRight } = pkg;
+
+const benefits = [
+  { icon: MapPin, text: 'Ubicación privilegiada' },
+  { icon: Leaf, text: 'Experiencias únicas' },
+  { icon: Home, text: 'Confort ' },
+  { icon: Lock, text: 'Reservas seguras' },
+];
 ---
 
-<section class="relative h-screen flex flex-col justify-center overflow-hidden">
+<section
+  class="relative flex min-h-screen flex-col justify-start overflow-hidden bg-[#050f0e] pt-24 md:pt-32"
+>
   <!-- Hero Background -->
   <div class="absolute inset-0 z-0">
     <img
-      src="/images/hero.png"
-      alt="Terra Luna Glamping Night"
-      class="w-full h-full object-cover scale-105 animate-slow-zoom"
+      src="/public/images/principal.jpeg"
+      alt="Glamping Santurban Luxury Experience"
+      class="animate-slow-zoom h-full w-full scale-105 object-cover opacity-60"
     />
-    <div class="absolute inset-0 bg-black/45"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#050f0e]/50 via-transparent to-[#050f0e]">
+    </div>
   </div>
 
-  <div class="container mx-auto px-4 md:px-6 relative z-10">
-    <div class="max-w-5xl text-left animate-fade-in-up md:pl-20">
-      <h1 class="font-serif font-bold leading-tight tracking-[0.05em] uppercase text-white">
-        <span class="block text-4xl md:text-5xl lg:text-6xl mb-2">
+  <div class="relative z-10 container mx-auto px-4 md:px-6">
+    <div class="animate-fade-in-up max-w-3xl text-left md:pl-10">
+      <!-- Slogan Label -->
+      <p class="text-primary mb-4 text-[10px] font-bold tracking-[0.4em] uppercase">
+        Vive lo extraordinario
+      </p>
+
+      <!-- Headline -->
+      <h1 class="mb-6 font-serif leading-tight font-bold tracking-tight text-white uppercase">
+        <span class="mb-2 block text-4xl md:text-6xl lg:text-7xl">
           ESCAPA A LA <span class="text-primary">NATURALEZA</span>
         </span>
-        <span class="block text-4xl md:text-5xl lg:text-6xl">
-          CON <span class="text-primary">LUJO</span> Y ESTILO
+        <span class="block text-3xl md:text-5xl lg:text-6xl">
+          CON <span class="text-primary">LUJO</span> Y <span class="text-primary">ESTILO</span>
         </span>
       </h1>
+
+      <!-- Description -->
+      <p class="mb-12 max-w-xl text-sm leading-relaxed font-light text-white/70 md:text-lg">
+        Desconéctate del mundo y sumérgete en una experiencia donde la tranquilidad del bosque se
+        encuentra con el confort más exclusivo.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="mb-16 flex flex-col items-start gap-6 sm:flex-row sm:items-center md:gap-10">
+        <a
+          href="#reservar"
+          class="group bg-primary hover:bg-primary/90 shadow-primary/20 relative flex items-center justify-center gap-3 rounded-full px-10 py-5 text-sm font-bold tracking-widest text-white uppercase shadow-xl transition-all hover:scale-105 active:scale-95"
+        >
+          <span>Reservar mi escapada</span>
+          <ArrowRight size={16} class="transition-transform group-hover:translate-x-1" />
+        </a>
+
+        <a
+          href="#experiencia"
+          class="group flex items-center gap-4 text-white/80 transition-all hover:text-white"
+        >
+          <div
+            class="group-hover:bg-primary group-hover:border-primary flex h-12 w-12 items-center justify-center rounded-full border border-white/20 transition-all"
+          >
+            <Play size={14} fill="currentColor" />
+          </div>
+          <span class="text-xs font-bold tracking-[0.2em] uppercase">Ver experiencia</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Info Bar (Rectangle) - Positioned below the buttons with space -->
+    <div class="animate-fade-in-up-delayed mt-8 md:mt-12">
+      <div
+        class="w-full max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8"
+      >
+        <div class="grid grid-cols-2 gap-8 md:gap-4 lg:grid-cols-4">
+          {
+            benefits.map((benefit) => (
+              <div class="group flex items-center gap-4">
+                <div class="bg-primary/10 text-primary group-hover:bg-primary flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 group-hover:text-white">
+                  <benefit.icon size={20} strokeWidth={1.5} />
+                </div>
+                <span class="text-xs leading-tight font-medium tracking-wide text-white/90 md:text-sm">
+                  {benefit.text}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   @keyframes slow-zoom {
-    from { transform: scale(1); }
-    to { transform: scale(1.1); }
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
   }
   .animate-slow-zoom {
     animation: slow-zoom 20s ease-in-out infinite alternate;
@@ -37,7 +110,7 @@
   @keyframes fade-in-up {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
@@ -45,10 +118,10 @@
     }
   }
   .animate-fade-in-up {
-    animation: fade-in-up 1s ease-out forwards;
+    animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   .animate-fade-in-up-delayed {
     opacity: 0;
-    animation: fade-in-up 1s ease-out 0.5s forwards;
+    animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
   }
 </style>

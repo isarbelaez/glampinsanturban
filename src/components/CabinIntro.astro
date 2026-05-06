@@ -1,0 +1,89 @@
+---
+import pkg from 'lucide-react';
+const { Home, ArrowRight } = pkg;
+
+const cabinPhotos = [
+  'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1449156001437-37c645d9bc50?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1000',
+];
+---
+
+<section id="galeria-cabana" class="bg-[#050f0e] py-12">
+  <div class="container mx-auto px-4 md:px-6">
+    <!-- Transparent Rectangle Header (approx 5cm / 80px-100px height) -->
+    <div
+      class="group hover:border-primary/30 mb-8 flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-500 md:p-6"
+    >
+      <div class="flex items-center gap-4">
+        <div
+          class="bg-primary/20 text-primary flex h-10 w-10 items-center justify-center rounded-full"
+        >
+          <Home size={20} strokeWidth={1.5} />
+        </div>
+        <span class="font-sans text-xs font-bold tracking-[0.3em] text-white uppercase md:text-sm"
+          >Conoce nuestra cabaña</span
+        >
+      </div>
+
+      <button
+        id="next-cabin-photo"
+        class="hover:bg-primary hover:border-primary group/btn flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-all active:scale-95"
+      >
+        <ArrowRight size={20} class="transition-transform group-hover/btn:translate-x-1" />
+      </button>
+    </div>
+
+    <!-- Horizontal Gallery -->
+    <div
+      id="cabin-horizontal-gallery"
+      class="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
+    >
+      {
+        cabinPhotos.map((photo, index) => (
+          <div class="aspect-[16/10] min-w-[85vw] snap-center overflow-hidden rounded-3xl border border-white/5 shadow-2xl md:min-w-[500px]">
+            <img
+              src={photo}
+              alt={`Cabaña vista ${index + 1}`}
+              class="h-full w-full object-cover transition-transform duration-1000 ease-out hover:scale-110"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('next-cabin-photo');
+  const gallery = document.getElementById('cabin-horizontal-gallery');
+
+  btn?.addEventListener('click', () => {
+    if (gallery) {
+      const cardWidth = gallery.firstElementChild?.clientWidth || 0;
+      const gap = 16;
+      const scrollAmount = cardWidth + gap;
+
+      // Check if we are at the end
+      const isAtEnd = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 20;
+
+      if (isAtEnd) {
+        gallery.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+  });
+</script>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

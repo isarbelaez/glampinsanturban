@@ -1,50 +1,56 @@
 ---
-import { Button } from "@/components/ui/button";
+import Logo from './Logo.astro';
+import pkg from 'lucide-react';
+const { Calendar } = pkg;
 
 const navLinks = [
-  { name: "Destinos", href: "#destinos" },
-  { name: "Planes", href: "#planes" },
-  { name: "Cabañas", href: "#cabanas" },
-  { name: "Galería", href: "#galeria" },
-  { name: "Blog", href: "#blog" },
-  { name: "Contacto", href: "#contacto" },
+  { name: 'Inicio', href: '/' },
+  { name: 'Experiencias', href: '#experiencias' },
+  { name: 'Cabañas', href: '#cabanas' },
+  { name: 'Galería', href: '#galeria' },
+  { name: 'Blog', href: '#blog' },
+  { name: 'Nosotros', href: '#nosotros' },
+  { name: 'Contacto', href: '#contacto' },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
+<header class="fixed top-0 right-0 left-0 z-50 transition-all duration-500" id="main-header">
   <div class="container mx-auto px-4 md:px-6">
-    <div class="flex h-20 items-center justify-between">
+    <div class="flex h-24 items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2">
-        <div class="text-white font-serif text-2xl font-bold tracking-tighter flex items-center">
-          TERRA<span class="text-primary italic">LUNA</span>
-          <svg class="w-6 h-6 ml-1 text-primary" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 3c.132 0 .263 0 .393.007a9 9 0 0 0 10.514 12.014c-.645.367-1.341.61-2.071.72a9.002 9.002 0 1 1-8.836-12.74zM18 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm3 3a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-          </svg>
-        </div>
-      </a>
+      <Logo />
 
-      <!-- Navigation -->
-      <nav class="hidden md:flex items-center gap-8">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="text-white/90 hover:text-primary transition-colors text-sm font-medium tracking-wide uppercase"
-          >
-            {link.name}
-          </a>
-        ))}
+      <!-- Navigation (Centered) -->
+      <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 lg:flex xl:gap-8">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="hover:text-primary text-xs font-light tracking-[0.15em] text-white/80 uppercase transition-colors"
+            >
+              {link.name}
+            </a>
+          ))
+        }
       </nav>
 
-      <!-- CTA -->
+      <!-- CTA (Right) -->
       <div class="flex items-center gap-4">
-        <Button className="bg-primary hover:bg-primary/90 text-white rounded-lg px-6 py-2 h-auto text-sm font-bold uppercase tracking-wider hidden sm:flex">
-          Reservar Ahora
-        </Button>
-        <!-- Mobile Menu Toggle (Simplified) -->
-        <button class="md:hidden text-white p-2">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        <a
+          href="#reservar"
+          class="bg-primary hover:bg-primary/90 shadow-primary/20 flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold tracking-widest text-white uppercase shadow-lg transition-all hover:scale-105 active:scale-95"
+        >
+          <Calendar size={14} />
+          <span>Reservar ahora</span>
+        </a>
+        <!-- Mobile Menu Toggle -->
+        <button class="p-2 text-white lg:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
         </button>
       </div>
@@ -56,11 +62,11 @@ const navLinks = [
   const header = document.getElementById('main-header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-      header?.classList.add('bg-background/95', 'backdrop-blur-md', 'shadow-lg', 'h-16');
-      header?.classList.remove('h-20');
+      header?.classList.add('bg-background/90', 'backdrop-blur-xl', 'h-20', 'shadow-2xl');
+      header?.classList.remove('h-24');
     } else {
-      header?.classList.remove('bg-background/95', 'backdrop-blur-md', 'shadow-lg', 'h-16');
-      header?.classList.add('h-20');
+      header?.classList.remove('bg-background/90', 'backdrop-blur-xl', 'h-20', 'shadow-2xl');
+      header?.classList.add('h-24');
     }
   });
 </script>
