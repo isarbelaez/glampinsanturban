@@ -40,8 +40,9 @@ const originalPlans = [
   },
 ];
 
-// Double the plans for infinite effect (Set 1 + Set 2)
-const plans = [...originalPlans, ...originalPlans];
+// Triple the plans for robust infinite effect (Set 1 + Set 2 + Set 3)
+const plans = [...originalPlans, ...originalPlans, ...originalPlans];
+const originalCount = originalPlans.length;
 ---
 
 <section id="planes" class="relative overflow-hidden bg-[#071412] py-24">
@@ -162,76 +163,80 @@ const plans = [...originalPlans, ...originalPlans];
   }
 </style>
 
-<script>
+<script define:vars={{ originalCount }}>
   const carousel = document.getElementById('plans-carousel');
   const progress = document.getElementById('carousel-progress');
-  const originalCount = 5;
 
   if (carousel && progress) {
-    const items = carousel.querySelectorAll('.plan-item');
+    let items = carousel.querySelectorAll('.plan-item');
+    let setWidth = 0;
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let autoScrollActive = true;
 
-    const getDimensions = () => {
+    const updateDimensions = () => {
       const firstItem = items[0];
       const secondItem = items[1];
+      if (!firstItem) return;
       const itemWidth = firstItem.clientWidth;
       const gap = secondItem
         ? secondItem.offsetLeft - (firstItem.offsetLeft + firstItem.clientWidth)
         : 24;
-      return { itemWidth, gap, setWidth: (itemWidth + gap) * originalCount };
+      setWidth = (itemWidth + gap) * originalCount;
     };
 
-    let { setWidth } = getDimensions();
-
-    // Infinite Loop Setup
-    const checkInfinite = () => {
-      if (carousel.scrollLeft <= 0) {
-        carousel.scrollTo({ left: setWidth, behavior: 'instant' });
-      } else if (carousel.scrollLeft >= setWidth * 2 - carousel.clientWidth) {
-        carousel.scrollTo({
-          left: setWidth - (carousel.scrollWidth - carousel.scrollLeft),
-          behavior: 'instant',
-        });
-      }
+    // Use a small delay or check for first item size
+    const init = () => {
+      updateDimensions();
+      carousel.scrollLeft = setWidth;
     };
 
-    // Initial position
-    carousel.scrollLeft = setWidth;
+    // Wait for everything to load properly
+    window.addEventListener('load', init);
+    // Also try immediately
+    setTimeout(init, 500);
 
+    // Infinite Logic
     carousel.addEventListener('scroll', () => {
-      // Progress Bar
+      if (setWidth === 0) return;
+
       const scrollPos = carousel.scrollLeft;
+
+      // Progress Bar (based on middle set)
       const normalizedScroll = scrollPos % setWidth;
       const scrollPercentage = (normalizedScroll / setWidth) * 100;
       progress.style.width = `${scrollPercentage}%`;
 
-      // Seamless jump
-      if (scrollPos <= 2) {
-        carousel.scrollTo({ left: setWidth, behavior: 'instant' });
-      } else if (scrollPos >= carousel.scrollWidth - carousel.clientWidth - 2) {
-        carousel.scrollTo({ left: setWidth - carousel.clientWidth, behavior: 'instant' });
+      // Seamless Jump Logic
+      if (scrollPos < setWidth * 0.5) {
+        carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
+      } else if (scrollPos > setWidth * 2) {
+        carousel.scrollTo({ left: scrollPos - setWidth, behavior: 'instant' });
       }
     });
 
-    // Auto-scroll (Very slow)
-    let autoScrollInterval;
-    const startAutoScroll = () => {
-      autoScrollInterval = setInterval(() => {
-        if (!carousel.classList.contains('dragging')) {
-          carousel.scrollLeft += 1;
-        }
-      }, 30);
+    // Auto-scroll logic with RequestAnimationFrame (Smoother)
+    let lastTime = 0;
+    const animate = (time) => {
+      if (autoScrollActive && !isDown && setWidth > 0) {
+        carousel.scrollLeft += 0.5;
+      }
+      requestAnimationFrame(animate);
     };
+    requestAnimationFrame(animate);
 
-    startAutoScroll();
-
-    // Drag to scroll
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    // Interaction handling
+    const stopAuto = () => {
+      autoScrollActive = false;
+    };
+    const startAuto = () => {
+      autoScrollActive = true;
+    };
 
     carousel.addEventListener('mousedown', (e) => {
       isDown = true;
-      clearInterval(autoScrollInterval);
+      stopAuto();
       carousel.classList.add('dragging');
       startX = e.pageX - carousel.offsetLeft;
       scrollLeft = carousel.scrollLeft;
@@ -240,7 +245,7 @@ const plans = [...originalPlans, ...originalPlans];
     window.addEventListener('mouseup', () => {
       isDown = false;
       carousel.classList.remove('dragging');
-      startAutoScroll();
+      setTimeout(startAuto, 2000);
     });
 
     carousel.addEventListener('mousemove', (e) => {
@@ -251,21 +256,28 @@ const plans = [...originalPlans, ...originalPlans];
       carousel.scrollLeft = scrollLeft - walk;
     });
 
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', () => {
+      if (!isDown) startAuto();
+    });
+    carousel.addEventListener('touchstart', stopAuto);
+    carousel.addEventListener('touchend', startAuto);
+
     // Buttons
     document.getElementById('prev-plan')?.addEventListener('click', () => {
-      clearInterval(autoScrollInterval);
-      carousel.scrollBy({ left: -(items[0].clientWidth + 24), behavior: 'smooth' });
-      setTimeout(startAutoScroll, 5000);
+      stopAuto();
+      const step = items[0].clientWidth + 24;
+      carousel.scrollBy({ left: -step, behavior: 'smooth' });
+      setTimeout(startAuto, 3000);
     });
 
     document.getElementById('next-plan')?.addEventListener('click', () => {
-      clearInterval(autoScrollInterval);
-      carousel.scrollBy({ left: items[0].clientWidth + 24, behavior: 'smooth' });
-      setTimeout(startAutoScroll, 5000);
+      stopAuto();
+      const step = items[0].clientWidth + 24;
+      carousel.scrollBy({ left: step, behavior: 'smooth' });
+      setTimeout(startAuto, 3000);
     });
 
-    window.addEventListener('resize', () => {
-      ({ setWidth } = getDimensions());
-    });
+    window.addEventListener('resize', updateDimensions);
   }
 </script>

@@ -35,13 +35,13 @@ const navLinks = [
       </nav>
 
       <!-- CTA (Right) -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 md:gap-4">
         <a
           href="#reservar"
-          class="bg-primary hover:bg-primary/90 shadow-primary/20 flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold tracking-widest text-white uppercase shadow-lg transition-all hover:scale-105 active:scale-95"
+          class="bg-primary hover:bg-primary/90 shadow-primary/20 flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold tracking-widest text-white uppercase shadow-lg transition-all hover:scale-105 active:scale-95 md:px-6"
         >
           <Calendar size={14} />
-          <span>Reservar ahora</span>
+          <span class="hidden sm:inline">Reservar ahora</span>
         </a>
         <!-- Mobile Menu Toggle -->
         <button class="p-2 text-white lg:hidden">
