@@ -21,11 +21,11 @@ const experiences = [
   },
   {
     id: '05',
-    video: asset('/images/Videos/videocuatro.mp4'),
+    video: asset('/images/Videos/videocinco.mp4'),
   },
   {
     id: '06',
-    video: asset('/images/Videos/videocuatro.mp4'),
+    video: asset('/images/Videos/videosix.mp4'),
   },
 ];
 
