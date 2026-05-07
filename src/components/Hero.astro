@@ -31,7 +31,7 @@ const benefits = [
     <div class="animate-fade-in-up max-w-3xl text-left md:pl-10">
       <!-- Slogan Label -->
       <p class="text-primary mb-4 text-[10px] font-bold tracking-[0.4em] uppercase">
-        Vive lo extraordinario
+        Una Magica Aventura
       </p>
 
       <!-- Headline -->
@@ -46,14 +46,14 @@ const benefits = [
 
       <!-- Description -->
       <p class="mb-12 max-w-xl text-sm leading-relaxed font-light text-white/70 md:text-lg">
-        Desconéctate del mundo y sumérgete en una experiencia donde la tranquilidad del bosque se
+        Desconéctate del mundo y sumérgete en una experiencia donde la tranquilidad del páramo se
         encuentra con el confort más exclusivo.
       </p>
 
       <!-- CTA Buttons -->
       <div class="mb-16 flex flex-col items-start gap-6 sm:flex-row sm:items-center md:gap-10">
         <a
-          href="#reservar"
+          href={`${import.meta.env.BASE_URL}reservar`}
           class="group bg-primary hover:bg-primary/90 shadow-primary/20 relative flex items-center justify-center gap-3 rounded-full px-10 py-5 text-sm font-bold tracking-widest text-white uppercase shadow-xl transition-all hover:scale-105 active:scale-95"
         >
           <span>Reservar mi escapada</span>
@@ -61,7 +61,7 @@ const benefits = [
         </a>
 
         <a
-          href="#experiencia"
+          href={`${import.meta.env.BASE_URL}experiencias`}
           class="group flex items-center gap-4 text-white/80 transition-all hover:text-white"
         >
           <div
@@ -75,7 +75,7 @@ const benefits = [
     </div>
 
     <!-- Info Bar (Rectangle) - Positioned below the buttons with space -->
-    <div class="animate-fade-in-up-delayed mt-8 md:mt-12">
+    <div class="animate-fade-in-up-delayed mt-8 flex w-full justify-center md:mt-12">
       <div
         class="w-full max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8"
       >

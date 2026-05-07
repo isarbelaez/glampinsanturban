@@ -2,45 +2,15 @@
 import PlanCard from './PlanCard.astro';
 import { asset } from '../utils/assets';
 
-const originalPlans = [
-  {
-    title: 'Santurban',
-    price: '$290.000',
-    image: asset('/images/cabaña.jpeg'),
-    description: 'Una experiencia inolvidable, cabaña con calefacción y desayuno incluido.',
-    features: ['wifi', 'jacuzzi', 'desayuno'],
-  },
-  {
-    title: 'Plan Romántico',
-    price: '$390.000',
-    image: asset('/images/exterior.jpeg'),
-    description: 'Disfruta de una agradable decoración, desayuno, almuerzo y fogata con chocolate.',
-    features: ['wifi', 'desayuno', 'fogata', 'almuerzo', 'decoración'],
-  },
-  {
-    title: 'Plan Laguna Encantada',
-    price: '$560.000',
-    image: asset('/images/paisaje.jpeg'),
-    description: 'Una experiencia frente a la laguna con una vista hermosa.',
-    features: ['wifi', 'Laguna', 'desayuno'],
-  },
-  {
-    title: 'Plan Páramos',
-    price: '$230.000',
-    image: asset('/images/cama.jpeg'),
-    description: 'Disfruta un día de descanso en nuestra cabaña con una vista hermosa.',
-    features: ['wifi', 'desayuno', 'fogata'],
-  },
-  {
-    title: 'Plan Noche de Pareja',
-    price: '$490.000',
-    image: asset('/images/espejo.jpeg'),
-    description: 'Disfruta una velada romántica con la persona que amas.',
-    features: ['wifi', 'desayuno', 'vino', 'Fogata', 'Almuerzo'],
-  },
-];
+import { plansData } from '../data/plans';
 
-// Triple the plans for robust infinite effect (Set 1 + Set 2 + Set 3)
+interface Props {
+  excludeSlug?: string;
+}
+
+const { excludeSlug } = Astro.props;
+
+const originalPlans = excludeSlug ? plansData.filter((p) => p.slug !== excludeSlug) : plansData;
 const plans = [...originalPlans, ...originalPlans, ...originalPlans];
 const originalCount = originalPlans.length;
 ---
@@ -56,12 +26,12 @@ const originalCount = originalPlans.length;
     <div class="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
       <div class="text-left">
         <p class="text-primary mb-3 text-[10px] font-bold tracking-[0.4em] uppercase md:text-xs">
-          ¿Qué experiencia te gustaría vivir?
+          {excludeSlug ? 'Explora otras opciones' : '¿Qué experiencia te gustaría vivir?'}
         </p>
         <h2
           class="font-serif text-3xl font-bold tracking-[0.15em] text-white uppercase md:text-4xl"
         >
-          Nuestros Planes
+          {excludeSlug ? 'Otros Planes' : 'Nuestros Planes'}
         </h2>
       </div>
     </div>
@@ -128,9 +98,9 @@ const originalCount = originalPlans.length;
 
     <!-- Menu Button -->
     <div class="mt-20 flex justify-center">
-      <a
-        href="#menu"
-        class="group hover:border-primary/50 relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/20 bg-transparent px-10 py-4 font-bold transition-all"
+      <button
+        id="toggle-menu-btn"
+        class="group hover:border-primary/50 relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-white/20 bg-transparent px-10 py-4 font-bold transition-all"
       >
         <span
           class="bg-primary absolute inset-0 h-full w-0 transition-all duration-300 ease-out group-hover:w-full"
@@ -138,7 +108,58 @@ const originalCount = originalPlans.length;
         <span class="relative text-xs tracking-widest text-white uppercase group-hover:text-white"
           >Mirar nuestro menú</span
         >
-      </a>
+      </button>
+    </div>
+
+    <!-- Hidden Menu Section -->
+    <div
+      id="menu-dropdown"
+      class="grid overflow-hidden transition-all duration-500 ease-in-out"
+      style="grid-template-rows: 0fr;"
+    >
+      <div class="min-h-0">
+        <div class="pt-12 pb-4">
+          <div class="grid grid-cols-2 gap-4 md:grid-cols-5">
+            {
+              [
+                { name: 'Desayuno Santurbán', price: '$20.000', desc: 'Caldo ' },
+                {
+                  name: 'Parrillada Campestre',
+                  price: '$55.000',
+                  desc: 'Cortes seleccionados de res y cerdo, chorizo, papa salada, guacamole y ají.',
+                },
+                {
+                  name: 'Tabla de Quesos',
+                  price: '$80.000',
+                  desc: 'Selección de quesos madurados, carnes frías, frutas de temporada y pan artesanal.',
+                },
+                {
+                  name: 'Pasta Artesanal',
+                  price: '$45.000',
+                  desc: 'Fettuccine en salsa de tres quesos con champiñones y pan de ajo.',
+                },
+                {
+                  name: 'Postre de la Casa',
+                  price: '$18.000',
+                  desc: 'Volcán de chocolate fundido con centro líquido y helado de vainilla.',
+                },
+              ].map((item) => (
+                <div class="group flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10">
+                  <div>
+                    <h4 class="mb-3 font-serif text-lg leading-tight font-bold text-white">
+                      {item.name}
+                    </h4>
+                    <p class="mb-6 text-sm leading-relaxed text-white/60">{item.desc}</p>
+                  </div>
+                  <div class="bg-primary/20 text-primary border-primary/30 group-hover:bg-primary inline-block w-fit rounded-full border px-4 py-1.5 text-xs font-bold tracking-wider transition-colors group-hover:text-white">
+                    {item.price}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -291,5 +312,22 @@ const originalCount = originalPlans.length;
     });
 
     window.addEventListener('resize', updateDimensions);
+  }
+
+  // Menu Toggle Logic
+  const menuBtn = document.getElementById('toggle-menu-btn');
+  const menuDropdown = document.getElementById('menu-dropdown');
+
+  if (menuBtn && menuDropdown) {
+    menuBtn.addEventListener('click', () => {
+      const isExpanded = menuDropdown.style.gridTemplateRows === '1fr';
+      menuDropdown.style.gridTemplateRows = isExpanded ? '0fr' : '1fr';
+
+      // Update button text subtly
+      const span = menuBtn.querySelector('span.relative');
+      if (span) {
+        span.textContent = isExpanded ? 'Mirar nuestro menú' : 'Ocultar menú';
+      }
+    });
   }
 </script>

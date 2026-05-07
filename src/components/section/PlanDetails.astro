@@ -1,0 +1,131 @@
+---
+import type { Plan } from '../../data/plans';
+import { Button } from '../ui/button';
+import pkg from 'lucide-react';
+const {
+  Wifi,
+  WavesHorizontal: Jacuzzi,
+  Coffee,
+  Flame,
+  Check,
+  Wine,
+  Utensils,
+  UtensilsCrossed,
+  Sparkles,
+  Droplets,
+  Gift,
+} = pkg;
+
+interface Props {
+  plan: Plan;
+}
+
+const { plan } = Astro.props;
+
+const iconMap: Record<string, any> = {
+  wifi: Wifi,
+  jacuzzi: Jacuzzi,
+  desayuno: Coffee,
+  fogata: Flame,
+  vino: Wine,
+  almuerzo: Utensils,
+  cena: UtensilsCrossed,
+  decoración: Sparkles,
+  decoracion: Sparkles,
+  laguna: Droplets,
+  chocolates: Gift,
+  masmelos: Flame,
+};
+---
+
+<section class="bg-[#050f0e] pt-32 pb-24">
+  <div class="container mx-auto px-4 md:px-6">
+    <!-- Title & Horizontal Rectangle Summary -->
+    <div class="mb-12">
+      <h1 class="mb-8 font-serif text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+        {plan.title}
+      </h1>
+
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm md:p-8">
+        <h3 class="text-primary mb-4 text-sm font-bold tracking-widest uppercase">
+          Qué incluye este plan
+        </h3>
+        <p class="mb-8 max-w-3xl text-lg leading-relaxed text-white/80">
+          {plan.description}
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          {
+            plan.features.map((feature) => {
+              const Icon = iconMap[feature.toLowerCase()] || Check;
+              return (
+                <div class="flex items-center gap-2 rounded-lg border border-white/5 bg-white/5 px-4 py-2.5 text-white/90">
+                  <Icon size={18} class="text-primary" />
+                  <span class="text-sm font-medium capitalize">{feature}</span>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery & Sticky Sidebar -->
+    <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-3">
+      <!-- Gallery (Left, takes 2 columns on lg) - 3 images layout -->
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:col-span-2">
+        {
+          plan.gallery.slice(0, 3).map((img, idx) => (
+            <div
+              class={`overflow-hidden rounded-xl bg-white/5 ${idx === 0 ? 'row-span-2 aspect-[3/4] md:aspect-[4/5]' : 'aspect-video'}`}
+            >
+              <img
+                src={img}
+                alt={`${plan.title} foto ${idx + 1}`}
+                class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Floating Price Box (Right, takes 1 column) -->
+      <div class="sticky top-32 lg:col-span-1">
+        <div class="rounded-2xl border border-white/10 bg-[#071412] p-8 shadow-2xl">
+          <div class="mb-8">
+            <p class="mb-2 text-sm font-medium tracking-wider text-white/60 uppercase">
+              Precio por noche
+            </p>
+            <p class="font-serif text-4xl font-bold text-white">{plan.price}</p>
+          </div>
+
+          <ul class="mb-10 space-y-4">
+            <li class="flex items-center gap-3 text-sm text-white/70">
+              <Check size={16} class="text-primary" /> Reserva flexible
+            </li>
+            <li class="flex items-center gap-3 text-sm text-white/70">
+              <Check size={16} class="text-primary" /> Cancelación gratuita
+            </li>
+            <li class="flex items-center gap-3 text-sm text-white/70">
+              <Check size={16} class="text-primary" /> Atención 24/7
+            </li>
+          </ul>
+
+          <a
+            href="https://wa.me/573000000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full"
+          >
+            <Button
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary/10 h-14 w-full rounded-xl font-bold tracking-wider uppercase transition-all"
+            >
+              Reservar este plan
+            </Button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

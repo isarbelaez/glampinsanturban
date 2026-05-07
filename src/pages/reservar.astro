@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import HowToGetThere from '../components/section/HowToGetThere.astro';
+import Services from '../components/Services.astro';
+import Testimonials from '../components/Testimonials.astro';
+import { BookingForm } from '../components/section/BookingForm';
+---
+
+<Layout title="Reservar | Santurban Glamping">
+  <Navbar />
+  <main>
+    {/* 1. Formulario de Reserva */}
+    <BookingForm client:load />
+
+    {/* 2. Cómo llegar */}
+    <HowToGetThere />
+
+    {/* 3. Servicios */}
+    <Services />
+
+    {/* 4. Testimonios */}
+    <Testimonials />
+  </main>
+  <Footer />
+</Layout>
