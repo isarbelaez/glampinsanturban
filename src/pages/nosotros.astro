@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { asset } from '../utils/assets';
+import pkg from 'lucide-react';
+const { TreePine, Home, Users, Heart } = pkg;
+---
+
+<Layout title="Nosotros | Santurban Glamping">
+  <Navbar />
+  <main class="min-h-screen bg-[#050f0e] pt-32 pb-20 text-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row md:gap-20">
+        <div class="animate-fade-in-up flex-1">
+          <p class="text-primary mb-2 text-[10px] font-bold tracking-[0.4em] uppercase">
+            Nuestra Historia
+          </p>
+          <h1 class="mb-8 font-serif text-4xl tracking-tight text-white uppercase md:text-6xl">
+            Nosotros
+          </h1>
+          <p class="mb-6 text-lg leading-relaxed font-light text-white/70">
+            En el corazón del majestuoso Páramo de Santurbán nació inicialmente una fundación
+            enfocada en promover el cuidado y la conservación del agua del páramo, creando
+            conciencia sobre la importancia de proteger este invaluable ecosistema.
+            <br />
+          </p>
+
+          Con el tiempo, al descubrir los hermosos paisajes y la espectacular vista de la finca El
+          Paraíso, surgió la idea de compartir este lugar único con turistas de una manera ecológica
+          y en armonía con la naturaleza, impulsando nuevas propuestas de turismo sostenible para la
+          región.
+          <br />
+        </div>
+        Así nace Glamping Santurbán, un espacio donde el lujo se mezcla con la naturaleza, combinando
+        materiales orgánicos, arquitectura armónica y una experiencia de paz, tranquilidad y conexión
+        con el mágico paisaje de Santurbán. .
+      </div>
+      <p class="mb-10 text-lg leading-relaxed font-light text-white/70">
+        Cada detalle ha sido cuidadosamente pensado para brindarte un ambiente cálido, íntimo y
+        lujoso. Unimos la tranquilidad del entorno natural con servicios premium.
+      </p>
+
+      <div class="grid grid-cols-2 gap-x-4 gap-y-8 border-t border-white/10 pt-8">
+        <div class="flex flex-col gap-2">
+          <div
+            class="bg-primary/10 text-primary mb-2 flex h-12 w-12 items-center justify-center rounded-xl"
+          >
+            <TreePine size={24} />
+          </div>
+          <span class="text-lg font-medium text-white">Naturaleza Pura</span>
+          <span class="text-sm font-light text-white/50">Conexión total con el entorno</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div
+            class="bg-primary/10 text-primary mb-2 flex h-12 w-12 items-center justify-center rounded-xl"
+          >
+            <Home size={24} />
+          </div>
+          <span class="text-lg font-medium text-white">Cabañas de Lujo</span>
+          <span class="text-sm font-light text-white/50">Diseño, confort y exclusividad</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div
+            class="bg-primary/10 text-primary mb-2 flex h-12 w-12 items-center justify-center rounded-xl"
+          >
+            <Users size={24} />
+          </div>
+          <span class="text-lg font-medium text-white">Atención Premium</span>
+          <span class="text-sm font-light text-white/50">Servicio personalizado</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div
+            class="bg-primary/10 text-primary mb-2 flex h-12 w-12 items-center justify-center rounded-xl"
+          >
+            <Heart size={24} />
+          </div>
+          <span class="text-lg font-medium text-white">Momentos Únicos</span>
+          <span class="text-sm font-light text-white/50">Experiencias inolvidables</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="animate-fade-in-up-delayed relative flex w-full flex-1 justify-center">
+      <div
+        class="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-t-full border border-white/10 shadow-2xl"
+      >
+        <img
+          src={asset('/images/cabaña.jpeg')}
+          alt="Ilustración de cabaña Glamping"
+          class="h-full w-full object-cover grayscale-[20%] transition-transform duration-1000 hover:scale-105"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-[#050f0e] via-transparent to-transparent"
+        >
+        </div>
+      </div>
+
+      <!-- Floating badge -->
+      <div
+        class="absolute -bottom-6 -left-6 flex items-center gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur-xl md:left-0"
+      >
+        <div class="text-primary font-serif text-4xl">100%</div>
+        <div class="text-xs tracking-widest text-white/80 uppercase">
+          Experiencia<br />Exclusiva
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<Footer />
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-fade-in-up-delayed {
+    opacity: 0;
+    animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  }
+</style>
