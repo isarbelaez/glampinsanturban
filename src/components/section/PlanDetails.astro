@@ -47,47 +47,64 @@ const iconMap: Record<string, any> = {
       </h1>
 
       <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm md:p-8">
-        <h3 class="text-primary mb-4 text-sm font-bold tracking-widest uppercase">
-          Qué incluye este plan
-          <h2 class="text-2xl font-bold text-white">{plan.title}</h2>
-        </h3>
-        <p class="mb-8 max-w-3xl text-lg leading-relaxed text-white/80">
-          {plan.details}
-        </p>
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+          <!-- Features Icons (Left) -->
+          <div class="space-y-6">
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+              {
+                (plan.features || []).map((feature) => {
+                  const Icon = iconMap[feature.toLowerCase()] || Check;
+                  return (
+                    <div class="flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/5 bg-white/5 p-4 text-center transition-all hover:bg-white/10">
+                      <div class="bg-primary/10 text-primary flex h-10 w-10 items-center justify-center rounded-full">
+                        <Icon size={20} />
+                      </div>
+                      <span class="text-[10px] font-semibold tracking-wider text-white/80 uppercase">
+                        {feature}
+                      </span>
+                    </div>
+                  );
+                })
+              }
+            </div>
+          </div>
 
-        <div class="flex flex-wrap gap-4">
-          {
-            plan.features.map((feature) => {
-              const Icon = iconMap[feature.toLowerCase()] || Check;
-              return (
-                <div class="flex items-center gap-2 rounded-lg border border-white/5 bg-white/5 px-4 py-2.5 text-white/90">
-                  <Icon size={18} class="text-primary" />
-                  <span class="text-sm font-medium capitalize">{feature}</span>
-                </div>
-              );
-            })
-          }
+          <!-- Right Column (Blank as requested) -->
+          <div class="flex flex-col border-l border-white/10 pl-0 md:pl-8">
+            <!-- Content removed -->
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Gallery & Sticky Sidebar -->
-    <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-3">
-      <!-- Gallery (Left, takes 2 columns on lg) - 3 images layout -->
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:col-span-2">
-        {
-          plan.gallery.slice(0, 3).map((img, idx) => (
-            <div
-              class={`overflow-hidden rounded-xl bg-white/5 ${idx === 0 ? 'row-span-2 aspect-[3/4] md:aspect-[4/5]' : 'aspect-video'}`}
-            >
-              <img
-                src={img}
-                alt={`${plan.title} foto ${idx + 1}`}
-                class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-          ))
-        }
+    <div class="mt-12 grid grid-cols-1 items-start gap-12 lg:grid-cols-3">
+      <!-- Gallery & Details (Left) -->
+      <div class="space-y-12 lg:col-span-2">
+        <!-- Main Description -->
+        <div class="prose prose-invert max-w-none">
+          <h2 class="mb-6 font-serif text-3xl font-bold text-white">Sobre la experiencia</h2>
+          <p class="text-lg leading-relaxed text-white/70">
+            {plan.details}
+          </p>
+        </div>
+
+        <!-- Gallery -->
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {
+            (plan.gallery || []).slice(0, 3).map((img, idx) => (
+              <div
+                class={`overflow-hidden rounded-xl bg-white/5 ${idx === 0 ? 'row-span-2 aspect-[3/4] md:aspect-[4/5]' : 'aspect-video'}`}
+              >
+                <img
+                  src={img}
+                  alt={`${plan.title} foto ${idx + 1}`}
+                  class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            ))
+          }
+        </div>
       </div>
 
       <!-- Floating Price Box (Right, takes 1 column) -->
@@ -100,20 +117,26 @@ const iconMap: Record<string, any> = {
             <p class="font-serif text-4xl font-bold text-white">{plan.price}</p>
           </div>
 
-          <ul class="mb-10 space-y-4">
-            <li class="flex items-center gap-3 text-sm text-white/70">
-              <Check size={16} class="text-primary" /> Reserva flexible
+          <ul class="mb-10 space-y-4 border-b border-white/10 pb-8">
+            <li
+              class="flex items-center gap-3 text-xs font-medium tracking-wide text-white/50 uppercase"
+            >
+              <Check size={14} class="text-primary/60" /> Reserva segura
             </li>
-            <li class="flex items-center gap-3 text-sm text-white/70">
-              <Check size={16} class="text-primary" /> Cancelación gratuita
+            <li
+              class="flex items-center gap-3 text-xs font-medium tracking-wide text-white/50 uppercase"
+            >
+              <Check size={14} class="text-primary/60" /> Cancelación flexible
             </li>
-            <li class="flex items-center gap-3 text-sm text-white/70">
-              <Check size={16} class="text-primary" /> Atención 24/7
+            <li
+              class="flex items-center gap-3 text-xs font-medium tracking-wide text-white/50 uppercase"
+            >
+              <Check size={14} class="text-primary/60" /> Atención 24/7
             </li>
           </ul>
 
           <a
-            href="https://wa.me/17869097263?text=Hola!%20Quiero%20reservar%20este%20plan"
+            href={`https://wa.me/${plan.whatsapp || '17869097263'}?text=Hola!%20Quiero%20reservar%20el%20plan%20${encodeURIComponent(plan.title)}`}
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full"

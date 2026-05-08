@@ -64,7 +64,7 @@ const iconMap: Record<string, any> = {
 
     <div class="mb-8 flex gap-4">
       {
-        features.map((feature) => {
+        (features || []).map((feature) => {
           const Icon = iconMap[feature];
           return (
             <div class="text-primary/80" title={feature}>

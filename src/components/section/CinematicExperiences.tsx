@@ -46,7 +46,7 @@ export function CinematicExperiences() {
   }, [activeId]);
 
   return (
-    <section className="relative flex h-[80vh] min-h-[600px] w-full flex-col overflow-hidden bg-[#050f0e] pt-24 pb-0 md:flex-row">
+    <section className="relative flex h-[90vh] min-h-[750px] w-full flex-col overflow-hidden bg-[#050f0e] pt-24 pb-0 md:flex-row">
       {/* Volume Toggle */}
       <button
         onClick={() => setIsMuted(!isMuted)}

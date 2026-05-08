@@ -1,7 +1,7 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/geist';
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
@@ -13,36 +13,36 @@
   --card-foreground: oklch(0.98 0.01 160);
   --popover: oklch(0.15 0.02 165);
   --popover-foreground: oklch(0.98 0.01 160);
-  --primary: oklch(0.68 0.22 45);
-  --primary-foreground: oklch(1 0 0);
+  --primary: oklch(0.77 0.16 204);
+  --primary-foreground: oklch(0.1 0.02 204);
   --secondary: oklch(0.25 0.04 160);
   --secondary-foreground: oklch(0.98 0.01 160);
   --muted: oklch(0.25 0.02 160);
   --muted-foreground: oklch(0.7 0.02 160);
-  --accent: oklch(0.68 0.22 45);
-  --accent-foreground: oklch(1 0 0);
+  --accent: oklch(0.77 0.16 204);
+  --accent-foreground: oklch(0.1 0.02 204);
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.25 0.02 160);
   --input: oklch(0.25 0.02 160);
-  --ring: oklch(0.68 0.22 45);
+  --ring: oklch(0.77 0.16 204);
   --radius: 0.625rem;
   --font-sans: 'Inter Variable', sans-serif;
   --font-serif: 'Source Serif 4 Variable', serif;
   --font-dunkerque: 'Bebas Neue', sans-serif;
-  --chart-1: oklch(0.68 0.22 45);
+  --chart-1: oklch(0.77 0.16 204);
   --chart-2: oklch(0.62 0.16 90);
   --chart-3: oklch(0.52 0.12 145);
   --chart-4: oklch(0.42 0.09 160);
   --chart-5: oklch(0.32 0.05 160);
-  --sidebar: oklch(0.20 0.025 162);
+  --sidebar: oklch(0.2 0.025 162);
   --sidebar-foreground: oklch(0.98 0.01 160);
-  --sidebar-primary: oklch(0.68 0.22 45);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.68 0.22 45);
-  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.77 0.16 204);
+  --sidebar-primary-foreground: oklch(0.1 0.02 204);
+  --sidebar-accent: oklch(0.77 0.16 204);
+  --sidebar-accent-foreground: oklch(0.1 0.02 204);
   --sidebar-border: oklch(0.25 0.02 160);
-  --sidebar-ring: oklch(0.68 0.22 45);
+  --sidebar-ring: oklch(0.77 0.16 204);
 }
 
 .dark {
@@ -52,32 +52,32 @@
   --card-foreground: oklch(0.98 0.01 160);
   --popover: oklch(0.15 0.02 165);
   --popover-foreground: oklch(0.98 0.01 160);
-  --primary: oklch(0.68 0.22 45);
-  --primary-foreground: oklch(1 0 0);
+  --primary: oklch(0.77 0.16 204);
+  --primary-foreground: oklch(0.1 0.02 204);
   --secondary: oklch(0.25 0.04 160);
   --secondary-foreground: oklch(0.98 0.01 160);
   --muted: oklch(0.25 0.02 160);
   --muted-foreground: oklch(0.7 0.02 160);
-  --accent: oklch(0.68 0.22 45);
-  --accent-foreground: oklch(1 0 0);
+  --accent: oklch(0.77 0.16 204);
+  --accent-foreground: oklch(0.1 0.02 204);
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.25 0.02 160);
   --input: oklch(0.25 0.02 160);
-  --ring: oklch(0.68 0.22 45);
-  --chart-1: oklch(0.68 0.22 45);
+  --ring: oklch(0.77 0.16 204);
+  --chart-1: oklch(0.77 0.16 204);
   --chart-2: oklch(0.62 0.16 90);
   --chart-3: oklch(0.52 0.12 145);
   --chart-4: oklch(0.42 0.09 160);
   --chart-5: oklch(0.32 0.05 160);
-  --sidebar: oklch(0.20 0.025 162);
+  --sidebar: oklch(0.2 0.025 162);
   --sidebar-foreground: oklch(0.98 0.01 160);
-  --sidebar-primary: oklch(0.68 0.22 45);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.68 0.22 45);
-  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.77 0.16 204);
+  --sidebar-primary-foreground: oklch(0.1 0.02 204);
+  --sidebar-accent: oklch(0.77 0.16 204);
+  --sidebar-accent-foreground: oklch(0.1 0.02 204);
   --sidebar-border: oklch(0.25 0.02 160);
-  --sidebar-ring: oklch(0.68 0.22 45);
+  --sidebar-ring: oklch(0.77 0.16 204);
 }
 
 @theme inline {
@@ -180,23 +180,25 @@
     border-radius: 6px !important;
     box-shadow: none !important;
     padding: 3px 8px !important;
-    transition: opacity 200ms ease, background 200ms ease;
+    transition:
+      opacity 200ms ease,
+      background 200ms ease;
   }
 
   .maplibregl-ctrl-attrib:hover {
-    background: rgba(20, 20, 20, 0.70) !important;
+    background: rgba(20, 20, 20, 0.7) !important;
   }
 
   /* Texto de atribución: gris claro, sin blur */
   .maplibregl-ctrl-attrib-inner {
-    color: rgba(200, 200, 200, 0.60) !important;
+    color: rgba(200, 200, 200, 0.6) !important;
     font-size: 9px !important;
     letter-spacing: 0.02em;
     line-height: 1.4 !important;
   }
 
   .maplibregl-ctrl-attrib a {
-    color: rgba(220, 220, 220, 0.80) !important;
+    color: rgba(220, 220, 220, 0.8) !important;
     text-decoration: none !important;
     transition: color 150ms ease;
   }
@@ -210,7 +212,7 @@
     background-color: rgba(20, 20, 20, 0.55) !important;
     backdrop-filter: blur(6px) !important;
     -webkit-backdrop-filter: blur(6px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 50% !important;
     width: 20px !important;
     height: 20px !important;
@@ -233,14 +235,13 @@
 }
 
 @layer components {
-
   /* ─── Map Markers ─── */
   .map-marker-origin {
     @apply relative flex h-4 w-4 items-center justify-center;
   }
 
   .map-marker-origin-dot {
-    @apply h-3 w-3 rounded-full border-2 border-background bg-foreground;
+    @apply border-background bg-foreground h-3 w-3 rounded-full border-2;
   }
 
   .map-marker-glamping {
@@ -248,11 +249,11 @@
   }
 
   .map-marker-glamping-dot {
-    @apply relative z-10 h-4 w-4 rounded-full border-2 border-background bg-primary shadow-lg shadow-primary/40;
+    @apply border-background bg-primary shadow-primary/40 relative z-10 h-4 w-4 rounded-full border-2 shadow-lg;
   }
 
   .map-marker-pulse {
-    @apply absolute inset-0 rounded-full bg-primary;
+    @apply bg-primary absolute inset-0 rounded-full;
     animation: marker-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
 
@@ -264,7 +265,7 @@
   }
 
   .glamping-popup-content {
-    @apply rounded-xl border border-white/10 bg-background/80 p-4 shadow-lg backdrop-blur-md;
+    @apply bg-background/80 rounded-xl border border-white/10 p-4 shadow-lg backdrop-blur-md;
   }
 
   .glamping-popup-actions {

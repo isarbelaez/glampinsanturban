@@ -1,19 +1,80 @@
 import React, { useState } from 'react';
 import { plansData } from '../../data/plans';
-import { Calendar as CalendarIcon, Users, User, ChevronDown } from 'lucide-react';
+import { Calendar as CalendarIcon, Users, User, ChevronDown, CheckCircle2 } from 'lucide-react';
 
 export function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+    nombre: '',
+    apellido: '',
+    plan: '',
+    personas: '2',
+    fechaLlegada: '',
+    fechaSalida: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate sending form to WhatsApp or API
+
+    // Prepare WhatsApp message
+    const planName = plansData.find((p) => p.slug === formData.plan)?.title || formData.plan;
+    const message = `Hola! Me gustaría solicitar una reserva:
+*Nombre:* ${formData.nombre} ${formData.apellido}
+*Plan:* ${planName}
+*Personas:* ${formData.personas}
+*Llegada:* ${formData.fechaLlegada}
+*Salida:* ${formData.fechaSalida}`;
+
+    const whatsappUrl = `https://wa.me/17869097263?text=${encodeURIComponent(message)}`;
+
+    // Simulate sending and then redirect
     setTimeout(() => {
       setIsSubmitting(false);
-      alert('¡Solicitud enviada! Nos contactaremos pronto.');
+      setIsSuccess(true);
+
+      // Open WhatsApp in a new tab after a short delay
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 1500);
     }, 1000);
   };
+
+  if (isSuccess) {
+    return (
+      <section className="relative overflow-hidden bg-[#050f0e] pt-40 pb-24" id="reservar">
+        <div className="bg-primary/10 pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full blur-[120px]"></div>
+        <div className="relative z-10 container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-xl text-center">
+            <div className="mb-8 flex justify-center">
+              <div className="bg-primary/20 flex h-24 w-24 items-center justify-center rounded-full">
+                <CheckCircle2 size={60} className="text-primary animate-in zoom-in duration-500" />
+              </div>
+            </div>
+            <h2 className="mb-4 font-serif text-3xl font-bold text-white md:text-4xl">
+              ¡Tu reserva ha sido enviada!
+            </h2>
+            <p className="text-lg leading-relaxed text-white/60">
+              En un momento nos contactaremos contigo. Serás redirigido a WhatsApp para finalizar
+              los detalles.
+            </p>
+            <button
+              onClick={() => setIsSuccess(false)}
+              className="text-primary mt-8 text-sm font-bold tracking-widest uppercase hover:underline"
+            >
+              Volver al formulario
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative overflow-hidden bg-[#050f0e] pt-40 pb-24" id="reservar">
@@ -44,6 +105,9 @@ export function BookingForm() {
                     />
                     <input
                       type="text"
+                      name="nombre"
+                      value={formData.nombre}
+                      onChange={handleChange}
                       required
                       placeholder="Tu nombre"
                       className="focus:border-primary/50 w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors placeholder:text-white/30 focus:outline-none"
@@ -61,6 +125,9 @@ export function BookingForm() {
                     />
                     <input
                       type="text"
+                      name="apellido"
+                      value={formData.apellido}
+                      onChange={handleChange}
                       required
                       placeholder="Tu apellido"
                       className="focus:border-primary/50 w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors placeholder:text-white/30 focus:outline-none"
@@ -77,10 +144,13 @@ export function BookingForm() {
                   </label>
                   <div className="relative">
                     <select
+                      name="plan"
+                      value={formData.plan}
+                      onChange={handleChange}
                       required
                       className="focus:border-primary/50 w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-black/40 py-3 pr-12 pl-4 text-white transition-colors focus:outline-none"
                     >
-                      <option value="" disabled selected className="text-black">
+                      <option value="" disabled className="text-black">
                         Selecciona un plan...
                       </option>
                       {plansData.map((plan) => (
@@ -107,6 +177,9 @@ export function BookingForm() {
                     />
                     <input
                       type="number"
+                      name="personas"
+                      value={formData.personas}
+                      onChange={handleChange}
                       min="1"
                       max="10"
                       required
@@ -130,6 +203,9 @@ export function BookingForm() {
                     />
                     <input
                       type="date"
+                      name="fechaLlegada"
+                      value={formData.fechaLlegada}
+                      onChange={handleChange}
                       required
                       className="focus:border-primary/50 color-scheme-dark w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors focus:outline-none"
                       style={{ colorScheme: 'dark' }}
@@ -147,6 +223,9 @@ export function BookingForm() {
                     />
                     <input
                       type="date"
+                      name="fechaSalida"
+                      value={formData.fechaSalida}
+                      onChange={handleChange}
                       required
                       className="focus:border-primary/50 color-scheme-dark w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors focus:outline-none"
                       style={{ colorScheme: 'dark' }}

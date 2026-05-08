@@ -10,7 +10,9 @@ interface Props {
 
 const { excludeSlug } = Astro.props;
 
-const originalPlans = excludeSlug ? plansData.filter((p) => p.slug !== excludeSlug) : plansData;
+const originalPlans = excludeSlug
+  ? (plansData || []).filter((p) => p.slug !== excludeSlug)
+  : plansData || [];
 const plans = [...originalPlans, ...originalPlans, ...originalPlans];
 const originalCount = originalPlans.length;
 ---
