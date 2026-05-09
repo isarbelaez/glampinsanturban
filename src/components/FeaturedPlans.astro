@@ -13,7 +13,13 @@ const { excludeSlug } = Astro.props;
 const originalPlans = excludeSlug
   ? (plansData || []).filter((p) => p.slug !== excludeSlug)
   : plansData || [];
-const plans = [...originalPlans, ...originalPlans, ...originalPlans];
+
+// Mark clones to allow hiding them in specific categories
+const plans = [
+  ...originalPlans.map((p) => ({ ...p, isClone: true })),
+  ...originalPlans.map((p) => ({ ...p, isClone: false })),
+  ...originalPlans.map((p) => ({ ...p, isClone: true })),
+];
 const originalCount = originalPlans.length;
 ---
 
@@ -25,7 +31,7 @@ const originalCount = originalPlans.length;
   </div>
 
   <div class="relative z-10 container mx-auto px-4 md:px-6">
-    <div class="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+    <div class="mb-12 flex flex-col justify-between gap-8 md:flex-row md:items-end">
       <div class="text-left">
         <p class="text-primary mb-3 text-[10px] font-bold tracking-[0.4em] uppercase md:text-xs">
           {excludeSlug ? 'Explora otras opciones' : '¿Qué experiencia te gustaría vivir?'}
@@ -35,6 +41,22 @@ const originalCount = originalPlans.length;
         >
           {excludeSlug ? 'Otros Planes' : 'Nuestros Planes'}
         </h2>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex gap-3">
+        <button
+          id="filter-glamping"
+          class="filter-btn is-active border-primary/30 bg-primary/10 hover:border-primary cursor-pointer rounded-full border px-6 py-2 text-xs font-bold tracking-widest text-white uppercase transition-all"
+        >
+          Glamping
+        </button>
+        <button
+          id="filter-hostal"
+          class="filter-btn hover:border-primary cursor-pointer rounded-full border border-white/10 bg-white/5 px-6 py-2 text-xs font-bold tracking-widest text-white uppercase transition-all"
+        >
+          Hostal
+        </button>
       </div>
     </div>
 
@@ -83,7 +105,11 @@ const originalCount = originalPlans.length;
       >
         {
           plans.map((plan, index) => (
-            <div class="plan-item pointer-events-none min-w-[85vw] snap-center md:min-w-[420px]">
+            <div
+              class="plan-item pointer-events-none min-w-[85vw] snap-center transition-all duration-500 md:min-w-[420px]"
+              data-category={plan.category}
+              data-clone={plan.isClone ? 'true' : 'false'}
+            >
               <div class="pointer-events-auto">
                 <PlanCard {...plan} />
               </div>
@@ -193,35 +219,108 @@ const originalCount = originalPlans.length;
 <script define:vars={{ originalCount }}>
   const carousel = document.getElementById('plans-carousel');
   const progress = document.getElementById('carousel-progress');
+  const filterBtns = document.querySelectorAll('.filter-btn');
 
   if (carousel && progress) {
-    let items = carousel.querySelectorAll('.plan-item');
+    let items = Array.from(carousel.querySelectorAll('.plan-item'));
     let setWidth = 0;
     let isDown = false;
     let startX;
     let scrollLeft;
     let autoScrollActive = true;
+    let currentCategory = 'glamping';
 
     const updateDimensions = () => {
-      const firstItem = items[0];
-      const secondItem = items[1];
-      if (!firstItem) return;
+      const visibleItems = items.filter(
+        (item) => !item.classList.contains('hidden') && !item.classList.contains('opacity-0')
+      );
+      if (visibleItems.length === 0) return;
+
+      const firstItem = visibleItems[0];
+      const secondItem = visibleItems[1];
       const itemWidth = firstItem.clientWidth;
       const gap = secondItem
         ? secondItem.offsetLeft - (firstItem.offsetLeft + firstItem.clientWidth)
         : 24;
-      setWidth = (itemWidth + gap) * originalCount;
+
+      // The originalCount in the infinite loop is total / 3
+      const currentVisibleOriginalCount = visibleItems.length / 3;
+      setWidth = (itemWidth + gap) * currentVisibleOriginalCount;
     };
 
-    // Use a small delay or check for first item size
+    const filterPlans = (category) => {
+      currentCategory = category;
+
+      // Update UI buttons
+      filterBtns.forEach((btn) => {
+        if (btn.id === `filter-${category}`) {
+          btn.classList.add('is-active', 'bg-primary/10', 'border-primary/30');
+          btn.classList.remove('bg-white/5', 'border-white/10');
+        } else {
+          btn.classList.remove('is-active', 'bg-primary/10', 'border-primary/30');
+          btn.classList.add('bg-white/5', 'border-white/10');
+        }
+      });
+
+      // Show/Hide items with transition
+      items.forEach((item) => {
+        const isMatch = item.dataset.category === category;
+        const isClone = item.dataset.clone === 'true';
+
+        // Hide clones if hostal is selected to show only 2 items
+        if (isMatch && (category !== 'hostal' || !isClone)) {
+          item.classList.remove('hidden');
+          setTimeout(() => item.classList.remove('opacity-0', 'scale-95'), 10);
+        } else {
+          item.classList.add('opacity-0', 'scale-95');
+          setTimeout(() => item.classList.add('hidden'), 500);
+        }
+      });
+
+      // Update carousel centering for Hostal
+      if (category === 'hostal') {
+        carousel.classList.add('justify-center');
+        document.getElementById('prev-plan')?.classList.add('hidden');
+        document.getElementById('next-plan')?.classList.add('hidden');
+      } else {
+        carousel.classList.remove('justify-center');
+        document.getElementById('prev-plan')?.classList.remove('hidden');
+        document.getElementById('next-plan')?.classList.remove('hidden');
+      }
+
+      // Recalculate and reset after transition
+      setTimeout(() => {
+        updateDimensions();
+        if (category === 'hostal') {
+          carousel.scrollLeft = 0;
+        } else {
+          carousel.scrollLeft = setWidth;
+        }
+      }, 510);
+    };
+
+    // Filter Listeners
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = btn.id.replace('filter-', '');
+        if (category === currentCategory) return;
+        filterPlans(category);
+      });
+    });
+
     const init = () => {
+      // Start with glamping visible, hostal hidden
+      items.forEach((item) => {
+        if (item.dataset.category !== 'glamping') {
+          item.classList.add('hidden', 'opacity-0', 'scale-95');
+        }
+      });
+
       updateDimensions();
       carousel.scrollLeft = setWidth;
     };
 
-    // Wait for everything to load properly
     window.addEventListener('load', init);
-    // Also try immediately
     setTimeout(init, 500);
 
     // Infinite Logic
@@ -229,13 +328,10 @@ const originalCount = originalPlans.length;
       if (setWidth === 0) return;
 
       const scrollPos = carousel.scrollLeft;
-
-      // Progress Bar (based on middle set)
       const normalizedScroll = scrollPos % setWidth;
       const scrollPercentage = (normalizedScroll / setWidth) * 100;
       progress.style.width = `${scrollPercentage}%`;
 
-      // Seamless Jump Logic - Only jump if not dragging to avoid glitches
       if (!isDown) {
         if (scrollPos < setWidth * 0.5) {
           carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
@@ -245,9 +341,8 @@ const originalCount = originalPlans.length;
       }
     });
 
-    // Auto-scroll logic with RequestAnimationFrame (Smoother)
     let lastTime = 0;
-    const animate = (time) => {
+    const animate = () => {
       if (autoScrollActive && !isDown && setWidth > 0) {
         carousel.scrollLeft += 0.5;
       }
@@ -255,13 +350,8 @@ const originalCount = originalPlans.length;
     };
     requestAnimationFrame(animate);
 
-    // Interaction handling
-    const stopAuto = () => {
-      autoScrollActive = false;
-    };
-    const startAuto = () => {
-      autoScrollActive = true;
-    };
+    const stopAuto = () => (autoScrollActive = false);
+    const startAuto = () => (autoScrollActive = true);
 
     carousel.addEventListener('mousedown', (e) => {
       isDown = true;
@@ -276,7 +366,6 @@ const originalCount = originalPlans.length;
       isDown = false;
       carousel.classList.remove('dragging');
 
-      // Perform infinite jump after release if needed
       const scrollPos = carousel.scrollLeft;
       if (scrollPos < setWidth * 0.5) {
         carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
@@ -302,17 +391,18 @@ const originalCount = originalPlans.length;
     carousel.addEventListener('touchstart', stopAuto);
     carousel.addEventListener('touchend', startAuto);
 
-    // Buttons
     document.getElementById('prev-plan')?.addEventListener('click', () => {
       stopAuto();
-      const step = items[0].clientWidth + 24;
+      const visibleItems = items.filter((i) => !i.classList.contains('hidden'));
+      const step = visibleItems[0]?.clientWidth + 24 || 300;
       carousel.scrollBy({ left: -step, behavior: 'smooth' });
       setTimeout(startAuto, 3000);
     });
 
     document.getElementById('next-plan')?.addEventListener('click', () => {
       stopAuto();
-      const step = items[0].clientWidth + 24;
+      const visibleItems = items.filter((i) => !i.classList.contains('hidden'));
+      const step = visibleItems[0]?.clientWidth + 24 || 300;
       carousel.scrollBy({ left: step, behavior: 'smooth' });
       setTimeout(startAuto, 3000);
     });
@@ -328,12 +418,8 @@ const originalCount = originalPlans.length;
     menuBtn.addEventListener('click', () => {
       const isExpanded = menuDropdown.style.gridTemplateRows === '1fr';
       menuDropdown.style.gridTemplateRows = isExpanded ? '0fr' : '1fr';
-
-      // Update button text subtly
       const span = menuBtn.querySelector('span.relative');
-      if (span) {
-        span.textContent = isExpanded ? 'Mirar nuestro menú' : 'Ocultar menú';
-      }
+      if (span) span.textContent = isExpanded ? 'Mirar nuestro menú' : 'Ocultar menú';
     });
   }
 </script>

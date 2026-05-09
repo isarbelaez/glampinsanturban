@@ -10,7 +10,7 @@ import Layout from '@/layouts/Layout.astro';
     <p class="mt-2 text-gray-600 dark:text-gray-400">
       La página que buscas no existe o fue movida.
     </p>
-    <a href="/">
+    <a href={import.meta.env.BASE_URL}>
       <Button> Volver al inicio </Button>
     </a>
   </main>

@@ -25,7 +25,7 @@ export function asset(path: string | undefined | null): string {
 
   // 3. Obtener el BASE_URL de Astro (definido en astro.config.mjs)
   // Astro ya incluye las barras necesarias en import.meta.env.BASE_URL
-  const baseUrl = import.meta.env.BASE_URL;
+  const baseUrl = import.meta.env.BASE_URL || '/';
 
   // 4. Si el BASE_URL es solo '/', retornamos la ruta limpia
   if (baseUrl === '/') {

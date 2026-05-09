@@ -2,10 +2,12 @@ import { asset } from '../utils/assets';
 
 export interface Plan {
   slug: string;
+  category: 'glamping' | 'hostal';
   title: string;
   price: string;
   image: string;
   gallery: string[];
+  video?: string; // New field for TikTok-style video
   description: string;
   details: string;
   includesDescription?: string;
@@ -18,6 +20,7 @@ export interface Plan {
 export const plansData: Plan[] = [
   {
     slug: 'santurban',
+    category: 'glamping',
     title: 'Santurban',
     price: '$295.000',
     image: asset('/images/cabaña.jpeg'),
@@ -46,6 +49,7 @@ export const plansData: Plan[] = [
   },
   {
     slug: 'plan-romantico',
+    category: 'glamping',
     title: 'Plan Romántico',
     price: '$390.000',
     image: asset('/images/exterior.jpeg'),
@@ -74,6 +78,7 @@ export const plansData: Plan[] = [
   },
   {
     slug: 'plan-laguna-encantada',
+    category: 'glamping',
     title: 'Plan Laguna Encantada',
     price: '$560.000',
     image: asset('/images/paisaje.jpeg'),
@@ -102,6 +107,7 @@ export const plansData: Plan[] = [
   },
   {
     slug: 'plan-paramos',
+    category: 'glamping',
     title: 'Plan Páramos',
     price: '$230.000',
     image: asset('/images/cama.jpeg'),
@@ -130,6 +136,7 @@ export const plansData: Plan[] = [
   },
   {
     slug: 'plan-noche-de-pareja',
+    category: 'glamping',
     title: 'Plan Noche de Pareja',
     price: '$420.000',
     image: asset('/images/espejo.jpeg'),
@@ -154,6 +161,36 @@ export const plansData: Plan[] = [
       'Fogata especial para parejas',
       'Desayuno buffet al día siguiente',
     ],
+    whatsapp: '17869097263',
+  },
+  {
+    slug: 'Habitación-Frailejon',
+    category: 'hostal',
+    title: 'Habitación Frailejon',
+    price: '$190.000',
+    image: asset('/images/hostal.jpeg'),
+    gallery: [asset('/images/hostaluno.jpeg')],
+    video: asset('/images/Videos/hostal.mp4'),
+    description: 'Habitación privada en zona de hostal.',
+    details:
+      'Disfruta de la privacidad de una habitación propia dentro de nuestro ambiente de hostal. La combinación perfecta entre economía y tranquilidad.',
+    features: ['wifi', 'cama doble', 'baño privado', 'TV', 'calefactor'],
+    includes: ['cama en habitación', 'Desayuno básico', 'Acceso a cocina compartida'],
+    whatsapp: '17869097263',
+  },
+  {
+    slug: 'Habitación-vibra-Santurban',
+    category: 'hostal',
+    title: 'Habitación vibra Santurban',
+    price: '$150.000',
+    image: asset('/images/vibra.jpeg'),
+    gallery: [asset('/images/hostaldos.jpeg')],
+    video: asset('/images/Videos/sala.mp4'),
+    description: 'Habitación privada en zona de hostal.',
+    details:
+      'Disfruta de la privacidad de una habitación propia dentro de nuestro ambiente de hostal. La combinación perfecta entre economía y tranquilidad.',
+    features: ['wifi', 'camas', 'baño privado'],
+    includes: ['Habitación privada', 'Baño compartido con agua caliente', 'Desayuno incluido'],
     whatsapp: '17869097263',
   },
 ];
