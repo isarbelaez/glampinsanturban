@@ -43,11 +43,18 @@ const socialLinks = [
 
       <!-- Quick Links -->
       <div>
-        <h4 class="mb-8 text-xs font-bold tracking-widest text-white uppercase">Destinos</h4>
+        <h4 class="mb-8 text-xs font-bold tracking-widest text-white uppercase">Explorar</h4>
         <ul class="space-y-4">
           <li>
-            <a href="#" class="hover:text-primary text-sm text-white/50 transition-colors"
-              >Bucaramanga, Santander</a
+            <a
+              href={`${import.meta.env.BASE_URL}#como-llegar`}
+              class="hover:text-primary text-sm text-white/50 transition-colors">Cómo llegar</a
+            >
+          </li>
+          <li>
+            <a
+              href={`${import.meta.env.BASE_URL}experiencias/`}
+              class="hover:text-primary text-sm text-white/50 transition-colors">Experiencias</a
             >
           </li>
         </ul>
@@ -60,28 +67,34 @@ const socialLinks = [
         </h4>
         <ul class="space-y-4">
           <li>
-            <a href="#" class="hover:text-primary text-sm text-white/50 transition-colors"
-              >Santurbán</a
+            <a
+              href={`${import.meta.env.BASE_URL}planes/santurban/`}
+              class="hover:text-primary text-sm text-white/50 transition-colors">Santurbán</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-primary text-sm text-white/50 transition-colors"
-              >Plan Romantico</a
+            <a
+              href={`${import.meta.env.BASE_URL}planes/plan-romantico/`}
+              class="hover:text-primary text-sm text-white/50 transition-colors">Plan Romantico</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-primary text-sm text-white/50 transition-colors"
-              >Plan laguna Encantatada</a
+            <a
+              href={`${import.meta.env.BASE_URL}planes/plan-laguna-encantada/`}
+              class="hover:text-primary text-sm text-white/50 transition-colors"
+              >Plan Laguna Encantada</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-primary text-sm text-white/50 transition-colors"
-              >Plan Paramos</a
+            <a
+              href={`${import.meta.env.BASE_URL}planes/plan-paramos/`}
+              class="hover:text-primary text-sm text-white/50 transition-colors">Plan Paramos</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-primary text-sm text-white/50 transition-colors"
-              >Noche de parejas</a
+            <a
+              href={`${import.meta.env.BASE_URL}planes/plan-noche-de-pareja/`}
+              class="hover:text-primary text-sm text-white/50 transition-colors">Noche de parejas</a
             >
           </li>
         </ul>
