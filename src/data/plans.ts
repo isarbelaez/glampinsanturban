@@ -19,7 +19,7 @@ export const plansData: Plan[] = [
   {
     slug: 'santurban',
     title: 'Santurban',
-    price: '$290.000',
+    price: '$295.000',
     image: asset('/images/cabaña.jpeg'),
     gallery: [
       asset('/images/cabaña.jpeg'),
@@ -131,7 +131,7 @@ export const plansData: Plan[] = [
   {
     slug: 'plan-noche-de-pareja',
     title: 'Plan Noche de Pareja',
-    price: '$490.000',
+    price: '$420.000',
     image: asset('/images/espejo.jpeg'),
     gallery: [
       asset('/images/espejo.jpeg'),
