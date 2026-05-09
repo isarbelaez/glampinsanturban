@@ -15,7 +15,7 @@ const logoSrc = asset('/images/logo.png');
   asLink ? (
     <a href={import.meta.env.BASE_URL} class:list={['group block shrink-0', className]}>
       <div class="flex items-center gap-2.5 transition-transform group-hover:scale-[1.02]">
-        <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full shadow-lg">
+        <div class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full shadow-lg">
           <img src={logoSrc} alt="Logo" class="h-full w-full object-cover" />
         </div>
         <div class="flex flex-col -space-y-1">
@@ -30,7 +30,7 @@ const logoSrc = asset('/images/logo.png');
     </a>
   ) : (
     <div class:list={['flex items-center gap-2.5', className]}>
-      <div class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full shadow-lg">
+      <div class="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full shadow-lg">
         <img src={logoSrc} alt="Logo" class="h-full w-full object-cover" />
       </div>
       <div class="flex flex-col -space-y-1">

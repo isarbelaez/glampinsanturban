@@ -21,7 +21,7 @@ export const plansData: Plan[] = [
   {
     slug: 'santurban',
     category: 'glamping',
-    title: 'Santurban',
+    title: 'Aventura Santurbán',
     price: '$295.000',
     image: asset('/images/cabaña.jpeg'),
     gallery: [
@@ -32,7 +32,7 @@ export const plansData: Plan[] = [
     ],
     description: 'Una experiencia inolvidable, cabaña con calefacción y desayuno incluido.',
     details:
-      'Disfruta de una experiencia verdaderamente inolvidable en nuestra acogedora cabaña, equipada con calefacción para las noches frías del páramo. El plan incluye un delicioso desayuno campesino para comenzar tu día con la mejor energía.',
+      'Vive una experiencia inolvidable rodeado de naturaleza y paisajes increíbles con hospedaje en nuestro Glamping de lujo y un delicioso desayuno típico para comenzar el día.',
     includesDescription:
       'Siente la esencia del páramo en nuestra cabaña insignia, donde la comodidad y la tradición se encuentran para brindarte un descanso reparador.',
     accommodationSummary:
@@ -90,7 +90,7 @@ export const plansData: Plan[] = [
     ],
     description: 'Una experiencia frente a la laguna con una vista hermosa.',
     details:
-      'Conéctate con la naturaleza en su máxima expresión con una ubicación privilegiada. Disfruta de una cabaña con vista directa a la laguna, donde el sonido del agua y el canto de las aves serán tu mejor compañía. Incluye un recorrido guiado y desayuno campestre.',
+      'Conecta con la naturaleza en una experiencia llena de aventura y descanso. Incluye hospedaje en Glamping Deluxe, desayuno típico, almuerzo a la carta, fogata, chocolates, masmelos y guía para visitar la laguna. NO INCLUYE TRASPORTE',
     includesDescription:
       'Despierta con la vista más privilegiada del glamping, donde el espejo de agua de la laguna refleja la paz que vienes a buscar.',
     accommodationSummary:
@@ -119,7 +119,7 @@ export const plansData: Plan[] = [
     ],
     description: 'Disfruta un día de descanso en nuestra cabaña con una vista hermosa.',
     details:
-      'Un merecido descanso en la tranquilidad de la montaña. Relájate en una cabaña con vistas inigualables al paisaje del páramo, ideal para desconectarse de la rutina y disfrutar de caminatas ecológicas. Por la noche, comparte alrededor de una fogata privada. Incluye desayuno.',
+      'Un merecido descanso de la rutina, una pasadía con desayuno de inluido, almuerzo y fogata con chocolates y masmelos, son de lunes a jueves de 8 am a 6pm',
     includesDescription:
       'La opción ideal para aventureros y amantes del trekking que buscan un refugio acogedor tras explorar los senderos de Santurbán.',
     accommodationSummary:
@@ -173,7 +173,7 @@ export const plansData: Plan[] = [
     video: asset('/images/Videos/hostal.mp4'),
     description: 'Habitación privada en zona de hostal.',
     details:
-      'Disfruta de la privacidad de una habitación propia dentro de nuestro ambiente de hostal. La combinación perfecta entre economía y tranquilidad.',
+      'Disfruta de la privacidad de una habitación propia dentro de nuestro ambiente de hostal. La combinación perfecta entre economía y tranquilidad, Cómoda habitación ideal para descansar y disfrutar de la tranquilidad de Santurbán, con dos camas semidobles, entrada exterior, parqueadero privado, baño privado con agua caliente, calefactor, Smart TV, WiFi y sofá cama.',
     features: ['wifi', 'cama doble', 'baño privado', 'TV', 'calefactor'],
     includes: ['cama en habitación', 'Desayuno básico', 'Acceso a cocina compartida'],
     whatsapp: '17869097263',
@@ -188,7 +188,7 @@ export const plansData: Plan[] = [
     video: asset('/images/Videos/sala.mp4'),
     description: 'Habitación privada en zona de hostal.',
     details:
-      'Disfruta de la privacidad de una habitación propia dentro de nuestro ambiente de hostal. La combinación perfecta entre economía y tranquilidad.',
+      'Una habitación acogedora y cómoda con dos camas semidobles, baño privado con agua caliente y WiFi para una estadía tranquila y agradable.',
     features: ['wifi', 'camas', 'baño privado'],
     includes: ['Habitación privada', 'Baño compartido con agua caliente', 'Desayuno incluido'],
     whatsapp: '17869097263',

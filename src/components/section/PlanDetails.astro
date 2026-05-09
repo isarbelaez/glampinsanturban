@@ -56,33 +56,23 @@ const iconMap: Record<string, any> = {
         {plan.title}
       </h1>
 
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm md:p-8">
-        <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-          <!-- Features Icons (Left) -->
-          <div class="space-y-6">
-            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {
-                (plan.features || []).map((feature) => {
-                  const Icon = iconMap[feature.toLowerCase()] || iconMap[feature] || Check;
-                  return (
-                    <div class="flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/5 bg-white/5 p-4 text-center transition-all hover:bg-white/10">
-                      <div class="bg-primary/10 text-primary flex h-10 w-10 items-center justify-center rounded-full">
-                        <Icon size={20} />
-                      </div>
-                      <span class="text-[10px] font-semibold tracking-wider text-white/80 uppercase">
-                        {feature}
-                      </span>
-                    </div>
-                  );
-                })
-              }
-            </div>
-          </div>
-
-          <!-- Right Column (Blank as requested) -->
-          <div class="flex flex-col border-l border-white/10 pl-0 md:pl-8">
-            <!-- Content removed -->
-          </div>
+      <div class="inline-block rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+        <div class="flex flex-wrap items-center gap-6">
+          {
+            (plan.features || []).map((feature) => {
+              const Icon = iconMap[feature.toLowerCase()] || iconMap[feature] || Check;
+              return (
+                <div class="flex items-center gap-2.5">
+                  <div class="text-primary">
+                    <Icon size={18} />
+                  </div>
+                  <span class="text-[10px] font-bold tracking-wider text-white/70 uppercase">
+                    {feature}
+                  </span>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
     </div>
@@ -102,30 +92,56 @@ const iconMap: Record<string, any> = {
         <!-- Gallery -->
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           {
-            (plan.gallery || []).slice(0, 3).map((img, idx) => (
-              <div
-                class={`overflow-hidden rounded-xl bg-white/5 ${idx === 0 ? 'row-span-2 aspect-[3/4] md:aspect-[4/5]' : 'aspect-video'}`}
-              >
-                <img
-                  src={img}
-                  alt={`${plan.title} foto ${idx + 1}`}
-                  class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                />
-              </div>
-            ))
-          }
-          {
-            plan.video && (
-              <div class="aspect-[9/16] overflow-hidden rounded-xl bg-white/5 md:row-span-2">
-                <video
-                  src={plan.video}
-                  autoplay
-                  loop
-                  muted
-                  playsinline
-                  class="h-full w-full object-cover"
-                />
-              </div>
+            plan.category === 'hostal' ? (
+              <>
+                {/* Hostal Layout: Horizontal Image + Vertical Video */}
+                <div class="aspect-video overflow-hidden rounded-xl bg-white/5 md:aspect-auto">
+                  <img
+                    src={plan.gallery[0]}
+                    alt={`${plan.title} foto`}
+                    class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
+                {plan.video && (
+                  <div class="aspect-[9/16] overflow-hidden rounded-xl bg-white/5">
+                    <video
+                      src={plan.video}
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {/* Glamping Layout: Standard Grid */}
+                {(plan.gallery || []).slice(0, 3).map((img, idx) => (
+                  <div
+                    class={`overflow-hidden rounded-xl bg-white/5 ${idx === 0 ? 'row-span-2 aspect-[3/4] md:aspect-[4/5]' : 'aspect-video'}`}
+                  >
+                    <img
+                      src={img}
+                      alt={`${plan.title} foto ${idx + 1}`}
+                      class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                  </div>
+                ))}
+                {plan.video && (
+                  <div class="aspect-[9/16] overflow-hidden rounded-xl bg-white/5 md:row-span-2">
+                    <video
+                      src={plan.video}
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
+                )}
+              </>
             )
           }
         </div>
