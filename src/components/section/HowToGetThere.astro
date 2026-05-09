@@ -2,7 +2,7 @@
 import { MapComponent } from '../shared/MapComponent.tsx';
 ---
 
-<section id="como-llegar" class="dark relative h-[800px] overflow-hidden bg-[#050f0e] md:h-[600px]">
+<section id="como-llegar" class="bg-background relative h-[800px] overflow-hidden md:h-[600px]">
   {/* MAPA FULL BLEED */}
   <div class="absolute inset-0 z-0">
     <MapComponent client:visible />
@@ -10,20 +10,18 @@ import { MapComponent } from '../shared/MapComponent.tsx';
 
   {/* CONTENIDO SUPERPUESTO */}
   <div
-    class="pointer-events-none absolute inset-0 z-20 flex max-w-2xl flex-col justify-start px-6 pt-20 pb-12 md:justify-center md:px-22 md:pt-0 md:pb-0"
+    class="pointer-events-none absolute inset-0 z-20 flex max-w-2xl flex-col justify-start bg-gradient-to-r from-black/40 via-black/10 to-transparent px-6 pt-20 pb-12 md:justify-center md:px-22 md:pt-0 md:pb-0"
   >
-    <span class="text-primary mb-4 text-sm font-medium tracking-widest uppercase drop-shadow-sm">
+    <span class="mb-4 text-sm font-bold tracking-widest text-white/80 uppercase">
       Cómo llegar
     </span>
 
-    <h2
-      class="font-heading text-foreground text-4xl leading-tight font-semibold drop-shadow-md md:text-5xl"
-    >
+    <h2 class="font-heading text-4xl leading-tight font-semibold text-white md:text-5xl">
       A solo 1:30 horas de
       <span class="text-primary">Bucaramanga</span>
     </h2>
 
-    <p class="text-muted-foreground mt-4 max-w-md text-base leading-relaxed drop-shadow-sm">
+    <p class="mt-4 max-w-md text-base leading-relaxed text-white/80">
       Desconéctate en medio de la naturaleza sin ir lejos. Sigue la ruta disfrutando de los hermosos
       paisajes de la región hasta llegar al corazón del páramo de Santurbán.
     </p>
@@ -51,7 +49,7 @@ import { MapComponent } from '../shared/MapComponent.tsx';
         href="https://waze.com/ul/hd3k1n4py3"
         target="_blank"
         rel="noopener noreferrer"
-        class="border-border bg-background/50 text-foreground hover:bg-background/80 inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-medium backdrop-blur-sm transition-all"
+        class="border-border text-foreground inline-flex items-center gap-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium transition-all hover:bg-gray-50"
       >
         Abrir en Waze
       </a>

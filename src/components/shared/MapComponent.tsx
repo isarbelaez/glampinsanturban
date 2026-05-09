@@ -109,7 +109,7 @@ export function MapComponent({ className }: { className?: string }) {
   const { ref, hasTriggered } = useInViewAnimation(0.3);
 
   return (
-    <div ref={ref} className={cn('h-full w-full', className)}>
+    <div ref={ref} className={cn('h-full w-full brightness-110 contrast-75 grayscale', className)}>
       <Map
         center={[-72.971587, 7.173451]}
         zoom={10.43}
@@ -126,7 +126,6 @@ export function MapComponent({ className }: { className?: string }) {
         <AttributionRelocator />
         <MapDebug />
         <MapAdjuster />
-        <GradientOverlay />
         <AnimatedRouteLayer animate={hasTriggered} />
 
         {/* Marker origin: Bucaramanga */}

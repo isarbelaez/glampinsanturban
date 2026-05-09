@@ -9,17 +9,17 @@ const { TreePine, Home, Users, Heart } = pkg;
 
 <Layout title="Nosotros | Santurban Glamping">
   <Navbar />
-  <main class="min-h-screen bg-[#050f0e] pt-32 pb-20 text-white">
+  <main class="bg-background text-foreground min-h-screen pt-32 pb-20">
     <div class="container mx-auto px-4 md:px-6">
       <div class="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row md:gap-20">
         <div class="animate-fade-in-up flex-1">
           <p class="text-primary mb-2 text-[10px] font-bold tracking-[0.4em] uppercase">
             Nuestra Historia
           </p>
-          <h1 class="mb-8 font-serif text-4xl tracking-tight text-white uppercase md:text-6xl">
+          <h1 class="text-foreground mb-8 font-serif text-4xl tracking-tight uppercase md:text-6xl">
             Nosotros
           </h1>
-          <p class="mb-6 text-lg leading-relaxed font-light text-white/70">
+          <p class="text-foreground/70 mb-6 text-lg leading-relaxed font-light">
             En el corazón del majestuoso Páramo de Santurbán nació inicialmente una fundación
             enfocada en promover el cuidado y la conservación del agua del páramo, creando
             conciencia sobre la importancia de proteger este invaluable ecosistema.
@@ -33,15 +33,17 @@ const { TreePine, Home, Users, Heart } = pkg;
             con el mágico paisaje de Santurbán. .
           </p>
 
-          <div class="grid grid-cols-2 gap-x-4 gap-y-8 border-t border-white/10 pt-8">
+          <div class="grid grid-cols-2 gap-x-4 gap-y-8 border-t border-black/5 pt-8">
             <div class="flex flex-col gap-2">
               <div
                 class="bg-primary/10 text-primary mb-2 flex h-12 w-12 items-center justify-center rounded-xl"
               >
                 <TreePine size={24} />
               </div>
-              <span class="text-lg font-medium text-white">Naturaleza Pura</span>
-              <span class="text-sm font-light text-white/50">Conexión total con el entorno</span>
+              <span class="text-foreground text-lg font-medium">Naturaleza Pura</span>
+              <span class="text-foreground/50 text-sm font-light"
+                >Conexión total con el entorno</span
+              >
             </div>
             <div class="flex flex-col gap-2">
               <div
@@ -49,8 +51,10 @@ const { TreePine, Home, Users, Heart } = pkg;
               >
                 <Home size={24} />
               </div>
-              <span class="text-lg font-medium text-white">Cabañas de Lujo</span>
-              <span class="text-sm font-light text-white/50">Diseño, confort y exclusividad</span>
+              <span class="text-foreground text-lg font-medium">Cabañas de Lujo</span>
+              <span class="text-foreground/50 text-sm font-light"
+                >Diseño, confort y exclusividad</span
+              >
             </div>
             <div class="flex flex-col gap-2">
               <div
@@ -58,8 +62,8 @@ const { TreePine, Home, Users, Heart } = pkg;
               >
                 <Users size={24} />
               </div>
-              <span class="text-lg font-medium text-white">Atención Premium</span>
-              <span class="text-sm font-light text-white/50">Servicio personalizado</span>
+              <span class="text-foreground text-lg font-medium">Atención Premium</span>
+              <span class="text-foreground/50 text-sm font-light">Servicio personalizado</span>
             </div>
             <div class="flex flex-col gap-2">
               <div
@@ -67,15 +71,15 @@ const { TreePine, Home, Users, Heart } = pkg;
               >
                 <Heart size={24} />
               </div>
-              <span class="text-lg font-medium text-white">Momentos Únicos</span>
-              <span class="text-sm font-light text-white/50">Experiencias inolvidables</span>
+              <span class="text-foreground text-lg font-medium">Momentos Únicos</span>
+              <span class="text-foreground/50 text-sm font-light">Experiencias inolvidables</span>
             </div>
           </div>
         </div>
 
         <div class="animate-fade-in-up-delayed relative flex w-full flex-1 justify-center">
           <div
-            class="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-t-full border border-white/10 shadow-2xl"
+            class="shadow-primary/20 relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-t-full border border-black/5 shadow-2xl"
           >
             <img
               src={asset('/images/cabaña.jpeg')}
@@ -83,17 +87,17 @@ const { TreePine, Home, Users, Heart } = pkg;
               class="h-full w-full object-cover grayscale-[20%] transition-transform duration-1000 hover:scale-105"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-[#050f0e] via-transparent to-transparent"
+              class="from-background absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
             >
             </div>
           </div>
 
           <!-- Floating badge -->
           <div
-            class="absolute -bottom-6 -left-6 flex items-center gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur-xl md:left-0"
+            class="bg-card absolute -bottom-6 -left-6 flex items-center gap-4 rounded-3xl border border-black/5 p-6 shadow-xl backdrop-blur-xl md:left-0"
           >
             <div class="text-primary font-serif text-4xl">100%</div>
-            <div class="text-xs tracking-widest text-white/80 uppercase">
+            <div class="text-foreground/80 text-xs tracking-widest uppercase">
               Experiencia<br />Exclusiva
             </div>
           </div>

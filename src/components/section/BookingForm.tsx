@@ -48,7 +48,7 @@ export function BookingForm() {
 
   if (isSuccess) {
     return (
-      <section className="relative overflow-hidden bg-[#050f0e] pt-40 pb-24" id="reservar">
+      <section className="bg-background relative overflow-hidden pt-40 pb-24" id="reservar">
         <div className="bg-primary/10 pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full blur-[120px]"></div>
         <div className="relative z-10 container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-xl text-center">
@@ -57,10 +57,10 @@ export function BookingForm() {
                 <CheckCircle2 size={60} className="text-primary animate-in zoom-in duration-500" />
               </div>
             </div>
-            <h2 className="mb-4 font-serif text-3xl font-bold text-white md:text-4xl">
+            <h2 className="text-foreground mb-4 font-serif text-3xl font-bold md:text-4xl">
               ¡Tu reserva ha sido enviada!
             </h2>
-            <p className="text-lg leading-relaxed text-white/60">
+            <p className="text-foreground/60 text-lg leading-relaxed">
               En un momento nos contactaremos contigo. Serás redirigido a WhatsApp para finalizar
               los detalles.
             </p>
@@ -77,7 +77,7 @@ export function BookingForm() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#050f0e] pt-40 pb-24" id="reservar">
+    <section className="bg-background relative overflow-hidden pt-40 pb-24" id="reservar">
       {/* Decorative background */}
       <div className="bg-primary/10 pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full blur-[120px]"></div>
 
@@ -87,20 +87,22 @@ export function BookingForm() {
             <span className="text-primary mb-4 block text-sm font-bold tracking-[0.2em] uppercase">
               Comienza tu escape
             </span>
-            <h1 className="font-serif text-4xl font-bold text-white md:text-5xl">
+            <h1 className="text-foreground font-serif text-4xl font-bold md:text-5xl">
               Reserva tu Experiencia
             </h1>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl md:p-10">
+          <div className="bg-card rounded-3xl border border-black/5 p-6 shadow-xl md:p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Row 1: Name and Last Name */}
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium tracking-wide text-white/80">Nombre</label>
+                  <label className="text-foreground/80 text-sm font-medium tracking-wide">
+                    Nombre
+                  </label>
                   <div className="relative">
                     <User
-                      className="absolute top-1/2 left-4 -translate-y-1/2 text-white/40"
+                      className="text-foreground/40 absolute top-1/2 left-4 -translate-y-1/2"
                       size={18}
                     />
                     <input
@@ -110,17 +112,17 @@ export function BookingForm() {
                       onChange={handleChange}
                       required
                       placeholder="Tu nombre"
-                      className="focus:border-primary/50 w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors placeholder:text-white/30 focus:outline-none"
+                      className="focus:border-primary/50 text-foreground placeholder:text-foreground/30 w-full rounded-xl border border-black/10 bg-white/50 py-3 pr-4 pl-12 transition-colors focus:outline-none"
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium tracking-wide text-white/80">
+                  <label className="text-foreground/80 text-sm font-medium tracking-wide">
                     Apellido
                   </label>
                   <div className="relative">
                     <User
-                      className="absolute top-1/2 left-4 -translate-y-1/2 text-white/40"
+                      className="text-foreground/40 absolute top-1/2 left-4 -translate-y-1/2"
                       size={18}
                     />
                     <input
@@ -130,7 +132,7 @@ export function BookingForm() {
                       onChange={handleChange}
                       required
                       placeholder="Tu apellido"
-                      className="focus:border-primary/50 w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors placeholder:text-white/30 focus:outline-none"
+                      className="focus:border-primary/50 text-foreground placeholder:text-foreground/30 w-full rounded-xl border border-black/10 bg-white/50 py-3 pr-4 pl-12 transition-colors focus:outline-none"
                     />
                   </div>
                 </div>
@@ -139,7 +141,7 @@ export function BookingForm() {
               {/* Row 2: Plan and Guests */}
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium tracking-wide text-white/80">
+                  <label className="text-foreground/80 text-sm font-medium tracking-wide">
                     Plan Deseado
                   </label>
                   <div className="relative">
@@ -148,7 +150,7 @@ export function BookingForm() {
                       value={formData.plan}
                       onChange={handleChange}
                       required
-                      className="focus:border-primary/50 w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-black/40 py-3 pr-12 pl-4 text-white transition-colors focus:outline-none"
+                      className="focus:border-primary/50 text-foreground w-full cursor-pointer appearance-none rounded-xl border border-black/10 bg-white/50 py-3 pr-12 pl-4 transition-colors focus:outline-none"
                     >
                       <option value="" disabled className="text-black">
                         Selecciona un plan...
@@ -160,19 +162,19 @@ export function BookingForm() {
                       ))}
                     </select>
                     <ChevronDown
-                      className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-white/40"
+                      className="text-foreground/40 pointer-events-none absolute top-1/2 right-4 -translate-y-1/2"
                       size={18}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium tracking-wide text-white/80">
+                  <label className="text-foreground/80 text-sm font-medium tracking-wide">
                     Personas
                   </label>
                   <div className="relative">
                     <Users
-                      className="absolute top-1/2 left-4 -translate-y-1/2 text-white/40"
+                      className="text-foreground/40 absolute top-1/2 left-4 -translate-y-1/2"
                       size={18}
                     />
                     <input
@@ -184,7 +186,7 @@ export function BookingForm() {
                       max="10"
                       required
                       placeholder="2"
-                      className="focus:border-primary/50 w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors placeholder:text-white/30 focus:outline-none"
+                      className="focus:border-primary/50 text-foreground placeholder:text-foreground/30 w-full rounded-xl border border-black/10 bg-white/50 py-3 pr-4 pl-12 transition-colors focus:outline-none"
                     />
                   </div>
                 </div>
@@ -193,12 +195,12 @@ export function BookingForm() {
               {/* Row 3: Dates */}
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium tracking-wide text-white/80">
+                  <label className="text-foreground/80 text-sm font-medium tracking-wide">
                     Fecha de Llegada
                   </label>
                   <div className="relative">
                     <CalendarIcon
-                      className="absolute top-1/2 left-4 -translate-y-1/2 text-white/40"
+                      className="text-foreground/40 absolute top-1/2 left-4 -translate-y-1/2"
                       size={18}
                     />
                     <input
@@ -207,18 +209,18 @@ export function BookingForm() {
                       value={formData.fechaLlegada}
                       onChange={handleChange}
                       required
-                      className="focus:border-primary/50 color-scheme-dark w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors focus:outline-none"
-                      style={{ colorScheme: 'dark' }}
+                      className="focus:border-primary/50 color-scheme-light text-foreground w-full rounded-xl border border-black/10 bg-white/50 py-3 pr-4 pl-12 transition-colors focus:outline-none"
+                      style={{ colorScheme: 'light' }}
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium tracking-wide text-white/80">
+                  <label className="text-foreground/80 text-sm font-medium tracking-wide">
                     Fecha de Salida
                   </label>
                   <div className="relative">
                     <CalendarIcon
-                      className="absolute top-1/2 left-4 -translate-y-1/2 text-white/40"
+                      className="text-foreground/40 absolute top-1/2 left-4 -translate-y-1/2"
                       size={18}
                     />
                     <input
@@ -227,8 +229,8 @@ export function BookingForm() {
                       value={formData.fechaSalida}
                       onChange={handleChange}
                       required
-                      className="focus:border-primary/50 color-scheme-dark w-full rounded-xl border border-white/10 bg-black/40 py-3 pr-4 pl-12 text-white transition-colors focus:outline-none"
-                      style={{ colorScheme: 'dark' }}
+                      className="focus:border-primary/50 color-scheme-light text-foreground w-full rounded-xl border border-black/10 bg-white/50 py-3 pr-4 pl-12 transition-colors focus:outline-none"
+                      style={{ colorScheme: 'light' }}
                     />
                   </div>
                 </div>

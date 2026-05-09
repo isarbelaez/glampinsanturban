@@ -23,7 +23,7 @@ const plans = [
 const originalCount = originalPlans.length;
 ---
 
-<section id="planes" class="relative overflow-hidden bg-[#071412] py-24">
+<section id="planes" class="bg-background relative overflow-hidden pt-40 pb-24">
   <!-- Subtle patterns -->
   <div class="pointer-events-none absolute inset-0 opacity-5">
     <div class="bg-primary absolute top-0 right-0 h-96 w-96 rounded-full blur-[120px]"></div>
@@ -37,7 +37,7 @@ const originalCount = originalPlans.length;
           {excludeSlug ? 'Explora otras opciones' : '¿Qué experiencia te gustaría vivir?'}
         </p>
         <h2
-          class="font-serif text-3xl font-bold tracking-[0.15em] text-white uppercase md:text-4xl"
+          class="text-foreground font-serif text-3xl font-bold tracking-[0.15em] uppercase md:text-4xl"
         >
           {excludeSlug ? 'Otros Planes' : 'Nuestros Planes'}
         </h2>
@@ -47,13 +47,13 @@ const originalCount = originalPlans.length;
       <div class="flex gap-3">
         <button
           id="filter-glamping"
-          class="filter-btn is-active border-primary/30 bg-primary/10 hover:border-primary cursor-pointer rounded-full border px-6 py-2 text-xs font-bold tracking-widest text-white uppercase transition-all"
+          class="filter-btn is-active border-primary/30 bg-primary/10 hover:border-primary text-foreground cursor-pointer rounded-full border px-6 py-2 text-xs font-bold tracking-widest uppercase transition-all"
         >
           Glamping
         </button>
         <button
           id="filter-hostal"
-          class="filter-btn hover:border-primary cursor-pointer rounded-full border border-white/10 bg-white/5 px-6 py-2 text-xs font-bold tracking-widest text-white uppercase transition-all"
+          class="filter-btn hover:border-primary bg-card text-foreground cursor-pointer rounded-full border border-black/5 px-6 py-2 text-xs font-bold tracking-widest uppercase transition-all"
         >
           Hostal
         </button>
@@ -65,7 +65,7 @@ const originalCount = originalPlans.length;
       <!-- Navigation Buttons -->
       <button
         id="prev-plan"
-        class="hover:bg-primary hover:border-primary absolute top-[40%] -left-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all active:scale-90 md:-left-8"
+        class="hover:bg-primary hover:border-primary bg-card text-foreground absolute top-[40%] -left-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 backdrop-blur-md transition-all active:scale-90 md:-left-8"
         aria-label="Anterior"
       >
         <svg
@@ -83,7 +83,7 @@ const originalCount = originalPlans.length;
 
       <button
         id="next-plan"
-        class="hover:bg-primary hover:border-primary absolute top-[40%] -right-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all active:scale-90 md:-right-8"
+        class="hover:bg-primary hover:border-primary bg-card text-foreground absolute top-[40%] -right-4 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 backdrop-blur-md transition-all active:scale-90 md:-right-8"
         aria-label="Siguiente"
       >
         <svg
@@ -128,12 +128,13 @@ const originalCount = originalPlans.length;
     <div class="mt-20 flex justify-center">
       <button
         id="toggle-menu-btn"
-        class="group hover:border-primary/50 relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-white/20 bg-transparent px-10 py-4 font-bold transition-all"
+        class="group hover:border-primary/50 bg-card relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-black/10 px-10 py-4 font-bold transition-all"
       >
         <span
           class="bg-primary absolute inset-0 h-full w-0 transition-all duration-300 ease-out group-hover:w-full"
         ></span>
-        <span class="relative text-xs tracking-widest text-white uppercase group-hover:text-white"
+        <span
+          class="text-foreground relative text-xs tracking-widest uppercase group-hover:text-white"
           >Mirar nuestro menú</span
         >
       </button>
@@ -176,12 +177,12 @@ const originalCount = originalPlans.length;
                   desc: 'Carnes con papas a la francesa o casquitos.',
                 },
               ].map((item) => (
-                <div class="group flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10">
+                <div class="group bg-card flex h-full flex-col justify-between rounded-xl border border-black/5 p-6 transition-colors">
                   <div>
-                    <h4 class="mb-3 font-serif text-lg leading-tight font-bold text-white">
+                    <h4 class="text-foreground mb-3 font-serif text-lg leading-tight font-bold">
                       {item.name}
                     </h4>
-                    <p class="mb-6 text-sm leading-relaxed text-white/60">{item.desc}</p>
+                    <p class="text-foreground/60 mb-6 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                   <div class="bg-primary/20 text-primary border-primary/30 group-hover:bg-primary inline-block w-fit rounded-full border px-4 py-1.5 text-xs font-bold tracking-wider transition-colors group-hover:text-white">
                     {item.price}
@@ -244,7 +245,8 @@ const originalCount = originalPlans.length;
         : 24;
 
       // The originalCount in the infinite loop is total / 3
-      const currentVisibleOriginalCount = visibleItems.length / 3;
+      const currentVisibleOriginalCount =
+        category === 'hostal' ? visibleItems.length : visibleItems.length / 3;
       setWidth = (itemWidth + gap) * currentVisibleOriginalCount;
     };
 
@@ -255,10 +257,10 @@ const originalCount = originalPlans.length;
       filterBtns.forEach((btn) => {
         if (btn.id === `filter-${category}`) {
           btn.classList.add('is-active', 'bg-primary/10', 'border-primary/30');
-          btn.classList.remove('bg-white/5', 'border-white/10');
+          btn.classList.remove('bg-card', 'border-black/5');
         } else {
           btn.classList.remove('is-active', 'bg-primary/10', 'border-primary/30');
-          btn.classList.add('bg-white/5', 'border-white/10');
+          btn.classList.add('bg-card', 'border-black/5');
         }
       });
 
@@ -279,11 +281,11 @@ const originalCount = originalPlans.length;
 
       // Update carousel centering for Hostal
       if (category === 'hostal') {
-        carousel.classList.add('justify-center');
+        carousel.classList.add('md:justify-center');
         document.getElementById('prev-plan')?.classList.add('hidden');
         document.getElementById('next-plan')?.classList.add('hidden');
       } else {
-        carousel.classList.remove('justify-center');
+        carousel.classList.remove('md:justify-center');
         document.getElementById('prev-plan')?.classList.remove('hidden');
         document.getElementById('next-plan')?.classList.remove('hidden');
       }
@@ -332,7 +334,7 @@ const originalCount = originalPlans.length;
       const scrollPercentage = (normalizedScroll / setWidth) * 100;
       progress.style.width = `${scrollPercentage}%`;
 
-      if (!isDown) {
+      if (!isDown && currentCategory !== 'hostal') {
         if (scrollPos < setWidth * 0.5) {
           carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
         } else if (scrollPos > setWidth * 2.2) {
@@ -343,7 +345,7 @@ const originalCount = originalPlans.length;
 
     let lastTime = 0;
     const animate = () => {
-      if (autoScrollActive && !isDown && setWidth > 0) {
+      if (autoScrollActive && !isDown && setWidth > 0 && currentCategory !== 'hostal') {
         carousel.scrollLeft += 0.5;
       }
       requestAnimationFrame(animate);
@@ -366,11 +368,13 @@ const originalCount = originalPlans.length;
       isDown = false;
       carousel.classList.remove('dragging');
 
-      const scrollPos = carousel.scrollLeft;
-      if (scrollPos < setWidth * 0.5) {
-        carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
-      } else if (scrollPos > setWidth * 2.2) {
-        carousel.scrollTo({ left: scrollPos - setWidth, behavior: 'instant' });
+      if (currentCategory !== 'hostal') {
+        const scrollPos = carousel.scrollLeft;
+        if (scrollPos < setWidth * 0.5) {
+          carousel.scrollTo({ left: scrollPos + setWidth, behavior: 'instant' });
+        } else if (scrollPos > setWidth * 2.2) {
+          carousel.scrollTo({ left: scrollPos - setWidth, behavior: 'instant' });
+        }
       }
 
       setTimeout(startAuto, 2000);

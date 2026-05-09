@@ -48,15 +48,15 @@ const iconMap: Record<string, any> = {
 };
 ---
 
-<section class="bg-[#050f0e] pt-32 pb-24">
+<section class="bg-background pt-32 pb-24">
   <div class="container mx-auto px-4 md:px-6">
     <!-- Title & Horizontal Rectangle Summary -->
     <div class="mb-12">
-      <h1 class="mb-8 font-serif text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+      <h1 class="text-foreground mb-8 font-serif text-4xl font-bold md:text-5xl lg:text-6xl">
         {plan.title}
       </h1>
 
-      <div class="inline-block rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+      <div class="bg-card inline-block rounded-xl border border-black/5 p-4 shadow-sm">
         <div class="flex flex-wrap items-center gap-6">
           {
             (plan.features || []).map((feature) => {
@@ -66,7 +66,7 @@ const iconMap: Record<string, any> = {
                   <div class="text-primary">
                     <Icon size={18} />
                   </div>
-                  <span class="text-[10px] font-bold tracking-wider text-white/70 uppercase">
+                  <span class="text-foreground/70 text-[10px] font-bold tracking-wider uppercase">
                     {feature}
                   </span>
                 </div>
@@ -82,9 +82,9 @@ const iconMap: Record<string, any> = {
       <!-- Gallery & Details (Left) -->
       <div class="space-y-12 lg:col-span-2">
         <!-- Main Description -->
-        <div class="prose prose-invert max-w-none">
-          <h2 class="mb-6 font-serif text-3xl font-bold text-white">Sobre la experiencia</h2>
-          <p class="text-lg leading-relaxed text-white/70">
+        <div class="prose prose-slate max-w-none">
+          <h2 class="text-foreground mb-6 font-serif text-3xl font-bold">Sobre la experiencia</h2>
+          <p class="text-foreground/70 text-lg leading-relaxed">
             {plan.details}
           </p>
         </div>
@@ -120,7 +120,7 @@ const iconMap: Record<string, any> = {
                 {/* Glamping Layout: Standard Grid */}
                 {(plan.gallery || []).slice(0, 3).map((img, idx) => (
                   <div
-                    class={`overflow-hidden rounded-xl bg-white/5 ${idx === 0 ? 'row-span-2 aspect-[3/4] md:aspect-[4/5]' : 'aspect-video'}`}
+                    class={`bg-card overflow-hidden rounded-xl ${idx === 0 ? 'row-span-2 aspect-[3/4] md:aspect-[4/5]' : 'aspect-video'}`}
                   >
                     <img
                       src={img}
@@ -130,7 +130,7 @@ const iconMap: Record<string, any> = {
                   </div>
                 ))}
                 {plan.video && (
-                  <div class="aspect-[9/16] overflow-hidden rounded-xl bg-white/5 md:row-span-2">
+                  <div class="bg-card aspect-[9/16] overflow-hidden rounded-xl md:row-span-2">
                     <video
                       src={plan.video}
                       autoplay
@@ -149,27 +149,27 @@ const iconMap: Record<string, any> = {
 
       <!-- Floating Price Box (Right, takes 1 column) -->
       <div class="sticky top-32 lg:col-span-1">
-        <div class="rounded-2xl border border-white/10 bg-[#071412] p-8 shadow-2xl">
+        <div class="bg-card rounded-2xl border border-black/5 p-8 shadow-xl">
           <div class="mb-8">
-            <p class="mb-2 text-sm font-medium tracking-wider text-white/60 uppercase">
+            <p class="text-foreground/60 mb-2 text-sm font-medium tracking-wider uppercase">
               Precio por noche
             </p>
-            <p class="font-serif text-4xl font-bold text-white">{plan.price}</p>
+            <p class="text-foreground font-serif text-4xl font-bold">{plan.price}</p>
           </div>
 
-          <ul class="mb-10 space-y-4 border-b border-white/10 pb-8">
+          <ul class="mb-10 space-y-4 border-b border-black/5 pb-8">
             <li
-              class="flex items-center gap-3 text-xs font-medium tracking-wide text-white/50 uppercase"
+              class="text-foreground/50 flex items-center gap-3 text-xs font-medium tracking-wide uppercase"
             >
               <Check size={14} class="text-primary/60" /> Reserva segura
             </li>
             <li
-              class="flex items-center gap-3 text-xs font-medium tracking-wide text-white/50 uppercase"
+              class="text-foreground/50 flex items-center gap-3 text-xs font-medium tracking-wide uppercase"
             >
               <Check size={14} class="text-primary/60" /> Cancelación flexible
             </li>
             <li
-              class="flex items-center gap-3 text-xs font-medium tracking-wide text-white/50 uppercase"
+              class="text-foreground/50 flex items-center gap-3 text-xs font-medium tracking-wide uppercase"
             >
               <Check size={14} class="text-primary/60" /> Atención 24/7
             </li>

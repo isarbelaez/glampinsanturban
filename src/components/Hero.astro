@@ -14,79 +14,95 @@ const benefits = [
 ---
 
 <section
-  class="relative flex min-h-screen flex-col justify-start overflow-hidden bg-[#050f0e] pt-36 md:pt-32"
+  class="bg-background relative z-20 flex min-h-screen flex-col justify-center overflow-hidden py-32"
 >
-  <!-- Hero Background -->
+  <!-- Hero Background with Cinematic Overlay -->
   <div class="absolute inset-0 z-0">
     <img
       src={heroImage}
       alt="Glamping Santurban Luxury Experience"
-      class="animate-slow-zoom h-full w-full scale-105 object-cover opacity-60"
+      class="animate-slow-zoom h-full w-full object-cover opacity-100"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-[#050f0e]/50 via-transparent to-[#050f0e]">
-    </div>
+    <!-- Dark Cinematic Overlay & Gradient -->
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
   </div>
 
-  <div class="relative z-10 container mx-auto px-4 md:px-6">
-    <div class="animate-fade-in-up max-w-3xl text-left md:pl-10">
-      <!-- Slogan Label -->
-      <p class="text-primary mb-4 text-[10px] font-bold tracking-[0.4em] uppercase">
-        Una Magica Aventura
-      </p>
+  <div class="relative z-10 container mx-auto px-6 pb-32 md:pb-40 lg:px-20">
+    <div class="animate-fade-in-up flex flex-col items-start text-left">
+      <!-- Luxury Badge -->
+      <div class="mb-10 flex items-center gap-3 overflow-hidden">
+        <span class="bg-primary/60 h-[1px] w-8"></span>
+        <p class="text-[10px] font-bold tracking-[0.6em] text-white/60 uppercase">
+          UNA MAGICA AVENTURA
+        </p>
+      </div>
 
-      <!-- Headline -->
-      <h1 class="mb-6 font-serif leading-tight font-bold tracking-tight text-white uppercase">
-        <span class="mb-2 block text-4xl md:text-6xl lg:text-7xl">
-          ESCAPA A LA <span class="text-primary">NATURALEZA</span>
+      <!-- Headline: Editorial Hierarchy -->
+      <h1 class="mb-6 font-serif leading-[1.1] font-bold text-white uppercase md:mb-8">
+        <span class="block text-2xl tracking-tight opacity-90 md:text-3xl lg:text-4xl">
+          ESCAPA A LA
         </span>
-        <span class="block text-3xl md:text-5xl lg:text-6xl">
-          CON <span class="text-primary">LUJO</span> Y <span class="text-primary">ESTILO</span>
+        <span class="text-primary block text-4xl tracking-tighter md:text-6xl lg:text-7xl">
+          NATURALEZA
+        </span>
+        <span
+          class="mt-4 block text-[10px] font-light tracking-[0.4em] text-white/70 md:mt-5 md:text-xs lg:text-sm"
+        >
+          CON LUJO Y ESTILO
         </span>
       </h1>
 
-      <!-- Description -->
-      <p class="mb-12 max-w-xl text-sm leading-relaxed font-light text-white/70 md:text-lg">
+      <!-- Description: Boutique Hotel Style -->
+      <p
+        class="mb-14 max-w-[500px] text-[13px] leading-relaxed font-light text-white/60 md:text-sm"
+      >
         Desconéctate del mundo y sumérgete en una experiencia donde la tranquilidad del páramo se
-        encuentra con el confort más exclusivo.
+        encuentra con el confort más exclusivo de un boutique resort.
       </p>
 
-      <!-- CTA Buttons -->
-      <div class="mb-16 flex flex-col items-start gap-6 sm:flex-row sm:items-center md:gap-10">
+      <!-- Action Area -->
+      <div class="flex flex-col items-start gap-8 sm:flex-row sm:items-center md:gap-14">
         <a
           href={`${import.meta.env.BASE_URL}reservar/`}
-          class="group bg-primary hover:bg-primary/90 shadow-primary/20 relative flex items-center justify-center gap-3 rounded-full px-10 py-5 text-sm font-bold tracking-widest text-white uppercase shadow-xl transition-all hover:scale-105 active:scale-95"
+          class="group bg-primary hover:bg-primary/90 shadow-primary/20 relative flex items-center justify-center gap-4 rounded-full px-12 py-6 text-xs font-bold tracking-widest text-white uppercase shadow-2xl transition-all hover:scale-105 active:scale-95"
         >
-          <span>Reservar mi escapada</span>
+          <span>Reservar ahora</span>
           <ArrowRight size={16} class="transition-transform group-hover:translate-x-1" />
         </a>
 
         <a
           href={`${import.meta.env.BASE_URL}experiencias/`}
-          class="group flex items-center gap-4 text-white/80 transition-all hover:text-white"
+          class="group flex items-center gap-5 text-white/70 transition-all hover:text-white"
         >
           <div
-            class="group-hover:bg-primary group-hover:border-primary flex h-12 w-12 items-center justify-center rounded-full border border-white/20 transition-all"
+            class="group-hover:bg-primary group-hover:border-primary flex h-14 w-14 items-center justify-center rounded-full border border-white/10 transition-all duration-500"
           >
-            <Play size={14} fill="currentColor" />
+            <Play size={16} fill="currentColor" class="ml-1" />
           </div>
-          <span class="text-xs font-bold tracking-[0.2em] uppercase">Ver experiencia</span>
+          <span class="text-[10px] font-bold tracking-[0.3em] uppercase">Ver experiencia</span>
         </a>
       </div>
     </div>
 
-    <!-- Info Bar (Rectangle) - Positioned below the buttons with space -->
-    <div class="animate-fade-in-up-delayed mt-8 flex w-full justify-center md:mt-12">
+    <!-- Info Bar (Rectangle) - Positioned to bridge Hero and next section -->
+    <div
+      class="animate-fade-in-up-delayed absolute bottom-0 left-0 z-30 flex w-full translate-y-1/2 justify-center px-6"
+    >
       <div
-        class="w-full max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8"
+        class="bg-card w-full max-w-6xl rounded-3xl border border-black/5 p-8 shadow-2xl transition-transform hover:scale-[1.01] md:p-10"
       >
-        <div class="grid grid-cols-2 gap-8 md:gap-4 lg:grid-cols-4">
+        <div class="grid grid-cols-2 gap-8 md:gap-6 lg:grid-cols-4">
           {
             benefits.map((benefit) => (
-              <div class="group flex items-center gap-4">
-                <div class="bg-primary/10 text-primary group-hover:bg-primary flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 group-hover:text-white">
-                  <benefit.icon size={20} strokeWidth={1.5} />
+              <div class="group flex items-center gap-5">
+                <div class="bg-secondary/10 text-secondary group-hover:bg-primary flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-500 group-hover:text-white">
+                  <benefit.icon size={22} strokeWidth={1.5} />
                 </div>
-                <span class="text-xs leading-tight font-medium tracking-wide text-white/90 md:text-sm">
+                <span class="text-secondary text-xs leading-tight font-semibold tracking-wide md:text-sm">
                   {benefit.text}
                 </span>
               </div>
