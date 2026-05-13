@@ -41,7 +41,13 @@ const testimonials = [
             testimonials.map((t) => (
               <div class="group bg-card flex flex-col items-center rounded-3xl border border-black/5 p-8 text-center shadow-sm transition-all duration-500">
                 <div class="border-primary/30 group-hover:border-primary mb-6 h-20 w-20 overflow-hidden rounded-full border-2 transition-colors">
-                  <img src={t.photo} alt={t.name} class="h-full w-full object-cover" />
+                  <img
+                    src={t.photo}
+                    alt={t.name}
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <p class="text-foreground/70 mb-6 text-sm leading-relaxed italic">"{t.text}"</p>
                 <span class="text-foreground text-[10px] font-bold tracking-widest uppercase">
@@ -60,7 +66,7 @@ const testimonials = [
         >
           <!-- Decorative Background Icon -->
           <div
-            class="absolute -right-10 -bottom-10 rotate-12 opacity-[0.03] transition-transform duration-1000 group-hover:rotate-0"
+            class="pointer-events-none absolute -right-10 -bottom-10 rotate-12 opacity-[0.03] transition-transform duration-1000 group-hover:rotate-0"
           >
             <svg class="h-64 w-64" viewBox="0 0 24 24" fill="currentColor">
               <path

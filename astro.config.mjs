@@ -16,6 +16,8 @@ export default defineConfig({
   output: 'static',
 
   integrations: [react(), mdx(), sitemap()],
+  compressHTML: true,
+  prefetch: true,
 
   vite: {
     plugins: [tailwindcss()],
