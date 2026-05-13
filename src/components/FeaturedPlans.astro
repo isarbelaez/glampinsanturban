@@ -1,6 +1,5 @@
 ---
 import PlanCard from './PlanCard.astro';
-import { asset } from '../utils/assets';
 
 import { plansData } from '../data/plans';
 
@@ -20,7 +19,6 @@ const plans = [
   ...originalPlans.map((p) => ({ ...p, isClone: false })),
   ...originalPlans.map((p) => ({ ...p, isClone: true })),
 ];
-const originalCount = originalPlans.length;
 ---
 
 <section id="planes" class="bg-background relative overflow-hidden pt-40 pb-24">
@@ -217,7 +215,7 @@ const originalCount = originalPlans.length;
   }
 </style>
 
-<script define:vars={{ originalCount }}>
+<script>
   const carousel = document.getElementById('plans-carousel');
   const progress = document.getElementById('carousel-progress');
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -246,7 +244,7 @@ const originalCount = originalPlans.length;
 
       // The originalCount in the infinite loop is total / 3
       const currentVisibleOriginalCount =
-        category === 'hostal' ? visibleItems.length : visibleItems.length / 3;
+        currentCategory === 'hostal' ? visibleItems.length : visibleItems.length / 3;
       setWidth = (itemWidth + gap) * currentVisibleOriginalCount;
     };
 
@@ -343,7 +341,6 @@ const originalCount = originalPlans.length;
       }
     });
 
-    let lastTime = 0;
     const animate = () => {
       if (autoScrollActive && !isDown && setWidth > 0 && currentCategory !== 'hostal') {
         carousel.scrollLeft += 0.5;

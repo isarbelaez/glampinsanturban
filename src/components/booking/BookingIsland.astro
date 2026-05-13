@@ -1,0 +1,12 @@
+---
+import { BookingForm } from '../../features/booking/BookingForm';
+import { getCalendarEventsServer } from '../../utils/calendar-server';
+
+const MASTER_ICS_URL =
+  'https://calendar.google.com/calendar/ical/539d59a37954fb2ce734a19634cc2c0e0e11ed300566dd69bb30091d2e8f9e13@group.calendar.google.com/private-0d29652c61348e09c82f44c7622d27b6/basic.ics';
+
+// Fetch events on the server
+const initialEvents = await getCalendarEventsServer(MASTER_ICS_URL);
+---
+
+<BookingForm client:load initialEvents={initialEvents} />

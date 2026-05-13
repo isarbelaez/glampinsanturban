@@ -15,6 +15,7 @@ export interface Plan {
   features: string[];
   includes: string[];
   whatsapp?: string;
+  icsUrl?: string;
 }
 
 export const plansData: Plan[] = [
@@ -46,6 +47,8 @@ export const plansData: Plan[] = [
       'Atención personalizada',
     ],
     whatsapp: '17869097263',
+    icsUrl:
+      'https://calendar.google.com/calendar/ical/539d59a37954fb2ce734a19634cc2c0e0e11ed300566dd69bb30091d2e8f9e13%40group.calendar.google.com/private-0d29652c61348e09c82f44c7622d27b6/basic.ics',
   },
   {
     slug: 'plan-romantico',
@@ -75,6 +78,8 @@ export const plansData: Plan[] = [
       'Botella de vino de cortesía',
     ],
     whatsapp: '17869097263',
+    icsUrl:
+      'https://calendar.google.com/calendar/ical/539d59a37954fb2ce734a19634cc2c0e0e11ed300566dd69bb30091d2e8f9e13%40group.calendar.google.com/private-0d29652c61348e09c82f44c7622d27b6/basic.ics',
   },
   {
     slug: 'plan-laguna-encantada',

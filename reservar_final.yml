@@ -1,0 +1,191 @@
+- generic [active] [ref=e1]:
+    - banner [ref=e2]:
+        - generic [ref=e4]:
+            - link "Logo SANTURBAN Glamping" [ref=e5] [cursor=pointer]:
+                - /url: /
+                - generic [ref=e6]:
+                    - img "Logo" [ref=e8]
+                    - generic [ref=e9]:
+                        - generic [ref=e10]: SANTURBAN
+                        - generic [ref=e11]: Glamping
+            - navigation [ref=e12]:
+                - link "Inicio" [ref=e13] [cursor=pointer]:
+                    - /url: /
+                - link "Experiencias" [ref=e14] [cursor=pointer]:
+                    - /url: /experiencias/
+                - link "Cabañas" [ref=e15] [cursor=pointer]:
+                    - /url: /#cabanas
+                - link "Planes" [ref=e16] [cursor=pointer]:
+                    - /url: /#planes
+                - link "Ubicación" [ref=e17] [cursor=pointer]:
+                    - /url: /#como-llegar
+                - link "Nosotros" [ref=e18] [cursor=pointer]:
+                    - /url: /nosotros/
+            - link "Reservar ahora" [ref=e20] [cursor=pointer]:
+                - /url: /reservar/
+                - img [ref=e21]
+                - generic [ref=e23]: Reservar ahora
+    - main [ref=e24]:
+        - generic [ref=e28]:
+            - generic [ref=e29]:
+                - generic [ref=e30]: Comienza tu escape
+                - heading "Reserva tu Experiencia" [level=1] [ref=e31]
+            - generic [ref=e33]:
+                - generic [ref=e34]:
+                    - generic [ref=e35]:
+                        - text: Nombre
+                        - generic [ref=e36]:
+                            - img [ref=e37]
+                            - textbox "Tu nombre" [ref=e40]
+                    - generic [ref=e41]:
+                        - text: Apellido
+                        - generic [ref=e42]:
+                            - img [ref=e43]
+                            - textbox "Tu apellido" [ref=e46]
+                - generic [ref=e47]:
+                    - generic [ref=e48]:
+                        - text: Plan Deseado
+                        - generic [ref=e50]:
+                            - combobox [ref=e51] [cursor=pointer]:
+                                - option "Selecciona un plan..." [disabled]
+                                - option "Aventura Santurbán"
+                                - option "Plan Romántico" [selected]
+                                - option "Plan Laguna Encantada"
+                                - option "Plan Páramos"
+                                - option "Plan Noche de Pareja"
+                                - option "Habitación Frailejon"
+                                - option "Habitación vibra Santurban"
+                            - img
+                    - generic [ref=e52]:
+                        - text: Personas
+                        - generic [ref=e54]:
+                            - img [ref=e55]
+                            - spinbutton [ref=e60]: '2'
+                - generic [ref=e214]:
+                    - generic [ref=e215]:
+                        - img [ref=e217]
+                        - generic [ref=e219]: Calendario de Disponibilidad
+                    - paragraph [ref=e221]: No hay fechas reservadas próximamente.
+                - generic [ref=e61]:
+                    - text: Rango de Fechas (Llegada - Salida)
+                    - button "Selecciona las fechas" [ref=e64]:
+                        - img
+                        - generic [ref=e65]: Selecciona las fechas
+                - button "Solicitar Reserva" [ref=e67]
+        - generic [ref=e68]:
+            - generic:
+                - generic: Cómo llegar
+                - heading "A solo 1:30 horas de Bucaramanga" [level=2]
+                - paragraph: Desconéctate en medio de la naturaleza sin ir lejos. Sigue la ruta disfrutando de los hermosos paisajes de la región hasta llegar al corazón del páramo de Santurbán.
+                - generic [ref=e78]:
+                    - link "Google Maps" [ref=e79] [cursor=pointer]:
+                        - /url: https://www.google.com/maps/dir/?api=1&destination=7.2191149%2C-72.8506305&utm_source=chatgpt.com
+                        - img [ref=e80]
+                        - text: Google Maps
+                    - link "Abrir en Waze" [ref=e83] [cursor=pointer]:
+                        - /url: https://waze.com/ul/hd3k1n4py3
+        - generic [ref=e85]:
+            - generic [ref=e86]:
+                - paragraph [ref=e87]: Lo que ofrecemos
+                - heading "Nuestros Servicios" [level=2] [ref=e88]
+            - generic [ref=e89]:
+                - generic [ref=e90]:
+                    - img [ref=e92]
+                    - heading "Gastronomía" [level=3] [ref=e95]
+                    - paragraph [ref=e96]: Platos locales preparados por chefs expertos.
+                - generic [ref=e97]:
+                    - img [ref=e99]
+                    - heading "Conectividad" [level=3] [ref=e103]
+                    - paragraph [ref=e104]: Wi-Fi de alta velocidad en todas nuestras cabañas.
+                - generic [ref=e105]:
+                    - img [ref=e107]
+                    - heading "Desayuno" [level=3] [ref=e109]
+                    - paragraph [ref=e110]: Desayuno artesanal servido en tu terraza.
+                - generic [ref=e111]:
+                    - img [ref=e113]
+                    - heading "Fogatas" [level=3] [ref=e117]
+                    - paragraph [ref=e118]: Noches mágicas con música y malvaviscos.
+                - generic [ref=e119]:
+                    - img [ref=e121]
+                    - heading "Malla Catamarán" [level=3] [ref=e123]
+                    - paragraph [ref=e124]: Disfruta de la experiencia de relajarte en las alturas.
+        - generic [ref=e127]:
+            - generic [ref=e128]:
+                - generic [ref=e129]:
+                    - paragraph [ref=e130]: Voces de nuestros huéspedes
+                    - heading "Testimonios" [level=2] [ref=e131]
+                - generic [ref=e132]:
+                    - generic [ref=e133]:
+                        - img "Belkis Amarís" [ref=e135]
+                        - paragraph [ref=e136]: '"Este lugar reúne todo lo que está bien hecho en la vida; paisaje, clima, comida deliciosa, atención, comodidad, limpieza. Un paraíso en la tierra, lo súper recomiendo, no se arrepentirán."'
+                        - generic [ref=e137]: Belkis Amarís
+                    - generic [ref=e138]:
+                        - img "Natali Tarazona." [ref=e140]
+                        - paragraph [ref=e141]: '"Lugar súper recomendado!! Si estás en busca de tranquilidad y conectarte con la Naturaleza"'
+                        - generic [ref=e142]: Natali Tarazona.
+                    - generic [ref=e143]:
+                        - img "German Dario." [ref=e145]
+                        - paragraph [ref=e146]: '"Gracias por permitirnos vivir una experiencia maravillosa, volveremos pronto , super recomendados"'
+                        - generic [ref=e147]: German Dario.
+            - generic [ref=e149]:
+                - img [ref=e151]
+                - img [ref=e154]
+                - heading "¿Ya nos visitaste?" [level=3] [ref=e159]
+                - paragraph [ref=e160]: Tu opinión es muy importante para nosotros y para futuros aventureros.
+                - link "Escribir mi experiencia" [ref=e161] [cursor=pointer]:
+                    - /url: https://search.google.com/local/writereview?placeid=ChIJnS5SxYxlaI4R2KL004fj8To&utm_source=chatgpt.com
+    - contentinfo [ref=e162]:
+        - generic [ref=e163]:
+            - generic [ref=e164]:
+                - generic [ref=e165]:
+                    - generic [ref=e166]:
+                        - img "Logo" [ref=e168]
+                        - generic [ref=e169]:
+                            - generic [ref=e170]: SANTURBAN
+                            - generic [ref=e171]: Glamping
+                    - paragraph [ref=e172]: Experiencias de lujo en contacto con la naturaleza. Descubre el glamping más exclusivo de la región y escapa a un mundo de estilo y relajación.
+                    - generic [ref=e173]:
+                        - link "Facebook" [ref=e174] [cursor=pointer]:
+                            - /url: https://www.facebook.com/profile.php?id=100063774896366
+                            - img [ref=e175]
+                        - link "Instagram" [ref=e177] [cursor=pointer]:
+                            - /url: https://www.instagram.com/glampingsanturban/
+                            - img [ref=e178]
+                - generic [ref=e181]:
+                    - heading "Explorar" [level=4] [ref=e182]
+                    - list [ref=e183]:
+                        - listitem [ref=e184]:
+                            - link "Cómo llegar" [ref=e185] [cursor=pointer]:
+                                - /url: /#como-llegar
+                        - listitem [ref=e186]:
+                            - link "Experiencias" [ref=e187] [cursor=pointer]:
+                                - /url: /experiencias/
+                - generic [ref=e188]:
+                    - heading "Planes y paquetes" [level=4] [ref=e189]
+                    - list [ref=e190]:
+                        - listitem [ref=e191]:
+                            - link "Santurbán" [ref=e192] [cursor=pointer]:
+                                - /url: /planes/santurban/
+                        - listitem [ref=e193]:
+                            - link "Plan Romantico" [ref=e194] [cursor=pointer]:
+                                - /url: /planes/plan-romantico/
+                        - listitem [ref=e195]:
+                            - link "Plan Laguna Encantada" [ref=e196] [cursor=pointer]:
+                                - /url: /planes/plan-laguna-encantada/
+                        - listitem [ref=e197]:
+                            - link "Plan Paramos" [ref=e198] [cursor=pointer]:
+                                - /url: /planes/plan-paramos/
+                        - listitem [ref=e199]:
+                            - link "Noche de parejas" [ref=e200] [cursor=pointer]:
+                                - /url: /planes/plan-noche-de-pareja/
+                - generic [ref=e201]:
+                    - heading "Únete al Club" [level=4] [ref=e202]
+                    - paragraph [ref=e203]: Recibe ofertas exclusivas y guías de viaje directamente en tu correo.
+                    - generic [ref=e204]:
+                        - textbox "Tu email..." [ref=e205]
+                        - button [ref=e206]:
+                            - img [ref=e207]
+            - paragraph [ref=e211]:
+                - text: © Hecho por
+                - link "Isabella Arbelaez" [ref=e212] [cursor=pointer]:
+                    - /url: https://siteisabella.vercel.app/

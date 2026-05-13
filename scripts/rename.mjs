@@ -12,20 +12,11 @@
  * - GENERIC_URL          → URL del sitio (se construye automáticamente)
  */
 
-import { readFileSync, writeFileSync, readdirSync, statSync, renameSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs';
 import { join, extname, relative } from 'path';
 import { createInterface } from 'readline';
 
 // ─── Configuración ──────────────────────────────────────────────────────────
-
-const PLACEHOLDERS = {
-  GENERIC_PROJECT_NAME: 'glampinglean',
-  GENERIC_USERNAME: 'isarbelaez',
-  GENERIC_REPO_NAME: 'glampinsanturban',
-  GENERIC_DESCRIPTION: 'Glamping',
-  GENERIC_AUTHOR: 'Isabella Arbelaez',
-  GENERIC_URL: '',
-};
 
 // Extensiones de archivos a procesar (contenido de texto)
 const TEXT_EXTENSIONS = new Set([

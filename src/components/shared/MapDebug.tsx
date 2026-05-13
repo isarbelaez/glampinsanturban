@@ -1,35 +1,35 @@
-import { useEffect } from "react";
-import { useMap } from "@/components/ui/map";
+import { useEffect } from 'react';
+import { useMap } from '@/components/ui/map';
 
 export function MapDebug() {
-    const { map } = useMap();
+  const { map } = useMap();
 
-    useEffect(() => {
-        if (!map) return;
+  useEffect(() => {
+    if (!map) return;
 
-        function logMapState() {
-            if (!map) return;
+    function logMapState() {
+      if (!map) return;
 
-            const center = map.getCenter();
-            const zoom = map.getZoom();
-            const bearing = map.getBearing();
-            const pitch = map.getPitch();
-            const bounds = map.getBounds();
+      const center = map.getCenter();
+      const zoom = map.getZoom();
+      const bearing = map.getBearing();
+      const pitch = map.getPitch();
+      const bounds = map.getBounds();
 
-            console.clear();
+      console.clear();
 
-            console.log("=================================");
-            console.log("MAP CONFIG");
-            console.log("=================================");
+      console.log('=================================');
+      console.log('MAP CONFIG');
+      console.log('=================================');
 
-            console.log(`
+      console.log(`
 const MAP_CENTER: [number, number] = [
   ${center.lng.toFixed(6)},
   ${center.lat.toFixed(6)}
 ];
 `);
 
-            console.log(`
+      console.log(`
 <Map
   center={MAP_CENTER}
   zoom={${zoom.toFixed(2)}}
@@ -44,7 +44,7 @@ const MAP_CENTER: [number, number] = [
 />
 `);
 
-            console.log(`
+      console.log(`
 map.fitBounds(
   [
     [${bounds.getWest().toFixed(6)}, ${bounds.getSouth().toFixed(6)}],
@@ -64,17 +64,17 @@ map.fitBounds(
 );
 `);
 
-            console.log("=================================");
-        }
+      console.log('=================================');
+    }
 
-        map.on("moveend", logMapState);
+    map.on('moveend', logMapState);
 
-        logMapState();
+    logMapState();
 
-        return () => {
-            map.off("moveend", logMapState);
-        };
-    }, [map]);
+    return () => {
+      map.off('moveend', logMapState);
+    };
+  }, [map]);
 
-    return null;
+  return null;
 }

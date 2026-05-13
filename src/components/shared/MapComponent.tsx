@@ -1,7 +1,7 @@
 import { Map, MapMarker, MarkerContent, MarkerPopup } from '@/components/ui/map';
 import { AnimatedRouteLayer } from '@/components/map/AnimatedRouteLayer';
 import { useInViewAnimation } from '@/hooks/useInViewAnimation';
-import { MAP_CENTER, GLAMPING_COORDS, BUCARAMANGA_COORDS } from '@/lib/route';
+import { GLAMPING_COORDS, BUCARAMANGA_COORDS } from '@/lib/route';
 import { cn } from '@/lib/utils';
 import { useEffect } from 'react';
 import { useMap } from '@/components/ui/map';
@@ -16,9 +16,10 @@ function AttributionRelocator() {
     if (!map || !isLoaded) return;
 
     // Remover el AttributionControl por defecto (siempre está en _controls)
-    const controls: any[] = (map as any)._controls ?? [];
+    const internalMap = map as unknown as { _controls: unknown[] };
+    const controls = internalMap._controls ?? [];
     const existing = controls.find((c) => c instanceof AttributionControl);
-    if (existing) map.removeControl(existing);
+    if (existing) map.removeControl(existing as maplibrePkg.IControl);
 
     // Agregar el control en la posición correcta (top-left)
     const attribution = new AttributionControl({ compact: true });
@@ -76,30 +77,6 @@ function MapAdjuster() {
     updateLayout();
     window.addEventListener('resize', updateLayout);
     return () => window.removeEventListener('resize', updateLayout);
-  }, [map, isLoaded]);
-
-  return null;
-}
-
-function GradientOverlay() {
-  const { map, isLoaded } = useMap();
-
-  useEffect(() => {
-    if (!map || !isLoaded) return;
-
-    // Inyectamos el gradiente DENTRO del contenedor del canvas de MapLibre.
-    // Esto asegura que quede por ENCIMA del mapa base pero por DEBAJO de los popups/markers.
-    const canvasContainer = map.getCanvasContainer();
-    const div = document.createElement('div');
-    // En mobile: gradiente de arriba a la izquierda a abajo. En desktop: gradiente de izquierda a derecha.
-    div.className =
-      'pointer-events-none absolute inset-0 z-10 ' +
-      'bg-[radial-gradient(circle_at_top_left,theme(colors.background)_15%,transparent_70%)]';
-    canvasContainer.appendChild(div);
-
-    return () => {
-      div.remove();
-    };
   }, [map, isLoaded]);
 
   return null;
