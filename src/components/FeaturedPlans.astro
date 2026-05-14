@@ -145,49 +145,172 @@ const plans = [
       style="grid-template-rows: 0fr;"
     >
       <div class="min-h-0">
-        <div class="pt-12 pb-4">
-          <div class="grid grid-cols-2 gap-4 md:grid-cols-5">
+        <div class="pt-8 pb-4">
+          <!-- Menu Category Buttons -->
+          <div class="mb-8 flex flex-wrap justify-center gap-3">
             {
               [
-                {
-                  name: 'Menu 1',
-                  price: '$20.000',
-                  desc: 'CaldoCaldo típico de huevo o de costilla, queso, arepa y bebida caliente ',
-                },
-                {
-                  name: 'Menu 2',
-                  price: '$20.000',
-                  desc: 'Papas locas de montaña.',
-                },
-                {
-                  name: 'Menu 3',
-                  price: '$15.000',
-                  desc: 'Arepa rellena (pollo, queso, tomaté y cebolla), bebida caliente',
-                },
-                {
-                  name: 'Menu 4',
-                  price: '$20.000',
-                  desc: 'Sandwich cubano y papas a la francesa (carne o pollo)',
-                },
-                {
-                  name: 'Menu 5',
-                  price: '$20.000',
-                  desc: 'Carnes con papas a la francesa o casquitos.',
-                },
-              ].map((item) => (
-                <div class="group bg-card flex h-full flex-col justify-between rounded-xl border border-black/5 p-6 transition-colors">
-                  <div>
-                    <h4 class="text-foreground mb-3 font-serif text-lg leading-tight font-bold">
-                      {item.name}
-                    </h4>
-                    <p class="text-foreground/60 mb-6 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                  <div class="bg-primary/20 text-primary border-primary/30 group-hover:bg-primary inline-block w-fit rounded-full border px-4 py-1.5 text-xs font-bold tracking-wider transition-colors group-hover:text-white">
-                    {item.price}
-                  </div>
-                </div>
+                { id: 'desayuno', name: 'Desayuno' },
+                { id: 'almuerzo', name: 'Almuerzo' },
+                { id: 'cena', name: 'Cena' },
+                { id: 'bebidas', name: 'Postres y Bebidas' },
+              ].map((cat) => (
+                <button
+                  data-menu-category={cat.id}
+                  class="menu-cat-btn bg-card hover:border-primary text-foreground cursor-pointer rounded-full border border-black/5 px-6 py-2 text-[10px] font-bold tracking-widest uppercase transition-all"
+                >
+                  {cat.name}
+                </button>
               ))
             }
+          </div>
+
+          <!-- Menu Items Grid -->
+          <div class="relative">
+            <div id="menu-items-grid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {
+                [
+                  // Desayunos
+                  {
+                    cat: 'desayuno',
+                    name: 'Menú 1',
+                    price: '$25.000',
+                    desc: 'Caldo de huevo, chocolate, queso y arepa.',
+                  },
+                  {
+                    cat: 'desayuno',
+                    name: 'Menú 2',
+                    price: '$25.000',
+                    desc: 'Huevos al gusto, chocolate, pan, queso y arepa.',
+                  },
+                  {
+                    cat: 'desayuno',
+                    name: 'Menú 3',
+                    price: '$25.000',
+                    desc: 'Arepa rellena (pollo, queso, tomate y cebolla), bebida caliente.',
+                  },
+
+                  // Almuerzos
+                  {
+                    cat: 'almuerzo',
+                    name: 'Menú 1 - Trucha',
+                    price: '$38.000',
+                    desc: 'Trucha al gusto, arroz, puré de papa, ensalada y bebida.',
+                  },
+                  {
+                    cat: 'almuerzo',
+                    name: 'Menú 2 - Carne',
+                    price: '$38.000',
+                    desc: 'Filete de carne o pollo, arroz, puré de papa, ensalada y bebida.',
+                  },
+                  {
+                    cat: 'almuerzo',
+                    name: 'Menú 3 - Pechuga',
+                    price: '$35.000',
+                    desc: 'Filete de pollo, arroz, puré de papa, ensalada y bebida.',
+                  },
+
+                  // Cenas
+                  {
+                    cat: 'cena',
+                    name: 'Menú 1',
+                    price: '$25.000',
+                    desc: 'Caldo de huevo o de costilla, chocolate, queso, arepa y bebida caliente.',
+                  },
+                  {
+                    cat: 'cena',
+                    name: 'Menú 2',
+                    price: '$25.000',
+                    desc: 'Papas locas de montaña.',
+                  },
+                  {
+                    cat: 'cena',
+                    name: 'Menú 3',
+                    price: '$25.000',
+                    desc: 'Arepa rellena (pollo, queso, tomate y cebolla), bebida caliente.',
+                  },
+                  {
+                    cat: 'cena',
+                    name: 'Menú 4',
+                    price: '$38.000',
+                    desc: 'Sándwich cubano y papas a la francesa (carne o pollo).',
+                  },
+                  {
+                    cat: 'cena',
+                    name: 'Menú 5',
+                    price: '$28.000',
+                    desc: 'Carnes con papas a la francesa o casquitos.',
+                  },
+
+                  // Postres y Bebidas
+                  {
+                    cat: 'bebidas',
+                    name: 'Cuajada con melado',
+                    price: '$10.000',
+                    desc: 'Postre tradicional local.',
+                  },
+                  {
+                    cat: 'bebidas',
+                    name: 'Jugos Naturales',
+                    price: '$10.000',
+                    desc: 'Fruta fresca de temporada.',
+                  },
+                  {
+                    cat: 'bebidas',
+                    name: 'Limonada de Panela',
+                    price: '$5.000',
+                    desc: 'Refrescante y natural.',
+                  },
+                  {
+                    cat: 'bebidas',
+                    name: 'Agua en botella',
+                    price: '$5.000',
+                    desc: 'Agua mineral 500ml.',
+                  },
+                  {
+                    cat: 'bebidas',
+                    name: 'Vino',
+                    price: '$55.000',
+                    desc: 'Botella de vino de la casa.',
+                  },
+                  {
+                    cat: 'bebidas',
+                    name: 'Aguardiente',
+                    price: '$50.000',
+                    desc: 'Media botella tradicional.',
+                  },
+                  {
+                    cat: 'bebidas',
+                    name: 'Gaseosa',
+                    price: '$5.000',
+                    desc: 'Variedad de sabores.',
+                  },
+                  {
+                    cat: 'bebidas',
+                    name: 'Cerveza',
+                    price: '$6.000',
+                    desc: 'Cerveza nacional fría.',
+                  },
+                ].map((item) => (
+                  <div
+                    class="menu-card-wrapper transition-opacity duration-300"
+                    data-menu-cat={item.cat}
+                  >
+                    <div class="group bg-card hover:border-primary/20 flex h-full flex-col justify-between rounded-2xl border border-black/5 p-6 transition-colors">
+                      <div>
+                        <h4 class="text-foreground mb-2 font-serif text-lg leading-tight font-bold">
+                          {item.name}
+                        </h4>
+                        <p class="text-foreground/50 mb-6 text-xs leading-relaxed">{item.desc}</p>
+                      </div>
+                      <div class="bg-primary/10 text-primary border-primary/20 inline-block w-fit rounded-full border px-4 py-1.5 text-[10px] font-bold tracking-wider">
+                        {item.price}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </div>
       </div>
@@ -422,5 +545,53 @@ const plans = [
       const span = menuBtn.querySelector('span.relative');
       if (span) span.textContent = isExpanded ? 'Mirar nuestro menú' : 'Ocultar menú';
     });
+  }
+
+  // Menu Grid and Filtering Logic
+  const menuGrid = document.getElementById('menu-items-grid');
+  const menuCatBtns = document.querySelectorAll('.menu-cat-btn');
+  const menuCards = document.querySelectorAll('.menu-card-wrapper');
+
+  if (menuGrid && menuCatBtns.length > 0) {
+    const filterMenu = (category) => {
+      menuCatBtns.forEach((btn) => {
+        if (btn.dataset.menuCategory === category) {
+          btn.classList.add('is-active', 'bg-primary/10', 'border-primary/30');
+          btn.classList.remove('bg-card', 'border-black/5');
+        } else {
+          btn.classList.remove('is-active', 'bg-primary/10', 'border-primary/30');
+          btn.classList.add('bg-card', 'border-black/5');
+        }
+      });
+
+      menuCards.forEach((card) => {
+        if (card.dataset.menuCat === category) {
+          card.classList.remove('hidden');
+          setTimeout(() => {
+            card.classList.remove('opacity-0');
+          }, 50);
+        } else {
+          card.classList.add('opacity-0');
+          setTimeout(() => {
+            card.classList.add('hidden');
+          }, 300);
+        }
+      });
+    };
+
+    menuCatBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.menuCategory;
+        filterMenu(category);
+      });
+    });
+
+    // Initialize with nothing selected
+    const initMenu = () => {
+      menuCards.forEach((card) => {
+        card.classList.add('hidden', 'opacity-0');
+      });
+    };
+    initMenu();
   }
 </script>
