@@ -1,16 +1,21 @@
 ---
 import pkg from 'lucide-react';
-const { Star, Utensils, Wifi, Coffee, Music, Zap } = pkg;
+const { Utensils, Wifi, Coffee, Music, Zap } = pkg;
 
 const services = [
-  { icon: Utensils, title: 'Gastronomía', desc: 'Platos locales preparados por chefs expertos.' },
-  { icon: Wifi, title: 'Conectividad', desc: 'Wi-Fi de alta velocidad en todas nuestras cabañas.' },
-  { icon: Coffee, title: 'Desayuno', desc: 'Desayuno artesanal servido en tu terraza.' },
-  { icon: Music, title: 'Fogatas', desc: 'Noches mágicas con música y malvaviscos.' },
+  { icon: Utensils, title: 'Gastronomía', desc: 'Platos locales preparados.' },
+  { icon: Wifi, title: 'Conectividad', desc: 'Wi-Fi de alta velocidad.' },
+  { icon: Coffee, title: 'Desayuno', desc: 'Desayuno artesanal.' },
+  { icon: Music, title: 'Fogatas', desc: 'Noches mágicas.' },
   {
     icon: Zap,
     title: 'Malla Catamarán',
-    desc: 'Disfruta de la experiencia de relajarte en las alturas.',
+    desc: 'Relajación en las alturas.',
+  },
+  {
+    isPig: true,
+    title: 'Animalitos',
+    desc: 'Alimenta nuestros animales.',
   },
 ];
 ---
@@ -28,17 +33,40 @@ const services = [
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
       {
         services.map((service) => (
           <div class="group flex flex-col items-center text-center">
-            <div class="group-hover:bg-primary group-hover:border-primary bg-card text-primary mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-black/10 transition-all duration-500 group-hover:scale-110 group-hover:text-white">
-              <service.icon size={28} strokeWidth={1.5} />
+            <div class="group-hover:bg-primary group-hover:border-primary bg-card text-primary mb-4 flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-black/10 transition-all duration-500 group-hover:scale-110 group-hover:text-white">
+              {service.isPig ? (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-7 w-7"
+                >
+                  <path d="M3 11c0-2.2 1.8-4 4-4h10c2.2 0 4 1.8 4 4v2c0 2.2-1.8 4-4 4H7c-2.2 0-4-1.8-4-4v-2z" />
+                  <circle cx="12" cy="12" r="2.5" />
+                  <path d="M11.5 12h.01" />
+                  <path d="M12.5 12h.01" />
+                  <path d="M7 7l-1-2" />
+                  <path d="M17 7l1-2" />
+                  <path d="M5 17v2" />
+                  <path d="M19 17v2" />
+                </svg>
+              ) : (
+                <service.icon size={24} strokeWidth={1.5} />
+              )}
             </div>
-            <h3 class="text-foreground mb-2 text-sm font-bold tracking-widest uppercase">
+            <h3 class="text-foreground mb-1 text-[10px] font-bold tracking-widest uppercase">
               {service.title}
             </h3>
-            <p class="text-foreground/40 text-xs leading-relaxed">{service.desc}</p>
+            <p class="text-foreground/40 max-w-[120px] text-[9px] leading-relaxed">
+              {service.desc}
+            </p>
           </div>
         ))
       }

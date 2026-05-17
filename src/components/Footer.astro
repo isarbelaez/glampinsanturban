@@ -106,18 +106,25 @@ const socialLinks = [
         <p class="mb-6 text-sm text-white/50">
           Recibe ofertas exclusivas y guías de viaje directamente en tu correo.
         </p>
-        <div class="relative">
+        <form id="newsletter-form" class="relative">
           <input
             type="email"
+            id="newsletter-email"
+            name="email"
+            required
             placeholder="Tu email..."
             class="focus:border-primary w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-all focus:outline-none"
           />
           <button
+            type="submit"
             class="text-primary absolute top-1/2 right-2 -translate-y-1/2 transition-colors hover:text-white"
           >
             <Send size={20} />
           </button>
-        </div>
+        </form>
+        <p id="newsletter-msg" class="text-primary mt-4 hidden text-sm font-bold">
+          ¡Te uniste al club para más información!
+        </p>
       </div>
     </div>
 
@@ -135,3 +142,50 @@ const socialLinks = [
     </div>
   </div>
 </footer>
+
+<script>
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
+  const msg = document.getElementById('newsletter-msg');
+
+  if (form && msg) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const emailInput = document.getElementById('newsletter-email') as HTMLInputElement;
+      const email = emailInput.value;
+
+      try {
+        // NOTA PARA EL USUARIO:
+        // Debes reemplazar esta URL con la tuya generada en Apps Script
+        const GOOGLE_SCRIPT_URL =
+          'https://script.google.com/macros/s/AKfycbxdhSg7euHtIAXJkp2PQ64KhfLaObUZMTAn8SMEtpzFiprnbVUrczLJcTH6SCulik3B/exec';
+
+        // Se usa form-urlencoded para no tener problemas de CORS con Apps Script
+        const formData = new URLSearchParams();
+        formData.append('email', email);
+
+        if (!GOOGLE_SCRIPT_URL.includes('TU_ID_AQUI')) {
+          fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData.toString(),
+          }).catch((err) => console.error(err));
+        }
+
+        // Mostrar mensaje de éxito
+        form.reset();
+        msg.classList.remove('hidden');
+
+        // Ocultar mensaje después de 5 segundos
+        setTimeout(() => {
+          msg.classList.add('hidden');
+        }, 5000);
+      } catch (error) {
+        console.error('Error al suscribirse:', error);
+      }
+    });
+  }
+</script>

@@ -48,7 +48,7 @@ export const plansData: Plan[] = [
     ],
     whatsapp: '17869097263',
     icsUrl:
-      'https://calendar.google.com/calendar/ical/539d59a37954fb2ce734a19634cc2c0e0e11ed300566dd69bb30091d2e8f9e13%40group.calendar.google.com/private-0d29652c61348e09c82f44c7622d27b6/basic.ics',
+      'https://calendar.google.com/calendar/ical/f7bca012556dacd7e1f85534a4bba15936336fd83fa892f62d82c54a7e76848c%40group.calendar.google.com/private-48ed2bac3f163a582a97610d8dc3e1ae/basic.ics',
   },
   {
     slug: 'plan-romantico',
@@ -79,7 +79,7 @@ export const plansData: Plan[] = [
     ],
     whatsapp: '17869097263',
     icsUrl:
-      'https://calendar.google.com/calendar/ical/539d59a37954fb2ce734a19634cc2c0e0e11ed300566dd69bb30091d2e8f9e13%40group.calendar.google.com/private-0d29652c61348e09c82f44c7622d27b6/basic.ics',
+      'https://calendar.google.com/calendar/ical/f7bca012556dacd7e1f85534a4bba15936336fd83fa892f62d82c54a7e76848c%40group.calendar.google.com/private-48ed2bac3f163a582a97610d8dc3e1ae/basic.ics',
   },
   {
     slug: 'plan-laguna-encantada',
