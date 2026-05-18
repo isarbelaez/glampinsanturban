@@ -55,11 +55,11 @@ export const plansData: Plan[] = [
     category: 'glamping',
     title: 'Plan Romántico',
     price: '$390.000',
-    image: asset('/images/exterior.jpeg'),
+    image: asset('/images/mujer.jpeg'),
     gallery: [
-      asset('/images/exterior.jpeg'),
+      asset('/images/pareja.jpeg'),
+      asset('/images/mujer.jpeg'),
       asset('/images/cama.jpeg'),
-      asset('/images/espejo.jpeg'),
       asset('/images/cabaña.jpeg'),
     ],
     description: 'Disfruta de una agradable decoración, desayuno, almuerzo y fogata con chocolate.',
@@ -114,7 +114,7 @@ export const plansData: Plan[] = [
     slug: 'plan-paramos',
     category: 'glamping',
     title: 'Plan Páramos',
-    price: '$230.000',
+    price: '$240.000',
     image: asset('/images/cama.jpeg'),
     gallery: [
       asset('/images/cama.jpeg'),
@@ -144,7 +144,7 @@ export const plansData: Plan[] = [
     category: 'glamping',
     title: 'Plan Noche de Pareja',
     price: '$420.000',
-    image: asset('/images/espejo.jpeg'),
+    image: asset('/images/pareja.jpeg'),
     gallery: [
       asset('/images/espejo.jpeg'),
       asset('/images/cabaña.jpeg'),
