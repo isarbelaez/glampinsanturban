@@ -230,6 +230,14 @@ export function BookingForm({ initialEvents = [] }: { initialEvents?: CalendarEv
               </div>
             </form>
           </div>
+
+          <div className="border-primary/20 bg-primary/5 mt-6 rounded-xl border p-4 text-center shadow-sm">
+            <p className="text-foreground/80 text-sm leading-relaxed font-medium">
+              <span className="text-primary mb-1 block font-bold">Nota importante:</span>
+              50% del total se debe pagar al momento de la reserva, el importe restante se pagará 1
+              día(s) antes de la llegada.
+            </p>
+          </div>
         </div>
       </div>
     </section>
