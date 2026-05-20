@@ -9,13 +9,13 @@ interface Props {
 }
 
 const {
-  title = 'Glamping Santurban',
+  title = 'Glamping Santurbán',
   description = 'Escapa a la naturaleza con lujo y estilo. El glamping más exclusivo para desconectar y vivir experiencias inolvidables.',
-  image = '/og-image.png',
-  canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://terralunaglamping.com'),
+  image = '/images/principal.webp',
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://siteisabella.vercel.app'),
 } = Astro.props;
 
-const siteTitle = title === 'Glamping Santurban' ? title : `${title} | Glamping Santurban `;
+const siteTitle = title === 'Glamping Santurbán' ? title : `${title} | Glamping Santurbán`;
 ---
 
 <!doctype html>
@@ -48,7 +48,7 @@ const siteTitle = title === 'Glamping Santurban' ? title : `${title} | Glamping 
     <meta property="og:description" content={description} />
     <meta
       property="og:image"
-      content={new URL(image, Astro.site || 'https://terralunaglamping.com')}
+      content={new URL(image, Astro.site || 'https://siteisabella.vercel.app')}
     />
 
     <!-- Twitter Card -->
@@ -57,7 +57,7 @@ const siteTitle = title === 'Glamping Santurban' ? title : `${title} | Glamping 
     <meta name="twitter:description" content={description} />
     <meta
       name="twitter:image"
-      content={new URL(image, Astro.site || 'https://terralunaglamping.com')}
+      content={new URL(image, Astro.site || 'https://siteisabella.vercel.app')}
     />
   </head>
   <body class="bg-background text-foreground selection:bg-primary antialiased selection:text-white">

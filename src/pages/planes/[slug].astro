@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { plan } = Astro.props;
 ---
 
-<Layout title={`${plan.title} | Santurban Glamping`}>
+<Layout title={plan.title}>
   <Navbar />
   <main>
     {/* 1. Detalles del plan */}
