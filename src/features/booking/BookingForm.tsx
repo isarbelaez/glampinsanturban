@@ -19,6 +19,7 @@ export function BookingForm({ initialEvents = [] }: { initialEvents?: CalendarEv
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [bookedEvents, setBookedEvents] = useState<CalendarEvent[]>(initialEvents);
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const {
     control,
@@ -67,13 +68,30 @@ export function BookingForm({ initialEvents = [] }: { initialEvents?: CalendarEv
 *Llegada:* ${data.dateRange.from.toLocaleDateString()}
 *Salida:* ${data.dateRange.to.toLocaleDateString()}`;
 
-    const whatsappUrl = `https://wa.me/17869097263?text=${encodeURIComponent(message)}`;
+    // Using api.whatsapp.com/send which is more reliable across mobile browsers and webviews
+    const url = `https://api.whatsapp.com/send?phone=17869097263&text=${encodeURIComponent(message)}`;
+    setWhatsappUrl(url);
 
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
       setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+          // On mobile, window.location.href doesn't trigger popup blockers and opens WhatsApp directly
+          window.location.href = url;
+        } else {
+          // On desktop, we try opening in a new tab
+          try {
+            const newWindow = window.open(url, '_blank');
+            // If the popup was blocked by the browser, fallback to redirecting current tab
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+              window.location.href = url;
+            }
+          } catch (e) {
+            window.location.href = url;
+          }
+        }
       }, 1500);
     }, 1000);
   };
@@ -92,16 +110,24 @@ export function BookingForm({ initialEvents = [] }: { initialEvents?: CalendarEv
             <h2 className="text-foreground mb-4 font-serif text-3xl font-bold md:text-4xl">
               ¡Tu reserva ha sido enviada!
             </h2>
-            <p className="text-foreground/60 text-lg leading-relaxed">
+            <p className="text-foreground/60 mb-8 text-lg leading-relaxed">
               En un momento nos contactaremos contigo. Serás redirigido a WhatsApp para finalizar
-              los detalles.
+              los detalles. Si no eres redirigido automáticamente, haz clic en el botón de abajo:
             </p>
-            <button
-              onClick={() => setIsSuccess(false)}
-              className="text-primary mt-8 text-sm font-bold tracking-widest uppercase hover:underline"
-            >
-              Volver al formulario
-            </button>
+            <div className="flex flex-col items-center gap-4">
+              <a
+                href={whatsappUrl}
+                className="bg-primary hover:bg-primary/90 shadow-primary/20 hover:shadow-primary/40 flex w-full items-center justify-center rounded-xl py-4 font-bold tracking-[0.2em] text-white uppercase shadow-lg transition-all"
+              >
+                Abrir WhatsApp
+              </a>
+              <button
+                onClick={() => setIsSuccess(false)}
+                className="text-foreground/40 mt-4 text-xs font-bold tracking-widest uppercase hover:underline"
+              >
+                Volver al formulario
+              </button>
+            </div>
           </div>
         </div>
       </section>

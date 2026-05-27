@@ -176,7 +176,7 @@ const iconMap: Record<string, any> = {
           </ul>
 
           <a
-            href={`https://wa.me/${plan.whatsapp || '17869097263'}?text=Hola!%20Quiero%20reservar%20el%20plan%20${encodeURIComponent(plan.title)}`}
+            href={`https://api.whatsapp.com/send?phone=${plan.whatsapp || '17869097263'}&text=Hola!%20Quiero%20reservar%20el%20plan%20${encodeURIComponent(plan.title)}`}
             target="_blank"
             rel="noopener noreferrer"
             class="block w-full"
