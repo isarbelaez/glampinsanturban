@@ -84,9 +84,50 @@ const iconMap: Record<string, any> = {
         <!-- Main Description -->
         <div class="prose prose-slate max-w-none">
           <h2 class="text-foreground mb-6 font-serif text-3xl font-bold">Sobre la experiencia</h2>
-          <p class="text-foreground/70 text-lg leading-relaxed">
+          <p class="text-foreground/70 mb-8 text-lg leading-relaxed">
             {plan.details}
           </p>
+
+          {
+            plan.pricingTable && (
+              <div class="bg-card my-8 max-w-md overflow-hidden rounded-2xl border border-black/5 p-6 shadow-lg">
+                <h3 class="text-foreground mb-4 flex items-center gap-2 font-serif text-xl font-bold">
+                  <span class="bg-primary/10 text-primary flex items-center justify-center rounded-lg p-1.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <>
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </>
+                    </svg>
+                  </span>
+                  Tarifas por Ocupación
+                </h3>
+                <div class="divide-y divide-black/5">
+                  {plan.pricingTable.map((item) => (
+                    <div class="flex items-center justify-between py-3">
+                      <span class="text-foreground/80 font-medium">{item.guests}</span>
+                      <span class="text-primary text-lg font-bold">
+                        {item.price}{' '}
+                        <span class="text-foreground/50 text-xs font-normal">/ noche</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          }
         </div>
 
         <!-- Gallery -->
@@ -118,7 +159,7 @@ const iconMap: Record<string, any> = {
             ) : (
               <>
                 {/* Glamping Layout: Standard Grid */}
-                {(plan.gallery || []).slice(0, 3).map((img, idx) => (
+                {(plan.gallery || []).map((img, idx) => (
                   <div
                     class={`bg-card overflow-hidden rounded-xl ${idx === 0 ? 'row-span-2 aspect-[3/4] md:aspect-[4/5]' : 'aspect-video'}`}
                   >
@@ -152,9 +193,13 @@ const iconMap: Record<string, any> = {
         <div class="bg-card rounded-2xl border border-black/5 p-8 shadow-xl">
           <div class="mb-8">
             <p class="text-foreground/60 mb-2 text-sm font-medium tracking-wider uppercase">
-              Precio por noche
+              {plan.pricingTable ? 'Precio desde' : 'Precio por noche'}
             </p>
-            <p class="text-foreground font-serif text-4xl font-bold">{plan.price}</p>
+            <p
+              class={`text-foreground font-serif font-bold ${plan.pricingTable ? 'text-2xl' : 'text-4xl'}`}
+            >
+              {plan.price}
+            </p>
           </div>
 
           <ul class="mb-10 space-y-4 border-b border-black/5 pb-8">

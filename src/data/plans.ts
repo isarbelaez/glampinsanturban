@@ -16,6 +16,7 @@ export interface Plan {
   includes: string[];
   whatsapp?: string;
   icsUrl?: string;
+  pricingTable?: { guests: string; price: string }[];
 }
 
 export const plansData: Plan[] = [
@@ -54,15 +55,16 @@ export const plansData: Plan[] = [
     slug: 'plan-romantico',
     category: 'glamping',
     title: 'Plan Romántico',
-    price: '$390.000',
-    image: asset('/images/mujer.webp'),
+    price: '$425.000',
+    image: asset('/images/romantico PM.jpeg'),
     gallery: [
       asset('/images/pareja.webp'),
       asset('/images/mujer.webp'),
       asset('/images/cama.webp'),
       asset('/images/cabaña.webp'),
     ],
-    description: 'Disfruta de una agradable decoración, desayuno, almuerzo y fogata con chocolate.',
+    description:
+      'Disfruta de una agradable decoración, vista a la montaña, desayuno, almuerzo y masmelos.',
     details:
       'Un plan diseñado para celebrar el amor en un entorno mágico. Incluye una hermosa decoración romántica en tu cabaña, desayuno en la cama, un exquisito almuerzo especial y, para cerrar la noche, una cálida fogata bajo las estrellas acompañada de chocolate caliente y masmelos.',
     includesDescription:
@@ -95,7 +97,7 @@ export const plansData: Plan[] = [
     ],
     description: 'Una experiencia frente a la laguna con una vista hermosa.',
     details:
-      'Conecta con la naturaleza en una experiencia llena de aventura y descanso. Incluye hospedaje en Glamping Deluxe, desayuno típico, almuerzo a la carta, fogata, chocolates, masmelos y guía para visitar la laguna. NO INCLUYE TRASPORTE',
+      'Conecta con la naturaleza en una experiencia llena de aventura y descanso. Incluye hospedaje en Glamping Deluxe, desayuno típico, almuerzo a la carta, fogata, masmelos y guía para visitar la laguna. NO INCLUYE TRASPORTE',
     includesDescription:
       'Despierta con la vista más privilegiada del glamping, donde el espejo de agua de la laguna refleja la paz que vienes a buscar.',
     accommodationSummary:
@@ -113,8 +115,8 @@ export const plansData: Plan[] = [
   {
     slug: 'plan-paramos',
     category: 'glamping',
-    title: 'Plan Páramos',
-    price: '$240.000',
+    title: 'Plan Páramo',
+    price: '$245.000',
     image: asset('/images/cama.webp'),
     gallery: [
       asset('/images/cama.webp'),
@@ -124,7 +126,7 @@ export const plansData: Plan[] = [
     ],
     description: 'Disfruta un día de descanso en nuestra cabaña con una vista hermosa.',
     details:
-      'Un merecido descanso de la rutina, una pasadía con desayuno de inluido, almuerzo y fogata con chocolates y masmelos, son de lunes a jueves de 8 am a 6pm',
+      'Un merecido descanso de la rutina, una pasadía con desayuno de inluido, almuerzo, fogata y masmelos, son de lunes a jueves de 8 am a 6pm',
     includesDescription:
       'La opción ideal para aventureros y amantes del trekking que buscan un refugio acogedor tras explorar los senderos de Santurbán.',
     accommodationSummary:
@@ -143,10 +145,10 @@ export const plansData: Plan[] = [
     slug: 'plan-noche-de-pareja',
     category: 'glamping',
     title: 'Plan Noche de Pareja',
-    price: '$420.000',
-    image: asset('/images/pareja.webp'),
+    price: '$395.000',
+    image: asset('/images/niño.webp'),
     gallery: [
-      asset('/images/espejo.webp'),
+      asset('/images/niño.webp'),
       asset('/images/cabaña.webp'),
       asset('/images/cama.webp'),
       asset('/images/paisaje.webp'),
@@ -172,30 +174,61 @@ export const plansData: Plan[] = [
     slug: 'Habitación-Frailejon',
     category: 'hostal',
     title: 'Habitación Frailejon',
-    price: '$190.000',
+    price: '$215.000 (2 personas)',
     image: asset('/images/hostal.webp'),
     gallery: [asset('/images/hostaluno.webp')],
     video: asset('/images/Videos/hostal.mp4'),
-    description: 'Habitación privada en zona de hostal.',
+    description:
+      'Habitación privada en zona de hostal. Puedes hacer uso de zonas sociales, salón familiar super grande con chimenea, juegos de mesa, bicicleta, senderos y mucho más.',
     details:
-      'Disfruta de la privacidad de una habitación propia dentro de nuestro ambiente de hostal. La combinación perfecta entre economía y tranquilidad, Cómoda habitación ideal para descansar y disfrutar de la tranquilidad de Santurbán, con dos camas semidobles, entrada exterior, parqueadero privado, baño privado con agua caliente, calefactor, Smart TV, WiFi y sofá cama.',
+      'Disfruta de la privacidad de una habitación propia dentro de nuestro ambiente de hostal. La combinación perfecta entre economía y tranquilidad, Cómoda habitación ideal para descansar y disfrutar de la tranquilidad de Santurbán, con dos camas semidobles, entrada exterior, parqueadero privado, baño privado con agua caliente, calefactor, Smart TV, WiFi y sofá cama. Puedes hacer uso de zonas sociales, salón familiar super grande con chimenea, juegos de mesa, bicicleta, senderos y mucho más.',
     features: ['wifi', 'cama doble', 'baño privado', 'TV', 'calefactor'],
     includes: ['cama en habitación', 'Desayuno básico', 'Acceso a cocina compartida'],
     whatsapp: '17869097263',
+    pricingTable: [
+      { guests: '2 personas', price: '$215.000' },
+      { guests: '4 personas', price: '$285.000' },
+      { guests: '6 personas', price: '$315.000' },
+    ],
+  },
+  {
+    slug: 'plan-noche-de-encanto',
+    category: 'glamping',
+    title: 'Plan Noche de Encanto',
+    price: '$240.000',
+    image: asset('/images/mujer.webp'),
+    gallery: [
+      asset('/images/mujer.webp'),
+      asset('/images/espejo.webp'),
+      asset('/images/cabaña.webp'),
+      asset('/images/cama.webp'),
+    ],
+    description: 'Hospédate en nuestro Glamping Luzuri.',
+    details:
+      'Cabaña con hermosa vista a la montaña y clima espectacular, perfecta para una noche mágica bajo las estrellas.',
+    features: ['wifi', 'desayuno', 'vista a la montaña'],
+    includes: ['Cabaña privada', 'Desayuno incluido', 'Acceso a zona de fogata'],
+    whatsapp: '17869097263',
+    // No pricingTable for now
   },
   {
     slug: 'Habitación-vibra-Santurban',
     category: 'hostal',
     title: 'Habitación vibra Santurban',
-    price: '$150.000',
+    price: '$195.000 (2 personas)',
     image: asset('/images/vibra.webp'),
     gallery: [asset('/images/hostaldos.webp')],
     video: asset('/images/Videos/sala.mp4'),
-    description: 'Habitación privada en zona de hostal.',
+    description:
+      'Habitación privada en zona de hostal. Puedes hacer uso de zonas sociales, salón familiar super grande con chimenea, juegos de mesa, bicicleta, senderos y mucho más.',
     details:
-      'Una habitación acogedora y cómoda con dos camas semidobles, baño privado con agua caliente y WiFi para una estadía tranquila y agradable.',
+      'Una habitación acogedora y cómoda con dos camas semidobles, baño privado con agua caliente y WiFi para una estadía tranquila y agradable. Puedes hacer uso de zonas sociales, salón familiar super grande con chimenea, juegos de mesa, bicicleta, senderos y mucho más.',
     features: ['wifi', 'camas', 'baño privado'],
     includes: ['Habitación privada', 'Baño compartido con agua caliente', 'Desayuno incluido'],
     whatsapp: '17869097263',
+    pricingTable: [
+      { guests: '2 personas', price: '$195.000' },
+      { guests: '4 personas', price: '$245.000' },
+    ],
   },
 ];
