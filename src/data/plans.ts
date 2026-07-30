@@ -146,10 +146,10 @@ export const plansData: Plan[] = [
     category: 'glamping',
     title: 'Plan Noche de Pareja',
     price: '$395.000',
-    image: asset('/images/niño.webp'),
+    image: asset('/images/pareja.jpeg'),
     gallery: [
+      asset('/images/pareja.jpeg'),
       asset('/images/niño.webp'),
-      asset('/images/cabaña.webp'),
       asset('/images/cama.webp'),
       asset('/images/paisaje.webp'),
     ],
