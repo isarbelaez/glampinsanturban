@@ -175,7 +175,7 @@ export const plansData: Plan[] = [
     category: 'hostal',
     title: 'Habitación Frailejon',
     price: '$215.000 (2 personas)',
-    image: asset('/images/hostal.webp'),
+    image: asset('/images/hostal.jpeg'),
     gallery: [asset('/images/hostaluno.webp')],
     video: asset('/images/Videos/hostal.mp4'),
     description:
@@ -216,7 +216,7 @@ export const plansData: Plan[] = [
     category: 'hostal',
     title: 'Habitación vibra Santurban',
     price: '$195.000 (2 personas)',
-    image: asset('/images/vibra.webp'),
+    image: asset('/images/vibra.png'),
     gallery: [asset('/images/hostaldos.webp')],
     video: asset('/images/Videos/sala.mp4'),
     description:
