@@ -155,16 +155,15 @@ export const plansData: Plan[] = [
     ],
     description: 'Disfruta una velada romántica con la persona que amas.',
     details:
-      'La escapada perfecta para compartir en pareja. Sorprende a tu ser amado con una velada inolvidable que incluye una botella de vino seleccionada, un almuerzo gourmet y una fogata privada. Déjate maravillar por la exclusividad de nuestras cabañas de lujo y el impresionante paisaje. Incluye desayuno.',
+      'La escapada perfecta para compartir en pareja. Sorprende a tu ser amado con una velada inolvidable que incluye una botella de vino seleccionada y una fogata privada. Déjate maravillar por la exclusividad de nuestras cabañas de lujo y el impresionante paisaje. Incluye desayuno.',
     includesDescription:
       'Exclusividad y lujo se fusionan en este plan diseñado para quienes desean lo mejor de la gastronomía y el confort en las alturas.',
     accommodationSummary:
       'Alojamiento premium en cabaña de lujo con mini-bar, cava de vinos, tina de hidromasaje (según disponibilidad) y servicio a la habitación personalizado.',
-    features: ['wifi', 'desayuno', 'vino', 'Fogata', 'Almuerzo', 'cena'],
+    features: ['wifi', 'desayuno', 'vino', 'Fogata'],
     includes: [
       'Noche en cabaña de lujo',
       'Botella de vino seleccionada',
-      'Cena gourmet privada',
       'Fogata especial para parejas',
       'Desayuno buffet al día siguiente',
     ],
